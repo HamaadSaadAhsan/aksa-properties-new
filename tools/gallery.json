@@ -1,0 +1,266 @@
+[
+ {
+  "image": "media/gallery/render_01.jpg",
+  "thumb": "media/gallery/thumb_render_01.jpg",
+  "cat": "exterior",
+  "caption": "Both blocks, boulevard and open fields",
+  "w": 1599,
+  "h": 899,
+  "video": "media/gallery/live_01.mp4",
+  "fx": 0.618
+ },
+ {
+  "image": "media/gallery/render_02.jpg",
+  "thumb": "media/gallery/thumb_render_02.jpg",
+  "cat": "exterior",
+  "caption": "Arrival from the Esteval roundabout",
+  "w": 1599,
+  "h": 899,
+  "video": "media/gallery/live_02.mp4",
+  "fx": 0.58
+ },
+ {
+  "image": "media/gallery/render_03.jpg",
+  "thumb": "media/gallery/thumb_render_03.jpg",
+  "cat": "exterior",
+  "caption": "Aerial over the two courtyards",
+  "w": 1599,
+  "h": 899,
+  "video": "media/gallery/live_03.mp4",
+  "fx": 0.415
+ },
+ {
+  "image": "media/gallery/render_04.jpg",
+  "thumb": "media/gallery/thumb_render_04.jpg",
+  "cat": "exterior",
+  "caption": "Street front with private gardens",
+  "w": 1599,
+  "h": 899,
+  "video": "media/gallery/live_04.mp4",
+  "fx": 0.664
+ },
+ {
+  "image": "media/gallery/render_05.jpg",
+  "thumb": "media/gallery/thumb_render_05.jpg",
+  "cat": "exterior",
+  "caption": "The two blocks along the avenue",
+  "w": 1599,
+  "h": 899,
+  "video": "media/gallery/live_05.mp4",
+  "fx": 0.338
+ },
+ {
+  "image": "media/gallery/render_06.jpg",
+  "thumb": "media/gallery/thumb_render_06.jpg",
+  "cat": "exterior",
+  "caption": "Corner of the south block",
+  "w": 1599,
+  "h": 899,
+  "video": "media/gallery/live_06.mp4",
+  "fx": 0.414
+ },
+ {
+  "image": "media/gallery/render_07.jpg",
+  "thumb": "media/gallery/thumb_render_07.jpg",
+  "cat": "exterior",
+  "caption": "Parking square and entrances",
+  "w": 1599,
+  "h": 899,
+  "video": "media/gallery/live_07.mp4",
+  "fx": 0.644
+ },
+ {
+  "image": "media/gallery/render_08.jpg",
+  "thumb": "media/gallery/thumb_render_08.jpg",
+  "cat": "exterior",
+  "caption": "Main facade",
+  "w": 1599,
+  "h": 899,
+  "video": "media/gallery/live_08.mp4",
+  "fx": 0.573
+ },
+ {
+  "image": "media/gallery/render_09.jpg",
+  "thumb": "media/gallery/thumb_render_09.jpg",
+  "cat": "exterior",
+  "caption": "Loggias and balconies",
+  "w": 1599,
+  "h": 899,
+  "video": "media/gallery/live_09.mp4",
+  "fx": 0.576
+ },
+ {
+  "image": "media/gallery/render_10.jpg",
+  "thumb": "media/gallery/thumb_render_10.jpg",
+  "cat": "exterior",
+  "caption": "Corner with cycle path",
+  "w": 1599,
+  "h": 899,
+  "video": "media/gallery/live_10.mp4",
+  "fx": 0.511
+ },
+ {
+  "image": "media/gallery/render_11.jpg",
+  "thumb": "media/gallery/thumb_render_11.jpg",
+  "cat": "exterior",
+  "caption": "Tree-lined parking boulevard",
+  "w": 1599,
+  "h": 899,
+  "video": "media/gallery/live_11.mp4",
+  "fx": 0.619
+ },
+ {
+  "image": "media/gallery/render_12.jpg",
+  "thumb": "media/gallery/thumb_render_12.jpg",
+  "cat": "exterior",
+  "caption": "North block from the boulevard",
+  "w": 1599,
+  "h": 899,
+  "video": "media/gallery/live_12.mp4",
+  "fx": 0.359
+ },
+ {
+  "image": "media/gallery/render_13.jpg",
+  "thumb": "media/gallery/thumb_render_13.jpg",
+  "cat": "exterior",
+  "caption": "From the green along the avenue",
+  "w": 1599,
+  "h": 899,
+  "video": "media/gallery/live_13.mp4",
+  "fx": 0.566
+ },
+ {
+  "image": "media/gallery/render_14.jpg",
+  "thumb": "media/gallery/thumb_render_14.jpg",
+  "cat": "courtyard",
+  "caption": "Courtyard garden and pool",
+  "w": 1280,
+  "h": 720,
+  "video": "media/gallery/live_14.mp4",
+  "fx": 0.372
+ },
+ {
+  "image": "media/gallery/render_15.jpg",
+  "thumb": "media/gallery/thumb_render_15.jpg",
+  "cat": "courtyard",
+  "caption": "Pool deck",
+  "w": 1280,
+  "h": 720
+ },
+ {
+  "image": "media/gallery/render_16.jpg",
+  "thumb": "media/gallery/thumb_render_16.jpg",
+  "cat": "courtyard",
+  "caption": "Courtyard from above",
+  "w": 1599,
+  "h": 899,
+  "video": "media/gallery/live_16.mp4",
+  "fx": 0.512
+ },
+ {
+  "image": "media/gallery/render_17.jpg",
+  "thumb": "media/gallery/thumb_render_17.jpg",
+  "cat": "courtyard",
+  "caption": "Pool in the afternoon sun",
+  "w": 1599,
+  "h": 899
+ },
+ {
+  "image": "media/gallery/render_18.jpg",
+  "thumb": "media/gallery/thumb_render_18.jpg",
+  "cat": "courtyard",
+  "caption": "Pergola and play area",
+  "w": 1599,
+  "h": 899,
+  "video": "media/gallery/live_18.mp4",
+  "fx": 0.546
+ },
+ {
+  "image": "media/gallery/render_19.jpg",
+  "thumb": "media/gallery/thumb_render_19.jpg",
+  "cat": "courtyard",
+  "caption": "Pergola lawn",
+  "w": 1600,
+  "h": 900,
+  "video": "media/gallery/live_19.mp4",
+  "fx": 0.537
+ },
+ {
+  "image": "media/gallery/render_20.jpg",
+  "thumb": "media/gallery/thumb_render_20.jpg",
+  "cat": "courtyard",
+  "caption": "Lavender beds and pool",
+  "w": 1599,
+  "h": 899,
+  "video": "media/gallery/live_20.mp4",
+  "fx": 0.482
+ },
+ {
+  "image": "media/gallery/render_21.jpg",
+  "thumb": "media/gallery/thumb_render_21.jpg",
+  "cat": "courtyard",
+  "caption": "Pool and pergola",
+  "w": 1280,
+  "h": 720,
+  "video": "media/gallery/live_21.mp4",
+  "fx": 0.582
+ },
+ {
+  "image": "media/gallery/render_22.jpg",
+  "thumb": "media/gallery/thumb_render_22.jpg",
+  "cat": "courtyard",
+  "caption": "Round pergola",
+  "w": 1599,
+  "h": 899,
+  "video": "media/gallery/live_22.mp4",
+  "fx": 0.251
+ },
+ {
+  "image": "media/gallery/render_23.jpg",
+  "thumb": "media/gallery/thumb_render_23.jpg",
+  "cat": "commercial",
+  "caption": "Commercial building, street side",
+  "w": 1600,
+  "h": 900
+ },
+ {
+  "image": "media/gallery/render_24.jpg",
+  "thumb": "media/gallery/thumb_render_24.jpg",
+  "cat": "commercial",
+  "caption": "Commercial building, corner",
+  "w": 1600,
+  "h": 900
+ },
+ {
+  "image": "media/gallery/render_25.jpg",
+  "thumb": "media/gallery/thumb_render_25.jpg",
+  "cat": "commercial",
+  "caption": "Commercial building from above",
+  "w": 1600,
+  "h": 900
+ },
+ {
+  "image": "media/gallery/render_26.jpg",
+  "thumb": "media/gallery/thumb_render_26.jpg",
+  "cat": "commercial",
+  "caption": "Commercial building, gateway facade",
+  "w": 1600,
+  "h": 900
+ },
+ {
+  "image": "media/gallery/render_27.jpg",
+  "thumb": "media/gallery/thumb_render_27.jpg",
+  "cat": "commercial",
+  "caption": "Commercial building and residences",
+  "w": 1600,
+  "h": 900
+ },
+ {
+  "image": "media/gallery/render_28.jpg",
+  "thumb": "media/gallery/thumb_render_28.jpg",
+  "cat": "commercial",
+  "caption": "Commercial building, north corner",
+  "w": 1600,
+  "h": 900
+ }
+]
