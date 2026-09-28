@@ -1,33 +1,36 @@
 [
  {
-  "image": "media/gallery/render_01.jpg",
-  "thumb": "media/gallery/thumb_render_01.jpg",
+  "image": "media/gallery/aerial_01.jpg",
+  "thumb": "media/gallery/thumb_aerial_01.jpg",
   "cat": "exterior",
   "caption": "Both blocks, boulevard and open fields",
   "w": 1599,
   "h": 899,
-  "video": "media/gallery/live_01.mp4",
-  "fx": 0.618
+  "video": "media/gallery/live_aerial_01.mp4",
+  "fx": 0.618,
+  "edit": "commercial building placed with AI from the design renders, placeholder massing removed"
  },
  {
-  "image": "media/gallery/render_02.jpg",
-  "thumb": "media/gallery/thumb_render_02.jpg",
+  "image": "media/gallery/aerial_02.jpg",
+  "thumb": "media/gallery/thumb_aerial_02.jpg",
   "cat": "exterior",
   "caption": "Arrival from the Esteval roundabout",
   "w": 1599,
   "h": 899,
-  "video": "media/gallery/live_02.mp4",
-  "fx": 0.58
+  "video": "media/gallery/live_aerial_02.mp4",
+  "fx": 0.58,
+  "edit": "commercial building placed with AI from the design renders, placeholder massing removed"
  },
  {
-  "image": "media/gallery/render_03.jpg",
-  "thumb": "media/gallery/thumb_render_03.jpg",
+  "image": "media/gallery/aerial_03.jpg",
+  "thumb": "media/gallery/thumb_aerial_03.jpg",
   "cat": "exterior",
   "caption": "Aerial over the two courtyards",
   "w": 1599,
   "h": 899,
-  "video": "media/gallery/live_03.mp4",
-  "fx": 0.415
+  "video": "media/gallery/live_aerial_03.mp4",
+  "fx": 0.415,
+  "edit": "commercial building placed with AI from the design renders, placeholder massing removed"
  },
  {
   "image": "media/gallery/render_04.jpg",

@@ -94,6 +94,14 @@ button:focus-visible{outline:2px solid var(--sea);outline-offset:2px}
 .arrow:disabled{opacity:.4;cursor:default}
 .arrow svg{width:18px;height:18px}
 .angle{padding:7px 12px;border-radius:999px;background:var(--glass);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);font-family:var(--mono);font-size:12px;font-variant-numeric:tabular-nums}
+#real{position:absolute;inset:0;background:#0b1419}
+#real video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .7s ease}
+#real video.on{opacity:1}
+.real-tag{display:none;position:absolute;left:12px;top:calc(env(safe-area-inset-top,0px) + 112px);padding:4px 10px;border-radius:99px;background:rgba(8,18,24,.55);color:#fff;font-size:10.5px;font-weight:600;letter-spacing:.04em;pointer-events:none}
+.mode{justify-self:end;margin-bottom:58px;display:flex;gap:2px;padding:4px;border-radius:999px;background:var(--glass);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);box-shadow:0 4px 16px rgba(0,30,40,.14)}
+.mode[hidden]{display:none}
+.mode button{padding:8px 14px;border-radius:999px;font-size:12.5px;font-weight:600;color:var(--ink-2);white-space:nowrap;transition:background .2s,color .2s}
+.mode button[aria-pressed="true"]{background:var(--sea);color:#fff}
 .tours{justify-self:end;display:flex;flex-direction:column;align-items:flex-end;gap:8px}
 .pill-btn{display:inline-flex;align-items:center;gap:8px;padding:10px 16px;border-radius:999px;background:var(--glass);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);box-shadow:0 4px 16px rgba(0,30,40,.14);font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;white-space:nowrap}
 .pill-btn svg{width:14px;height:14px;transition:transform .2s}
@@ -231,7 +239,11 @@ button:focus-visible{outline:2px solid var(--sea);outline-offset:2px}
 .credits a,.lb-cap a{color:inherit}
 #lightbox{z-index:25;background:rgba(6,12,16,.88)}
 #lightbox figure{margin:0;display:flex;flex-direction:column;align-items:center;gap:12px;max-width:min(1200px,94vw)}
-#lightbox img{max-width:100%;max-height:78vh;border-radius:10px;box-shadow:0 30px 80px rgba(0,0,0,.5)}
+#lightbox img,#lightbox video{max-width:100%;max-height:78vh;border-radius:10px;box-shadow:0 30px 80px rgba(0,0,0,.5)}
+#lightbox video{aspect-ratio:16/9;width:min(1200px,94vw);height:auto;background:#0b1419}
+.gal-grid .live{position:absolute;top:10px;left:10px;padding:4px 9px 4px 20px;border-radius:99px;background:rgba(8,18,24,.62);backdrop-filter:blur(6px);font-size:10.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase}
+.gal-grid .live::before{content:"";position:absolute;left:9px;top:50%;width:6px;height:6px;margin-top:-3px;border-radius:50%;background:#ff5a4e;animation:livep 1.6s infinite}
+@keyframes livep{50%{opacity:.25}}
 .lb-cap{color:#fff;font-size:13px;text-align:center;line-height:1.5}
 .lb-cap small{display:block;font-size:11px;color:rgba(255,255,255,.7)}
 #lightbox .round{position:absolute;top:calc(env(safe-area-inset-top,0px) + 16px);right:16px}
@@ -279,6 +291,9 @@ button:focus-visible{outline:2px solid var(--sea);outline-offset:2px}
 }
 @media (max-width:760px){
   .bottom{grid-template-columns:1fr;justify-items:center}
+  .mode{order:-1;justify-self:center;margin-bottom:0}
+  .bottom{padding-bottom:calc(env(safe-area-inset-bottom,0px) + 62px)}
+  .real-tag{display:block}
   .nav{justify-self:stretch;justify-content:space-between;width:100%;gap:8px}
   .angle{display:block;flex:1;min-width:0;text-align:center;font-size:11px;padding:8px 10px}
   #plan{padding:0}
@@ -287,7 +302,7 @@ button:focus-visible{outline:2px solid var(--sea);outline-offset:2px}
   .plan-side{padding:20px 20px calc(env(safe-area-inset-bottom,0px) + 24px)}
   .plan-side h2{font-size:28px}
   .gal-head h2{font-size:28px}
-  #lightbox img{max-height:62dvh}
+  #lightbox img,#lightbox video{max-height:62dvh}
   #lightbox .lb-nav{top:auto;bottom:calc(env(safe-area-inset-bottom,0px) + 20px);translate:0 0}
 }
 @media (max-width:560px){
@@ -316,7 +331,7 @@ button:focus-visible{outline:2px solid var(--sea);outline-offset:2px}
   .gal-wrap{padding-top:calc(env(safe-area-inset-top,0px) + 64px)}
   .loc-wrap{padding-top:calc(env(safe-area-inset-top,0px) + 64px)}
   .loc-top{height:calc(env(safe-area-inset-top,0px) + 58px)}
-  #lightbox img{max-height:74dvh}
+  #lightbox img,#lightbox video{max-height:74dvh}
 }
 @media (prefers-reduced-motion:reduce){.pin .ring,.clouds img{animation:none}.frame{transition:none}}
 </style>
@@ -337,6 +352,7 @@ button:focus-visible{outline:2px solid var(--sea);outline-offset:2px}
       <g id="hits"></g><g id="pins"></g>
     </svg>
     </div>
+    <div id="real" hidden><video muted loop playsinline preload="auto"></video><video muted loop playsinline preload="auto"></video><span class="real-tag">Cars &amp; people added with AI</span></div>
   </div>
   <div class="clouds" id="clouds"><img src="media/clouds.png" alt="" style="top:9%;animation-duration:80s;animation-delay:-20s"><img src="media/clouds.png" alt="" style="top:26%;width:380px;opacity:.25;animation-duration:110s;animation-delay:-70s"></div>
   <canvas id="pano" hidden></canvas>
@@ -366,6 +382,7 @@ button:focus-visible{outline:2px solid var(--sea);outline-offset:2px}
       <span class="angle" id="angle" aria-live="polite">01 / 28</span>
       <button class="arrow" id="next" aria-label="Rotate right"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></svg></button>
     </div>
+    <div class="mode" id="mode" role="group" aria-label="View type" hidden><button data-m="real" aria-pressed="true">Real views</button><button data-m="3d" aria-pressed="false">360° aerial</button></div>
     <div class="tours" id="tours" hidden>
       <div class="tour-list" id="tour-list" hidden></div>
       <button class="pill-btn" id="btn-tours" aria-expanded="false" aria-controls="tour-list"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 15l6-6 6 6"/></svg>360° tours</button>
@@ -442,7 +459,7 @@ button:focus-visible{outline:2px solid var(--sea);outline-offset:2px}
     <div class="loc-top" aria-hidden="true"></div>
   </section>
   <div id="lightbox" class="modal" hidden role="dialog" aria-modal="true" aria-label="Photo">
-    <figure><img id="lb-img" alt=""><figcaption class="lb-cap" id="lb-cap"></figcaption></figure>
+    <figure><img id="lb-img" alt=""><video id="lb-vid" muted loop playsinline preload="auto" hidden></video><figcaption class="lb-cap" id="lb-cap"></figcaption></figure>
     <button class="round lb-nav" id="lb-prev" aria-label="Previous photo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5l-7 7 7 7"/></svg></button>
     <button class="round lb-nav" id="lb-next" aria-label="Next photo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></svg></button>
     <button class="round" id="lb-close" aria-label="Close photo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
@@ -606,6 +623,22 @@ const pointer={x:0,y:0};
 function showChip(html){const c=$('#chip'),was=c.hidden;c.innerHTML=html;c.hidden=false;placeChip();if(was)anim(c,{opacity:[0,1],scale:[.94,1]},{duration:.18});}
 function placeChip(){const c=$('#chip');if(c.hidden)return;const w=c.offsetWidth,h=c.offsetHeight;let x=pointer.x+18,y=pointer.y+18;if(x+w>innerWidth-12)x=pointer.x-w-18;if(y+h>innerHeight-12)y=pointer.y-h-18;c.style.left=Math.max(8,x)+'px';c.style.top=Math.max(8,y)+'px';}
 
+/* ---------------- view modes: Real views (studio renders + AI-added traffic/people, camera-matched outlines & pins) and the 3D model ---------------- */
+let viewMode='real',realIdx=0,idx3d=0;
+const hasReal=()=>!!(DATA.realReel&&DATA.realReel.angles.length);
+const realOn=()=>false;                                   // the old full-screen video layer is retired; real views now use the stage itself
+const reelFor=m=>m==='real'&&hasReal()?DATA.realReel:(DATA.aiReel&&DATA.aiReel.angles.length===8?DATA.aiReel:DATA.__mp3d);
+const HINT_AI='AI-rendered from our 3D model · Drag or use the arrows to go round · Hover a block or a pin';
+const HINT_REAL='Studio renders · moving cars and people added with AI · Hover a block or a pin';
+function applyMode(){$('#mode').hidden=!(state==='mp'&&hasReal());
+  document.querySelectorAll('#mode button').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.m===viewMode)));
+  $('#real').hidden=true;if(state==='mp')$('#hint').textContent=viewMode==='real'?HINT_REAL:DATA.masterplan.ai?HINT_AI:HINT.mp;}
+async function setMode(m){if(busy||m===viewMode||state!=='mp')return;
+  if(viewMode==='real')realIdx=angleIdx;else idx3d=angleIdx;
+  viewMode=m;DATA.masterplan=reelFor(m);busy=true;clearOverlay();closeTours();const i=m==='real'?realIdx:idx3d;
+  await crossfadeTo(DATA.masterplan.angles[i].still);applyMode();await showAngle(i);busy=false;}
+document.querySelectorAll('#mode button').forEach(b=>b.addEventListener('click',()=>setMode(b.dataset.m)));
+
 /* ---------------- masterplan navigation ---------------- */
 const angleId=i=>{const n=DATA.masterplan.angles.length;return DATA.masterplan.angles[((i%n)+n)%n].id;};
 async function showAngle(i){
@@ -613,8 +646,8 @@ async function showAngle(i){
   const A=DATA.masterplan.angles[angleIdx];
   $('#frame').style.setProperty('--fx',A.fx??.5);
   await setStill(A.still);hideClip();playLoop(A.loop);
-  $('#angle').textContent=`${pad2(angleIdx+1)} / ${DATA.masterplan.angles.length} · ${A.label||''}`;
-  if(state==='mp'){drawMasterplanOverlay();setHash('a'+A.id);}
+  $('#angle').textContent=`${pad2(angleIdx+1)} / ${DATA.masterplan.angles.length} · ${A.label||''}${A.edit?' · '+A.edit:''}`;
+  if(state==='mp'){drawMasterplanOverlay();setHash((viewMode==='real'?'live':'a')+A.id);}
 }
 const transURL=(a,b,reel=DATA.masterplan)=>reel.transition.replace('{from}',a).replace('{to}',b);
 async function showClose(i){
@@ -625,7 +658,8 @@ async function showClose(i){
   if(state==='close'){drawCloseOverlay();setHash('c'+A.id);}
 }
 async function rotate(dir,rate=1){
-  if(busy||(state!=='mp'&&state!=='close'))return;busy=true;clearOverlay();closeTours();
+  if(busy||(state!=='mp'&&state!=='close'))return;
+  busy=true;clearOverlay();closeTours();
   if(state==='mp'){
     const n=DATA.masterplan.angles.length,to=(angleIdx+dir+n)%n;
     if(DATA.masterplan.transition)await playClip(transURL(angleId(angleIdx),angleId(to)),rate);else await crossfadeTo(DATA.masterplan.angles[to].still,dir);
@@ -659,7 +693,7 @@ async function crossfadeTo(u,dir=0){
 async function enterClose(){
   if(busy||state!=='mp')return;closeTours();clearOverlay();busy=true;
   const F=DATA.close.fly||{};let id=angleId(angleIdx);
-  if(F[id]){await playClip(F[id].in);}               // fly in from this aerial angle to the close-up of both blocks
+  if(F[id]&&!DATA.masterplan.ai){await playClip(F[id].in);}               // fly in from this aerial angle to the close-up of both blocks
   else{if(DATA.close.angles.findIndex(a=>a.id===id)<0)id=DATA.close.from;const ci=closeAngleIndexOf(id);
     if(DATA.close.angles[ci].still!==DATA.masterplan.angles[angleIdx].still)await crossfadeTo(DATA.close.angles[ci].still);}
   setState('close');await showClose(closeAngleIndexOf(id));busy=false;
@@ -669,8 +703,9 @@ const closeAngleIndexOf=id=>Math.max(0,DATA.close.angles.findIndex(a=>a.id===id)
 async function exitClose(){
   if(busy||state!=='close')return;busy=true;clearOverlay();
   const id=DATA.close.angles[closeIdx].id,F=DATA.close.fly||{};
-  if(F[id])await playClip(F[id].out);
-  setState('mp');await showAngle(angleIndexOf(id));busy=false;
+  const ai=angleIndexOf(id);
+  if(F[id]&&viewMode==='3d'&&!DATA.masterplan.ai)await playClip(F[id].out);else await crossfadeTo(DATA.masterplan.angles[ai<0?angleIdx:ai].still);
+  setState('mp');await showAngle(ai<0?angleIdx:ai);busy=false;
 }
 
 /* ---------------- UI state ---------------- */
@@ -688,14 +723,14 @@ function setState(s){
   document.querySelectorAll('#crumbs button').forEach(b=>b.setAttribute('aria-current',String(b.dataset.go===s)));
   const inT=s==='tour';$('#p-prev').hidden=$('#p-next').hidden=$('#pano-rooms').hidden=!inT;
   closeTours();$('#chip').hidden=true;
-  requestAnimationFrame(moveCrumb);
+  requestAnimationFrame(moveCrumb);applyMode();
   if(s==='pano'||s==='tour'){anim($('.pano-badge'),{opacity:[0,1],y:[-12,0]},SPRING);anim($('.pano-controls'),{opacity:[0,1],y:[18,0]},SPRING);}
 }
 let crumbReady=false;
 function moveCrumb(){const b=document.querySelector('#crumbs button[aria-current="true"]'),ind=$('#crumb-ind');if(!b||$('#crumbs').hidden)return;
   if(!crumbReady){ind.style.width=b.offsetWidth+'px';ind.style.transform=`translateX(${b.offsetLeft}px)`;crumbReady=true;}
   anim(ind,{x:b.offsetLeft,width:b.offsetWidth},{type:'spring',stiffness:420,damping:36});}
-addEventListener('resize',()=>{requestAnimationFrame(moveCrumb);clearTimeout(window.__rz);window.__rz=setTimeout(()=>{if(state==='mp'&&!busy)drawMasterplanOverlay();},200);});
+addEventListener('resize',()=>{requestAnimationFrame(moveCrumb);clearTimeout(window.__rz);window.__rz=setTimeout(()=>{if(state==='mp'&&!busy&&!realOn())drawMasterplanOverlay();},200);});
 function fade(on){return anim($('#fade'),{opacity:on?1:0},{duration:.35,ease:'easeInOut'});}
 
 /* ---------------- stage input ---------------- */
@@ -919,6 +954,7 @@ function writeHash(){if(!panoCtx||panoCtx.kind!=='tour')return;const r=panoCtx.t
 function clearHash(){}
 function readHash(){const h=(location.hash||'').slice(1);if(!h)return null;
   let m=/^a(\d{3})$/.exec(h);if(m)return {kind:'angle',id:m[1]};
+  m=/^live(\d{2})$/.exec(h);if(m)return {kind:'live',id:m[1]};
   if(h==='close')return {kind:'close',id:DATA.close.start};
   if(h==='location')return {kind:'loc'};
   if(h==='gallery')return {kind:'gal'};
@@ -973,7 +1009,7 @@ function renderGallery(){
   const G=DATA.gallery,items=G.items.filter(x=>galCat==='all'||x.cat===galCat);
   $('#gal-tabs').innerHTML=G.cats.map(([k,l])=>`<button role="tab" data-c="${k}" aria-selected="${k===galCat}">${l}</button>`).join('');
   $('#gal-tabs').querySelectorAll('button').forEach(b=>b.addEventListener('click',()=>{galCat=b.dataset.c;renderGallery();}));
-  $('#gal-grid').innerHTML=items.map((x,k)=>`<button data-k="${k}" aria-label="Open: ${x.caption}"><img src="${src(x.thumb)}" alt="${x.caption}" loading="lazy" draggable="false"><span>${x.caption}</span></button>`).join('');
+  $('#gal-grid').innerHTML=items.map((x,k)=>`<button data-k="${k}" aria-label="Open: ${x.caption}"><img src="${src(x.thumb)}" alt="${x.caption}" loading="lazy" draggable="false">${x.video?'<i class="live">Live</i>':''}<span>${x.caption}</span></button>`).join('');
   $('#gal-grid').querySelectorAll('button').forEach(b=>b.addEventListener('click',()=>openLightbox(items,+b.dataset.k)));
   anim($('#gal-grid').children,{opacity:[0,1],y:[16,0]},{delay:stagger(.03),duration:.4});
 }
@@ -999,12 +1035,16 @@ async function openAmen(){
 }
 function openAmenity(id){const a=amenById(id);if(!a||!a.photos.length)return;clearHover();
   openLightbox(a.photos.map(p=>Object.assign({},p,{caption:`${a.name} · ${p.caption}`,note:a.text})),0);}
-function openLightbox(list,k){const lb=$('#lightbox');lbList=list;lbIdx=k;showLb();lb.hidden=false;anim(lb,{opacity:[0,1]},{duration:.2});anim($('#lb-img'),{opacity:[0,1],scale:[.96,1]},{type:'spring',stiffness:260,damping:26});$('#lb-close').focus({preventScroll:true});}
+function openLightbox(list,k){const lb=$('#lightbox');lbList=list;lbIdx=k;showLb();lb.hidden=false;anim(lb,{opacity:[0,1]},{duration:.2});anim(lbEl(),{opacity:[0,1],scale:[.96,1]},{type:'spring',stiffness:260,damping:26});$('#lb-close').focus({preventScroll:true});}
+const vidByImg=()=>{const m={};((DATA.gallery||{}).items||[]).forEach(g=>{if(g.video)m[g.image]=g.video;});return m;};
+function lbEl(){return $('#lb-vid').hidden?$('#lb-img'):$('#lb-vid');}
 function showLb(){const P=lbList,p=P[(lbIdx+P.length)%P.length];lbIdx=(lbIdx+P.length)%P.length;
-  $('#lb-img').src=src(p.image);$('#lb-img').alt=p.caption;
-  $('#lb-cap').innerHTML=p.note?`${p.caption}<small>${p.note} · ${lbIdx+1} of ${P.length}</small>`:p.author?`${p.caption}<small>Photo: ${p.author} · ${p.license} · <a href="${p.source}" target="_blank" rel="noopener">Wikimedia Commons</a></small>`:`${p.caption}<small>Architectural visualisation · ${lbIdx+1} of ${P.length}</small>`;}
-function lbStep(d){lbIdx+=d;showLb();anim($('#lb-img'),{opacity:[0,1],x:[d*24,0]},{duration:.3});}
-function closeLightbox(){const lb=$('#lightbox');anim(lb,{opacity:0},{duration:.2}).then(()=>{lb.hidden=true;});}
+  const v=p.video||vidByImg()[p.image],V=$('#lb-vid');
+  $('#lb-img').src=src(p.image);$('#lb-img').alt=p.caption;$('#lb-img').hidden=!!v;V.hidden=!v;
+  if(v){V.poster=src(p.image);if(V.dataset.src!==v){V.dataset.src=v;V.src=src(v);}V.play().catch(()=>{});}else{V.pause();V.removeAttribute('src');V.dataset.src='';V.load();}
+  $('#lb-cap').innerHTML=p.note?`${p.caption}<small>${p.note}${v?' · moving people added with AI, architecture as rendered':''} · ${lbIdx+1} of ${P.length}</small>`:p.author?`${p.caption}<small>Photo: ${p.author} · ${p.license} · <a href="${p.source}" target="_blank" rel="noopener">Wikimedia Commons</a></small>`:`${p.caption}<small>Architectural visualisation${p.edit?' · '+p.edit+(v?' · moving cars and people added with AI':''):v?' · moving cars and people added with AI, architecture as rendered':''} · ${lbIdx+1} of ${P.length}</small>`;}
+function lbStep(d){lbIdx+=d;showLb();anim(lbEl(),{opacity:[0,1],x:[d*24,0]},{duration:.3});}
+function closeLightbox(){const lb=$('#lightbox');$('#lb-vid').pause();anim(lb,{opacity:0},{duration:.2}).then(()=>{lb.hidden=true;});}
 $('#lb-close').addEventListener('click',closeLightbox);$('#lb-prev').addEventListener('click',()=>lbStep(-1));$('#lb-next').addEventListener('click',()=>lbStep(1));
 $('#lightbox').addEventListener('click',e=>{if(e.target.id==='lightbox')closeLightbox();});
 
@@ -1030,19 +1070,23 @@ function frame(now){requestAnimationFrame(frame);const dt=Math.min(.05,(now-last
 (async()=>{
   DATA=await loadManifest();
   if(!DATA){$('#err').hidden=false;$('#loader').hidden=true;return;}
-  const MPd=DATA.masterplan;
+  DATA.__mp3d=DATA.masterplan;const MPd=DATA.masterplan;
   const st=angleIndexOf(MPd.start),order=MPd.angles.map((a,i)=>MPd.angles[(st+i)%MPd.angles.length]);
   const urls=[...order.flatMap(a=>[a.still,a.loop]),...DATA.close.angles.map(a=>a.still)].filter(Boolean);
   if(MPd.transition)MPd.angles.forEach((a,i)=>{const b=MPd.angles[(i+1)%MPd.angles.length];urls.push(transURL(a.id,b.id),transURL(b.id,a.id));});
   const later=[];const CA=DATA.close.angles;
   if(DATA.close.transition)CA.forEach((a,i)=>{const b=CA[(i+1)%CA.length];later.push(transURL(a.id,b.id,DATA.close),transURL(b.id,a.id,DATA.close));});
   later.push(...Object.values(DATA.close.fly||{}).flatMap(f=>[f.in,f.out]));
+  if(DATA.realReel&&DATA.realReel.angles[0])urls.unshift(DATA.realReel.angles[0].still,DATA.realReel.angles[0].loop);
   let shown=0;
   await preload([...new Set(urls)],p=>{const v=Math.round(p*100);if(v>shown){shown=v;$('#pct').textContent=v+'%';$('#ld-bar').style.width=v+'%';}});
   buildTourMenu();
   const h=readHash();
+  if(!hasReal()||(h&&['angle','close','pano','tour'].includes(h.kind)))viewMode='3d';        // Real views open by default; a###  links open the 3D model
+  if(viewMode==='real'){DATA.masterplan=DATA.realReel;if(h&&h.kind==='live')realIdx=Math.max(0,angleIndexOf(h.id));}
+  else DATA.masterplan=reelFor('3d');
   state='mp';setState('mp');
-  const startIdx=h&&h.kind==='angle'&&angleIndexOf(h.id)>=0?angleIndexOf(h.id):angleIndexOf(MPd.start);
+  const startIdx=viewMode==='real'?realIdx:h&&h.kind==='angle'&&angleIndexOf(h.id)>=0?angleIndexOf(h.id):angleIndexOf(MPd.start);
   await showAngle(h&&(h.kind==='close'||h.kind==='pano')?angleIndexOf(DATA.close.from):startIdx);
   if(h&&h.kind==='close'){setState('close');await showClose(closeAngleIndexOf(h.id));}
   await anim($('#loader'),{opacity:0},{duration:.6});$('#loader').hidden=true;

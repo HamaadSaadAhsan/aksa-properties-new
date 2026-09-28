@@ -55,7 +55,7 @@ AMEN = [
      'text': 'A four-storey commercial building, part of the development.', 'images': [23, 24, 25, 26, 27, 28]},
 ]
 for a in AMEN:
-    a['photos'] = [{'image': cap[i]['image'], 'thumb': cap[i]['thumb'], 'caption': cap[i]['caption'], 'w': cap[i]['w'], 'h': cap[i]['h']} for i in a['images']]
+    a['photos'] = [{'image': cap[i]['image'], 'thumb': cap[i]['thumb'], 'caption': cap[i]['caption'], 'w': cap[i]['w'], 'h': cap[i]['h'], **({'edit': cap[i]['edit']} if cap[i].get('edit') else {})} for i in a['images']]
     if a.get('plan'):
         a['photos'].append({'image': a['plan'], 'thumb': a['plan'], 'caption': 'Basement plan (architect’s drawing 02)', 'w': 1263, 'h': 1600})
     a.pop('images')
@@ -96,7 +96,11 @@ for i in ORDER:
                 if p[2] < 5 and hidden: continue
                 if any(abs(q['x'] - xy[0]) < 40 and abs(q['y'] - xy[1]) < 40 for q in v['amenities']): continue
                 v['amenities'].append({'id': aid, 'x': xy[0], 'y': xy[1]}); break
-        xs = [p[0] for o in v['outlines'] for poly in o['polys'] for p in poly]
+        COM = json.load(open('/home/claude/aksa/hf/cm/com_poly.json'))   # commercial building as placed in the corrected aerial
+        if vid in COM and 'aerial_' in v['still']:
+            v['edit'] = 'commercial building added with AI'
+            v['outlines'].append({'id': 'commercial', 'label': 'Commercial building', 'target': 'gallery', 'polys': [COM[vid]]})
+        xs = [p[0] for o in v['outlines'] if o['id'] != 'commercial' for poly in o['polys'] for p in poly]
         if xs: v['fx'] = round((min(xs) + max(xs)) / 2 / 1600, 3)
     angles.append(v)
 D['realReel'] = {'viewBox': [1600, 900], 'start': '03', 'angles': angles}
