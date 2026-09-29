@@ -709,7 +709,7 @@ async function exitClose(){
 }
 
 /* ---------------- UI state ---------------- */
-const HINT={mp:'Drag or use the arrows to rotate · Hover a block or a pin',close:'Hover a floor of either block for its floor plan'};
+const HINT={mp:'Drag or use the arrows to rotate · Hover a block or a pin',close:'AI-rendered from our 3D model, real surroundings · Hover a floor of either block for its floor plan'};
 function setState(s){
   state=s;
   const stageS=s==='mp'||s==='close';
@@ -796,7 +796,7 @@ function renderPlan(){
     units.map(u=>`<text class="ul" x="${u.cx}" y="${u.cy}">${pad2(u.n)}</text>`).join('');
   svg.querySelectorAll('.u').forEach(el=>{const u=units[+el.dataset.k];
     el.addEventListener('mousemove',e=>{const r=$('#plan-stage').getBoundingClientRect(),t=$('#plan-tip');
-      t.innerHTML=`<b>${u.id}</b> · Fração ${u.frac}<br>${u.type} · ${u.m2.toFixed(1)} m²${u.aspect?' · '+u.aspect:''}`;t.hidden=false;
+      t.innerHTML=`<b>${u.id}</b>${u.code?' · '+u.code:''}<br>${u.type}${u.duplex?' duplex':''} · ${(u.m2+(u.upper||0)).toFixed(1)} m²${u.aspect?' · '+u.aspect:''}`;t.hidden=false;
       let px=e.clientX-r.left+14,py=e.clientY-r.top+14;if(px+t.offsetWidth>r.width-8)px-=t.offsetWidth+28;t.style.left=px+'px';t.style.top=py+'px';});
     el.addEventListener('mouseleave',()=>{$('#plan-tip').hidden=true;});
     el.addEventListener('click',()=>selectUnit(u));});
@@ -809,8 +809,8 @@ function selectUnit(u){plan.sel=u;$('#plan-tip').hidden=true;applyFilter();rende
 function renderSide(){
   const box=$('#plan-info');
   if(plan.sel){const u=plan.sel;
-    box.innerHTML=`<div class="unit"><p class="eyebrow">Residence</p><h3>${u.id}</h3><span class="status" style="--c:${tyc(u.type)}">${u.type} · ${u.beds} bedroom${u.beds>1?'s':''}</span>
-      <dl><dt>Fração</dt><dd>${u.frac}</dd><dt>Type</dt><dd>${u.type}</dd><dt>Area</dt><dd>${u.m2.toFixed(2)} m² · ${fmtInt(u.m2*10.764)} ft²</dd>${u.aspect?`<dt>Aspect</dt><dd>${u.aspect}</dd>`:''}<dt>Price</dt><dd>On request</dd></dl></div>
+    box.innerHTML=`<div class="unit"><p class="eyebrow">Residence</p><h3>${u.id}</h3><span class="status" style="--c:${tyc(u.type)}">${u.type}${u.duplex?' duplex':''} · ${u.beds} bedroom${u.beds>1?'s':''}</span>
+      <dl>${u.code?`<dt>Designation</dt><dd>${u.code} · Building ${u.bld}</dd>`:''}<dt>Fração</dt><dd>${u.frac}</dd><dt>Type</dt><dd>${u.type}${u.duplex?' duplex (level 4 + roof level)':''}</dd><dt>${u.duplex?'Level 4 area':'Area'}</dt><dd>${u.m2.toFixed(2)} m² · ${fmtInt(u.m2*10.764)} ft²</dd>${u.upper?`<dt>Roof level</dt><dd>${u.upper.toFixed(2)} m²</dd><dt>Total living</dt><dd>${(u.m2+u.upper).toFixed(2)} m²</dd>`:''}${u.terrace?`<dt>Roof terrace</dt><dd>${u.terrace.toFixed(2)} m²</dd>`:''}${u.balc?`<dt>Balconies</dt><dd>${u.balc.toFixed(2)} m²</dd>`:''}${u.parking?`<dt>Parking</dt><dd>${u.parking} space${u.parking>1?'s':''} in the basement</dd>`:''}${u.aspect?`<dt>Aspect</dt><dd>${u.aspect}</dd>`:''}<dt>Price</dt><dd>On request</dd></dl></div>
       <p class="note">Area and typology as stated on the architect's floor plan.</p>
       <div class="side-actions"><button class="btn ghost" id="u-back">All residences</button></div>`;
     $('#u-back').addEventListener('click',()=>{plan.sel=null;applyFilter();renderSide();});

@@ -55,14 +55,14 @@ AMEN = [
      'text': 'A four-storey commercial building, part of the development.', 'images': [23, 24, 25, 26, 27, 28]},
 ]
 for a in AMEN:
-    a['photos'] = [{'image': cap[i]['image'], 'thumb': cap[i]['thumb'], 'caption': cap[i]['caption'], 'w': cap[i]['w'], 'h': cap[i]['h'], **({'edit': cap[i]['edit']} if cap[i].get('edit') else {})} for i in a['images']]
+    a['photos'] = [{'image': cap[i]['image'], 'thumb': cap[i]['thumb'], 'caption': cap[i]['caption'], 'w': cap[i]['w'], 'h': cap[i]['h'], **({'edit': cap[i]['edit']} if cap[i].get('edit') else {})} for i in a['images'] if i in cap]
     if a.get('plan'):
         a['photos'].append({'image': a['plan'], 'thumb': a['plan'], 'caption': 'Basement plan (architect’s drawing 02)', 'w': 1263, 'h': 1600})
     a.pop('images')
 
 # amenity pin anchors in site-local metres (u along the blocks, v across, y up), from the architect's site plan.
 # Each pin tries its candidates in order and takes the first one not hidden behind a block in that render.
-def cy(bu, y): return [bu - 4.1, -2.4, y]          # pool centre in each courtyard
+def cy(bu, y): return [bu + .05, .4, y]            # centre of the four pools in each courtyard (Sept 2026 layout)
 PINS = [
     ('pool', [cy(-52.75, .5), cy(-52.75, 17)]), ('pool', [cy(52.75, .5), cy(52.75, 17)]),
     ('boulevard', [[-30, -62, 1], [30, -62, 1]]),
@@ -73,7 +73,7 @@ PINS = [
 
 MATCHED = {1: 'r01', 2: 'r02', 3: 'r03'}
 TOW = D['towers']
-ORDER = [3, 1, 2] + [i for i in range(4, 29) if i not in (1, 2, 3)] 
+ORDER = [3, 1, 2] + [i for i in range(4, 29) if i not in (1, 2, 3) and not 14 <= i <= 22]  # 14-22: single-pool courtyard design, retired Sept 2026
 angles = []
 for i in ORDER:
     g = cap[i]; vid = f'{i:02d}'
@@ -98,7 +98,7 @@ for i in ORDER:
                 v['amenities'].append({'id': aid, 'x': xy[0], 'y': xy[1]}); break
         COM = json.load(open('/home/claude/aksa/hf/cm/com_poly.json'))   # commercial building as placed in the corrected aerial
         if vid in COM and 'aerial_' in v['still']:
-            v['edit'] = 'commercial building added with AI'
+            v['edit'] = 'updated with AI'
             v['outlines'].append({'id': 'commercial', 'label': 'Commercial building', 'target': 'gallery', 'polys': [COM[vid]]})
         xs = [p[0] for o in v['outlines'] if o['id'] != 'commercial' for poly in o['polys'] for p in poly]
         if xs: v['fx'] = round((min(xs) + max(xs)) / 2 / 1600, 3)

@@ -49,7 +49,8 @@ water.rotation.x=-Math.PI/2;water.receiveShadow=true;scene.add(water);
 /* ---------------- land ---------------- */
 const GY=.8;
 const [TX0,TZ0,TSZ]=SC.tex;
-const groundTex=await new Promise(r=>new THREE.TextureLoader().load('scene/ground_green.jpg',t=>{t.encoding=THREE.sRGBEncoding;t.anisotropy=MAXANI;r(t);}));
+const REAL=!/[?&]fields/.test(location.search);   // real surroundings (DGT 2023 orthophoto + OSM buildings/trees); ?fields = old project-only look
+const groundTex=await new Promise(r=>new THREE.TextureLoader().load(REAL?'scene/ground_real.jpg':'scene/ground_green.jpg',t=>{t.encoding=THREE.sRGBEncoding;t.anisotropy=MAXANI;r(t);}));
 function landMesh(shapes,top,mat,uvTex,depth){
   const sh=shapes.map(s=>{const S=new THREE.Shape(s.outer.map(p=>new V2(p[0],-p[1])));s.holes.forEach(h=>S.holes.push(new THREE.Path(h.map(p=>new V2(p[0],-p[1])))));return S;});
   const geo=new THREE.ExtrudeGeometry(sh,{depth,bevelEnabled:false,curveSegments:1});geo.rotateX(-Math.PI/2);
@@ -65,9 +66,9 @@ function withDetail(m,scale,amt,tint){m.onBeforeCompile=sh=>{sh.uniforms.dTex={v
   sh.fragmentShader=sh.fragmentShader.replace('#include <common>','#include <common>\nvarying vec3 vWP;uniform sampler2D dTex;').replace('#include <map_fragment>',
    '#include <map_fragment>\nvec3 dd=texture2D(dTex,vWP.xz/'+scale.toFixed(1)+').rgb*texture2D(dTex,vWP.xz/'+(scale*7.3).toFixed(1)+').rgb*4.;diffuseColor.rgb*=mix(vec3(1.),dd,'+amt.toFixed(2)+')*vec3('+tint.join(',')+');');};
   m.customProgramCacheKey=()=>'det'+scale+amt;return m;}
-landMesh(SC.landCoarse,GY-.15,withDetail(std(0x7F9246,{roughness:.95}),90,.8,[.8,.84,.66]),false,2);
+landMesh(SC.landCoarse,GY-.15,withDetail(std(REAL?0x8E8164:0x7F9246,{roughness:.95}),90,.8,REAL?[1,1,1]:[.8,.84,.66]),false,2);
 const quay=std(0x8A9A50,{roughness:.9});
-landMesh(SC.landFine,GY,[withDetail(std(0xFFFFFF,{map:groundTex,roughness:.95}),90,.8,[.8,.84,.66]),quay],true,2.2);
+landMesh(SC.landFine,GY,[REAL?withDetail(std(0xFFFFFF,{map:groundTex,roughness:.95}),40,.22,[1,1,1]):withDetail(std(0xFFFFFF,{map:groundTex,roughness:.95}),90,.8,[.8,.84,.66]),quay],true,2.2);
 /* trees */
 const trunkG=new THREE.CylinderGeometry(.25,.4,4,5);trunkG.translate(0,2,0);
 const crownG=(()=>{const r=rng(12),parts=[];
@@ -81,7 +82,7 @@ function forest(list){const it=new THREE.InstancedMesh(trunkG,trunkM,list.length
   list.forEach(([x,z,s],k)=>{dm.position.set(x,GY,z);dm.scale.setScalar(s);dm.rotation.y=r()*6;dm.updateMatrix();it.setMatrixAt(k,dm.matrix);ic.setMatrixAt(k,dm.matrix);
     c.setHSL(.24+r()*.05,.3+r()*.15,.36+r()*.1);ic.setColorAt(k,c);});
   ic.castShadow=true;scene.add(it,ic);}
-// neighbouring trees from OpenStreetMap are left out: project only
+// neighbouring trees + buildings from OpenStreetMap: added after the site group exists (REAL mode)
 // palms (riverfront + plot)
 const palmG=(()=>{const g=new THREE.Group();return g;})();
 const palmTrunk=new THREE.CylinderGeometry(.2,.34,9,6);palmTrunk.translate(0,4.5,0);
@@ -127,6 +128,7 @@ function ribbon(pts,y,h,mat,parent){const P=[],I=[];pts.forEach(([u,v],i)=>{P.pu
   const g=new THREE.BufferGeometry();g.setAttribute('position',new THREE.Float32BufferAttribute(P,3));g.setIndex(I);g.computeVertexNormals();const m=new THREE.Mesh(g,mat);parent.add(m);return m;}
 const towerMeshes=[];const tag=(m,t,f)=>{m.userData={tower:t,floor:f};towerMeshes.push(m);return m;};
 function inPoly(p,x,y){let c=false;for(let i=0,j=p.length-1;i<p.length;j=i++){const [xi,yi]=p[i],[xj,yj]=p[j];if(((yi>y)!==(yj>y))&&(x<(xj-xi)*(y-yi)/(yj-yi)+xi))c=!c;}return c;}
+const COURT=await loadTex('scene/court4.jpg');
 const blocks=[];
 SB.blocks.forEach(([bu,bv],ti)=>{
   const bg=new THREE.Group();bg.position.set(bu,0,bv);bg.rotation.y=Math.PI/2;sg.add(bg);
@@ -159,20 +161,29 @@ SB.blocks.forEach(([bu,bv],ti)=>{
       slots.forEach(([x,z,r],k)=>{dm.position.set(x,BASE+f*FH,z);dm.rotation.set(0,r+Math.PI/2,0);dm.updateMatrix();a.setMatrixAt(k,dm.matrix);b.setMatrixAt(k,dm.matrix);});
       a.castShadow=true;bg.add(a,b);tag(a,ti,f);}
   }
-  // courtyard amenities from the site plan: pool + timber deck, two round pergolas, play area, loungers
-  { const wood=std(0x9A6B43,{roughness:.8}),deck=std(0x8E6A48,{roughness:.85}),white=std(0xF1EEE8,{roughness:.6});
+  // courtyard (Sept 2026 design): four lot gardens around four pools, laid out to scale from the architect's top-down render
+  { const wood=std(0x9A6B43,{roughness:.8}),deck=std(0xB9A58C,{roughness:.85}),white=std(0xF1EEE8,{roughness:.6}),alu=std(0xE9E7E2,{roughness:.45,metalness:.2});
     const waterM=new THREE.MeshStandardMaterial({color:0x3FB6D1,roughness:.08,metalness:.1,emissive:0x0A3B48,emissiveIntensity:.35});
-    const box=(w,h,d,m,x,y,z)=>{const o=new THREE.Mesh(new THREE.BoxGeometry(w,h,d),m);o.position.set(x,y,z);o.castShadow=o.receiveShadow=true;bg.add(o);return o;};
-    box(11.4,.3,7.9,deck,2.6,.15,.1);box(3.0,.3,4.9,deck,-1.6,.15,-6.3);             // sun deck
-    box(5.6,.42,9.9,white,2.4,.21,-4.1);box(4.9,.05,9.2,waterM,2.4,.43,-4.1);      // pool + water
-    for(let k=0;k<5;k++){box(.7,.35,1.9,white,6.9,.45,-2.6+k*1.3);}                  // loungers
-    [[.68,-19.5],[-.07,17.5]].forEach(([cx,cz])=>{const R0=3.7,H=2.7;               // round pergolas
-      for(let k=0;k<12;k++){const a=k/12*Math.PI*2;box(.16,H,.16,wood,cx+Math.cos(a)*R0,H/2,cz+Math.sin(a)*R0);}
-      for(let k=0;k<18;k++){const a=k/18*Math.PI*2;const o=box(.1,.14,2.6,wood,cx+Math.cos(a)*(R0-.4),H+.07,cz+Math.sin(a)*(R0-.4));o.rotation.y=-a+Math.PI/2;}
-      const ring=new THREE.Mesh(new THREE.TorusGeometry(R0,.09,6,40),wood);ring.rotation.x=Math.PI/2;ring.position.set(cx,H,cz);bg.add(ring);});
-    const col=[0xD9534F,0xF0AD4E,0x3E8ED0,0x5CB85C];                                   // play area: frame, slide, swings
-    box(.12,2.2,.12,std(col[2]),-6.5,1.1,8.5);box(.12,2.2,.12,std(col[2]),-6.5,1.1,11.5);box(.12,.12,3.1,std(col[2]),-6.5,2.2,10);
-    box(1.4,1.4,1.4,std(col[1]),-2.2,.7,12.2);const sl=box(.7,.08,3,std(col[0]),-2.2,.75,10.3);sl.rotation.x=.45;box(1.2,.9,1.2,std(col[3]),-1.2,.45,7.8);
+    const box=(w,h,d,m,x,y,z,ry)=>{const o=new THREE.Mesh(new THREE.BoxGeometry(w,h,d),m);o.position.set(x,y,z);if(ry)o.rotation.y=ry;o.castShadow=o.receiveShadow=true;bg.add(o);return o;};
+    const R=(x0,x1,z0,z1,h,m,y=0)=>box(x1-x0,h,z1-z0,m,(x0+x1)/2,y+h/2,(z0+z1)/2);
+    { const m=new THREE.Mesh(new THREE.PlaneGeometry(27.4,53.4),new THREE.MeshStandardMaterial({map:COURT,roughness:.95,polygonOffset:true,polygonOffsetFactor:-6,polygonOffsetUnits:-6}));
+      m.rotation.x=-Math.PI/2;m.position.set(-.5,.14,0);m.receiveShadow=true;bg.add(m); }     // the architect's plan drawn at 1:1 on the ground
+    [[-6.9,-.65],[-.3,6.1]].forEach(([x0,x1])=>[[-4.5,-.1],[.2,4.6]].forEach(([z0,z1])=>{        // 4 pools, 4.4 x 6.3 m
+      R(x0-.25,x1+.25,z0-.25,z1+.25,.36,white);R(x0,x1,z0,z1,.03,waterM,.36);}));
+    [[-10.3,-6.9],[6.1,9.2]].forEach(([x0,x1])=>{R(x0,x1,-4.5,-.1,.18,deck);R(x0,x1,.2,4.6,.18,deck);});   // sun decks
+    [-2.3,-1.2].forEach(z=>box(.7,.35,1.9,white,8.2,.35,z));[1.2,2.3].forEach(z=>box(.7,.35,1.9,white,-8.6,.35,z));
+    R(-12.8,12.2,-.12,.12,1.05,white);R(-.57,-.37,-25.5,25.6,1.05,white);                      // lot dividers
+    const perg=(x0,x1,z0,z1,m,slat,ry=0)=>{const g=new THREE.Group();g.position.set((x0+x1)/2,0,(z0+z1)/2);g.rotation.y=ry;bg.add(g);const W=x1-x0,D=z1-z0,H=2.7;
+      const b=(w,h,d,x,y,z)=>{const o=new THREE.Mesh(new THREE.BoxGeometry(w,h,d),m);o.position.set(x,y,z);o.castShadow=true;g.add(o);};
+      [[-1,-1],[1,-1],[-1,1],[1,1]].forEach(([a,c])=>b(.18,H,.18,a*(W/2-.1),H/2,c*(D/2-.1)));
+      b(W,.18,.14,0,H,-D/2+.1);b(W,.18,.14,0,H,D/2-.1);b(.14,.18,D,-W/2+.1,H,0);b(.14,.18,D,W/2-.1,H,0);
+      for(let k=0,n=Math.floor(D/slat);k<=n;k++)b(W,.12,.07,0,H+.13,-D/2+k*D/n);};
+    perg(-5.3,-1.5,-15,-6.6,wood,.45);perg(2.4,8.3,-13.8,-8.3,wood,.45,-.5);                 // timber pergolas
+    perg(-6.8,-1.2,4.8,16.3,alu,.3);perg(.2,5.7,5.6,17,alu,.3);                              // white louvred pergolas
+    box(1.3,1.6,1.3,std(0xD9534F),-5.8,.8,-22.7);box(1.4,.08,3,std(0x3E8ED0),-5.8,.9,-20.6).rotation.x=.45;   // play towers + slides
+    box(1.3,1.6,1.3,std(0xC9A46B),3.6,.8,-21.3);box(.7,.08,2.6,std(0x5CB85C),3.6,.8,-19.4).rotation.x=.45;
+    box(.12,2.2,.12,std(0x3E8ED0),-7.6,1.1,-18);box(.12,2.2,.12,std(0x3E8ED0),-4.6,1.1,-18);box(3.1,.12,.12,std(0x3E8ED0),-6.1,2.2,-18);
+    [[-5.5,20],[-5.5,21.6],[4.8,24.3]].forEach(([x,z])=>box(.8,1.3,.8,std(0x9AA3A8),x,.65,z));  // fitness stations
   }
   { const O=AR.p1.outer,pad=9;let u0=1e9,u1=-1e9,v0=1e9,v1=-1e9;O.forEach(([u,v])=>{u0=Math.min(u0,u);u1=Math.max(u1,u);v0=Math.min(v0,v);v1=Math.max(v1,v);});u0-=pad;u1+=pad;v0-=pad;v1+=pad;
     const W=u1-u0,D=v1-v0,px=6,t=ctex(Math.round(W*px),Math.round(D*px),(g,w,h)=>{g.filter='blur(14px)';g.fillStyle='#000';g.beginPath();
@@ -198,9 +209,37 @@ SB.pavilions.forEach(P=>{const o=new THREE.Mesh(new THREE.BoxGeometry(P.u1-P.u0,
 // trees: parking pits from the site plan + a ring in each courtyard
 { const list=SB.trees.map(([u,v])=>{const w=S2W(u,0,v);return [w.x,w.z,1.15];});
   blocks.forEach(({bg})=>{const h=AR.p1.holes[0];let x0=1e9,x1=-1e9,y0=1e9,y1=-1e9;h.forEach(([u,v])=>{x0=Math.min(x0,u);x1=Math.max(x1,u);y0=Math.min(y0,v);y1=Math.max(y1,v);});
-    const r=rng(7);for(let k=0;k<26;k++){const t=k/26*Math.PI*2;const u=(x0+x1)/2+Math.cos(t)*((x1-x0)/2-4.5),v=(y0+y1)/2+Math.sin(t)*((y1-y0)/2-4.5);const w=bg.localToWorld(new V3(u,0,v));list.push([w.x,w.z,.75+r()*.35]);}});
+    [[-4.9,-18,.8],[-12.3,-1.5,.7],[10.5,-1.4,.7],[-8.4,8.7,.75],[1.2,-18.5,.7],[-11.5,-24,.6],[9.8,23.5,.6]].forEach(([u,v,s])=>{const w=bg.localToWorld(new V3(u,0,v));list.push([w.x,w.z,s]);});});
   forest(list); }
 const siteCenter=S2W(0,10,0);
+/* real surroundings: OSM buildings (merged, vertex colours, gabled where tagged) + OSM trees, outside the architect's site frame */
+if(REAL){ const [fu0,fv0,fu1,fv1]=AR.frame,loc=new V3();
+  const inFrame=(x,z,m=0)=>{loc.set(x,GY,z);sg.worldToLocal(loc);return loc.x>fu0-m&&loc.x<fu1+m&&loc.z>fv0-m&&loc.z<fv1+m;};
+  const P=[],N=[],C=[];const tri=new V3(),e1=new V3(),e2=new V3();
+  const push=(a,b,c,n,cl)=>{P.push(...a,...b,...c);for(let i=0;i<3;i++){N.push(...n);C.push(cl.r,cl.g,cl.b);}};
+  const face=(a,b,c,cl)=>{e1.set(b[0]-a[0],b[1]-a[1],b[2]-a[2]);e2.set(c[0]-a[0],c[1]-a[1],c[2]-a[2]);tri.crossVectors(e1,e2).normalize();push(a,b,c,[tri.x,tri.y,tri.z],cl);};
+  const wallC=new THREE.Color(),roofC=new THREE.Color(),shadeC=new THREE.Color();let nb=0;
+  SC.buildings.forEach(b=>{let pts=[];for(let i=0;i<b.p.length;i+=2)pts.push([b.p[i],b.p[i+1]]);
+    const cx=pts.reduce((s,p)=>s+p[0],0)/pts.length,cz=pts.reduce((s,p)=>s+p[1],0)/pts.length;
+    if(inFrame(cx,cz,4)||Math.hypot(cx-PLOT.x,cz-PLOT.z)>1500)return;nb++;
+    let A=0;for(let i=0;i<pts.length;i++){const [x1,z1]=pts[i],[x2,z2]=pts[(i+1)%pts.length];A+=x1*(-z2)-x2*(-z1);}if(A<0)pts.reverse();
+    const h=b.h,y0=GY-.2,y1=GY+h;wallC.set(b.w).convertSRGBToLinear();roofC.set(b.r||b.w).convertSRGBToLinear();
+    const ridge=b.g&&pts.length===4?Math.min(3.2,h*.3):0;
+    for(let i=0;i<pts.length;i++){const [x1,z1]=pts[i],[x2,z2]=pts[(i+1)%pts.length];shadeC.copy(wallC).multiplyScalar(.95+((i*37)%7)/100);
+      face([x1,y0,z1],[x2,y0,z2],[x2,y1,z2],shadeC);face([x1,y0,z1],[x2,y1,z2],[x1,y1,z1],shadeC);}
+    if(ridge){const d=(a,c)=>Math.hypot(a[0]-c[0],a[1]-c[1]);let o=d(pts[0],pts[1])>=d(pts[1],pts[2])?0:1;
+      const q=[0,1,2,3].map(k=>pts[(k+o)%4]);const m1=[(q[1][0]+q[2][0])/2,(q[1][1]+q[2][1])/2],m0=[(q[3][0]+q[0][0])/2,(q[3][1]+q[0][1])/2];const Y=y1+ridge;
+      face([q[0][0],y1,q[0][1]],[q[1][0],y1,q[1][1]],[m1[0],Y,m1[1]],roofC);face([q[0][0],y1,q[0][1]],[m1[0],Y,m1[1]],[m0[0],Y,m0[1]],roofC);
+      face([q[2][0],y1,q[2][1]],[q[3][0],y1,q[3][1]],[m0[0],Y,m0[1]],roofC);face([q[2][0],y1,q[2][1]],[m0[0],Y,m0[1]],[m1[0],Y,m1[1]],roofC);
+      face([q[1][0],y1,q[1][1]],[q[2][0],y1,q[2][1]],[m1[0],Y,m1[1]],wallC);face([q[3][0],y1,q[3][1]],[q[0][0],y1,q[0][1]],[m0[0],Y,m0[1]],wallC);
+    }else{const v=pts.map(p=>new V2(p[0],-p[1]));THREE.ShapeUtils.triangulateShape(v,[]).forEach(([a,c,e])=>face([pts[a][0],y1,pts[a][1]],[pts[c][0],y1,pts[c][1]],[pts[e][0],y1,pts[e][1]],roofC));}
+  });
+  const g=new THREE.BufferGeometry();g.setAttribute('position',new THREE.Float32BufferAttribute(P,3));g.setAttribute('normal',new THREE.Float32BufferAttribute(N,3));g.setAttribute('color',new THREE.Float32BufferAttribute(C,3));
+  const m=new THREE.Mesh(g,new THREE.MeshStandardMaterial({vertexColors:true,roughness:.8,side:THREE.DoubleSide,envMapIntensity:.7}));m.castShadow=m.receiveShadow=true;scene.add(m);
+  forest(SC.trees.filter(([x,z])=>!inFrame(x,z,2)&&Math.hypot(x-PLOT.x,z-PLOT.z)<1500).map(([x,z,s])=>[x,z,s*.85]));
+  window.__nb=nb; }
+
+window.__blk=blocks.map(b=>{const p=b.bg.getWorldPosition(new V3());return [p.x,p.y,p.z];});
 
 /* ---------------- life: parked cars, traffic and people (time-driven for seamless loops) ---------------- */
 const TR=await (await fetch('scene/traffic.json')).json();
@@ -241,7 +280,7 @@ const pb=new THREE.InstancedMesh(bodyG,std(0xFFFFFF,{roughness:.8}),walkers.leng
 {const r=rng(8),c=new THREE.Color();walkers.forEach((w,k)=>{c.setHex(PC[Math.floor(r()*PC.length)]);pb.setColorAt(k,c);});}
 pb.castShadow=true;scene.add(pb,ph,pl);
 // people resting by the pools (static)
-{const pts=[];blocks.forEach(({bg})=>{[[6.9,-2.6],[6.9,-1.3],[5.2,2.5],[-1,-9.6],[4.5,4.8],[-4,9],[-2.8,12.6]].forEach(([x,z])=>pts.push(bg.localToWorld(new V3(x,.3,z))));});
+{const pts=[];blocks.forEach(({bg})=>{[[8.2,-2.3],[8.2,-1.2],[-8.6,1.6],[-3.4,-10],[3,10.5],[-4,9],[5,-11]].forEach(([x,z])=>pts.push(bg.localToWorld(new V3(x,.3,z))));});
  const a=new THREE.InstancedMesh(bodyG,std(0xE9E4D8,{roughness:.8}),pts.length),h=new THREE.InstancedMesh(headG,std(0xC89F7E),pts.length);const d=new THREE.Object3D();
  pts.forEach((p,k)=>{d.position.set(p.x,GY+p.y-.1,p.z);d.rotation.set(0,k,0);d.updateMatrix();a.setMatrixAt(k,d.matrix);h.setMatrixAt(k,d.matrix);});scene.add(a,h);}
 const dmP=new THREE.Object3D();
@@ -383,7 +422,7 @@ R.data=()=>({
   rooms:I.rooms.map(r=>({name:r.name,pos:r.pos.toArray(),yaw:r.yaw})),
   landmarks:SC.landmarks,
   amenities:(()=>{const out=[];const add=(id,v)=>out.push({id,pos:[v.x,v.y,v.z]});
-    blocks.forEach(({bg})=>{add('pool',bg.localToWorld(new V3(2.4,18,-4.1)));add('pergola',bg.localToWorld(new V3(-.07,3.4,17.5)));add('play',bg.localToWorld(new V3(-4,1.5,10)));});
+    blocks.forEach(({bg})=>{add('pool',bg.localToWorld(new V3(-.4,18,.05)));add('pergola',bg.localToWorld(new V3(-4,3.4,10.5)));add('play',bg.localToWorld(new V3(-5.8,1.5,-22.7)));});
     add('boulevard',S2W(-30,1.5,-62));add('cycle',S2W(2,1,44));add('private',S2W(-62,1.5,36.5));add('terraces',S2W(92,17.6,31));
     const C=SB.commercial;add('commercial',S2W((C.u0+C.u1)/2,17,(C.v0+C.v1)/2));return out;})(),
 });

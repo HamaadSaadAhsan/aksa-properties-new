@@ -24,7 +24,7 @@ for arg in sys.argv[1:]:
     run('ffmpeg', '-v', 'error', '-y', '-i', raw, '-filter_complex', fc, '-c:v', 'libx264', '-crf', '25', '-preset', 'slow', '-movflags', '+faststart', '-an', out)
     print(n, 'size %.1f MB' % (os.path.getsize(out) / 1e6))
     done[n] = {'image': f'media/gallery/aerial_{n}.jpg', 'thumb': f'media/gallery/thumb_aerial_{n}.jpg', 'video': f'media/gallery/live_aerial_{n}.mp4',
-               'edit': 'commercial building placed with AI from the design renders, placeholder massing removed'}
+               'edit': 'updated with AI: commercial building from the design renders, neighbouring buildings as they stand today, four-pool courtyards'}
 def patch(items):
     for it in items:
         n = it['image'][-6:-4]

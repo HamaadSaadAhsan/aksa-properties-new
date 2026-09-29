@@ -8,7 +8,7 @@
   "h": 899,
   "video": "media/gallery/live_aerial_01.mp4",
   "fx": 0.618,
-  "edit": "commercial building placed with AI from the design renders, placeholder massing removed"
+  "edit": "updated with AI: commercial building from the design renders, neighbouring buildings as they stand today, four-pool courtyards"
  },
  {
   "image": "media/gallery/aerial_02.jpg",
@@ -19,7 +19,7 @@
   "h": 899,
   "video": "media/gallery/live_aerial_02.mp4",
   "fx": 0.58,
-  "edit": "commercial building placed with AI from the design renders, placeholder massing removed"
+  "edit": "updated with AI: commercial building from the design renders, neighbouring buildings as they stand today, four-pool courtyards"
  },
  {
   "image": "media/gallery/aerial_03.jpg",
@@ -30,7 +30,7 @@
   "h": 899,
   "video": "media/gallery/live_aerial_03.mp4",
   "fx": 0.415,
-  "edit": "commercial building placed with AI from the design renders, placeholder massing removed"
+  "edit": "updated with AI: commercial building from the design renders, neighbouring buildings as they stand today, four-pool courtyards"
  },
  {
   "image": "media/gallery/render_04.jpg",
@@ -133,90 +133,28 @@
   "fx": 0.566
  },
  {
-  "image": "media/gallery/render_14.jpg",
-  "thumb": "media/gallery/thumb_render_14.jpg",
+  "image": "media/gallery/render_29.jpg",
+  "thumb": "media/gallery/thumb_render_29.jpg",
   "cat": "courtyard",
-  "caption": "Courtyard garden and pool",
-  "w": 1280,
-  "h": 720,
-  "video": "media/gallery/live_14.mp4",
-  "fx": 0.372
- },
- {
-  "image": "media/gallery/render_15.jpg",
-  "thumb": "media/gallery/thumb_render_15.jpg",
-  "cat": "courtyard",
-  "caption": "Pool deck",
-  "w": 1280,
-  "h": 720
- },
- {
-  "image": "media/gallery/render_16.jpg",
-  "thumb": "media/gallery/thumb_render_16.jpg",
-  "cat": "courtyard",
-  "caption": "Courtyard from above",
-  "w": 1599,
-  "h": 899,
-  "video": "media/gallery/live_16.mp4",
-  "fx": 0.512
- },
- {
-  "image": "media/gallery/render_17.jpg",
-  "thumb": "media/gallery/thumb_render_17.jpg",
-  "cat": "courtyard",
-  "caption": "Pool in the afternoon sun",
-  "w": 1599,
-  "h": 899
- },
- {
-  "image": "media/gallery/render_18.jpg",
-  "thumb": "media/gallery/thumb_render_18.jpg",
-  "cat": "courtyard",
-  "caption": "Pergola and play area",
-  "w": 1599,
-  "h": 899,
-  "video": "media/gallery/live_18.mp4",
-  "fx": 0.546
- },
- {
-  "image": "media/gallery/render_19.jpg",
-  "thumb": "media/gallery/thumb_render_19.jpg",
-  "cat": "courtyard",
-  "caption": "Pergola lawn",
+  "caption": "Courtyard from above: four lot gardens around four pools",
   "w": 1600,
-  "h": 900,
-  "video": "media/gallery/live_19.mp4",
-  "fx": 0.537
+  "h": 1120
  },
  {
-  "image": "media/gallery/render_20.jpg",
-  "thumb": "media/gallery/thumb_render_20.jpg",
+  "image": "media/gallery/render_30.jpg",
+  "thumb": "media/gallery/thumb_render_30.jpg",
   "cat": "courtyard",
-  "caption": "Lavender beds and pool",
-  "w": 1599,
-  "h": 899,
-  "video": "media/gallery/live_20.mp4",
-  "fx": 0.482
+  "caption": "Courtyard: four pools, pergolas and play areas",
+  "w": 1600,
+  "h": 1120
  },
  {
-  "image": "media/gallery/render_21.jpg",
-  "thumb": "media/gallery/thumb_render_21.jpg",
+  "image": "media/gallery/render_31.jpg",
+  "thumb": "media/gallery/thumb_render_31.jpg",
   "cat": "courtyard",
-  "caption": "Pool and pergola",
-  "w": 1280,
-  "h": 720,
-  "video": "media/gallery/live_21.mp4",
-  "fx": 0.582
- },
- {
-  "image": "media/gallery/render_22.jpg",
-  "thumb": "media/gallery/thumb_render_22.jpg",
-  "cat": "courtyard",
-  "caption": "Round pergola",
-  "w": 1599,
-  "h": 899,
-  "video": "media/gallery/live_22.mp4",
-  "fx": 0.251
+  "caption": "One lot with its own garden and pool (cut-away view)",
+  "w": 1600,
+  "h": 1120
  },
  {
   "image": "media/gallery/render_23.jpg",
