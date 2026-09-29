@@ -28,7 +28,11 @@ for x in D['masterplan']['angles']:
     y = dict(x); y['still'] = f'media/mp/ai_{x["id"]}.jpg'
     y['loop'] = f'media/mp/ai2_{x["id"]}_loop.mp4' if os.path.exists(f'{SITE}/media/mp/ai2_{x["id"]}_loop.mp4') else None
     y['label'] = x['label'].replace('Aerial', 'Aerial 360°'); angles.append(y)
-D['aiReel'] = {'viewBox': D['masterplan']['viewBox'], 'start': D['masterplan']['start'], 'angles': angles, 'ai': True}
-D['close']['fly'] = {}                               # fly clips show the old scene; close-ups cross-fade instead
+import glob
+TR = {}
+for f in glob.glob(f'{SITE}/media/mp/ai_trans_*.mp4'):
+    a, b = os.path.basename(f)[9:-4].split('-'); TR[f'{a}>{b}'] = 'media/mp/' + os.path.basename(f)
+D['aiReel'] = {'trans': TR, 'viewBox': D['masterplan']['viewBox'], 'start': D['masterplan']['start'], 'angles': angles, 'ai': True}
+D['close']['fly'] = {}; D['close'].pop('transition', None); D['masterplan'].pop('transition', None)   # old-scene rotation clips                               # fly clips show the old scene; close-ups cross-fade instead
 json.dump(D, open(f'{SITE}/data.json', 'w'), separators=(',', ':'), ensure_ascii=False)
 print('aiReel', [(a['id'], bool(a['loop'])) for a in angles], 'start', D['masterplan']['start'])

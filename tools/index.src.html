@@ -662,11 +662,13 @@ async function rotate(dir,rate=1){
   busy=true;clearOverlay();closeTours();
   if(state==='mp'){
     const n=DATA.masterplan.angles.length,to=(angleIdx+dir+n)%n;
-    if(DATA.masterplan.transition)await playClip(transURL(angleId(angleIdx),angleId(to)),rate);else await crossfadeTo(DATA.masterplan.angles[to].still,dir);
+    const tk=(DATA.masterplan.trans||{})[angleId(angleIdx)+'>'+angleId(to)];
+    if(tk)await playClip(tk,rate);else if(DATA.masterplan.transition)await playClip(transURL(angleId(angleIdx),angleId(to)),rate);else await crossfadeTo(DATA.masterplan.angles[to].still,dir);
     await showAngle(to);
   }else{
     const C=DATA.close.angles,n=C.length,to=(closeIdx+dir+n)%n;
-    if(DATA.close.transition)await playClip(transURL(C[closeIdx].id,C[to].id,DATA.close),rate);else await crossfadeTo(C[to].still,dir);
+    const tk=(DATA.close.trans||{})[C[closeIdx].id+'>'+C[to].id];
+    if(tk)await playClip(tk,rate);else if(DATA.close.transition)await playClip(transURL(C[closeIdx].id,C[to].id,DATA.close),rate);else await crossfadeTo(C[to].still,dir);
     await showClose(to);
   }
   busy=false;

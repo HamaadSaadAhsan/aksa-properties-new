@@ -299,6 +299,7 @@ setTime(0);
 
 /* ---------------- exterior 360 points ---------------- */
 const B0=blocks[0].bg,B1=blocks[1].bg;const BW=(bg,u,y,v)=>bg.localToWorld(new V3(u,y,v));
+window.__bw=(u,y,v)=>{const p=BW(B0,u,BASE+y,v);return [p.x,p.y,p.z];};
 const PANOS={
   courtyard:{name:'Courtyard garden',meta:'North block · pool and gardens',pos:BW(B0,-6,BASE+1.7,6),look:BW(B0,4,BASE+1.2,-6)},
   terrace:{name:'Penthouse terrace',meta:'South block · Level 5',pos:BW(B1,-31.2,BASE+5*FH+2.0,6),look:BW(B1,-230,BASE,160)},
