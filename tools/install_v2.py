@@ -8,7 +8,7 @@ def run(*a): subprocess.run(a, check=True, capture_output=True)
 for a in ANG:
     Image.open(f'{V2}/ai_close_{a}.png').convert('RGB').resize((2400, 1350), Image.LANCZOS).save(f'{SITE}/media/close/close_{a}.jpg', quality=84, optimize=True, progressive=True)
     Image.open(f'{V2}/ai_angle_{a}.png').convert('RGB').save(f'{ST}/s_{a}.png')
-    Image.open(f'{V2}/ai_angle_{a}.png').convert('RGB').resize((1280, 720), Image.LANCZOS).save(f'{SITE}/media/mp/ai_{a}.jpg', quality=86, optimize=True, progressive=True)
+    Image.open(f'{V2}/ai_angle_{a}.png').convert('RGB').resize((1920, 1080), Image.LANCZOS).save(f'{SITE}/media/mp/ai_{a}.jpg', quality=85, optimize=True, progressive=True)
     Image.open(f'{OUT}/stills/angle_{a}.jpg').save(f'{SITE}/media/mp/angle_{a}.jpg', quality=86)
     raw = f'{ST}/v2_{a}.mp4'
     if os.path.exists(raw):
@@ -32,7 +32,8 @@ import glob
 TR = {}
 for f in glob.glob(f'{SITE}/media/mp/ai_trans_*.mp4'):
     a, b = os.path.basename(f)[9:-4].split('-'); TR[f'{a}>{b}'] = 'media/mp/' + os.path.basename(f)
-D['aiReel'] = {'trans': TR, 'viewBox': D['masterplan']['viewBox'], 'start': D['masterplan']['start'], 'angles': angles, 'ai': True}
+D['aiReel'] = {'trans': TR, 'viewBox': D['masterplan']['viewBox'], 'start': '045',   # 045: the AI view closest to the studio renders
+                 'angles': angles, 'ai': True}
 D['close']['fly'] = {}; D['close'].pop('transition', None); D['masterplan'].pop('transition', None)   # old-scene rotation clips                               # fly clips show the old scene; close-ups cross-fade instead
 json.dump(D, open(f'{SITE}/data.json', 'w'), separators=(',', ':'), ensure_ascii=False)
 print('aiReel', [(a['id'], bool(a['loop'])) for a in angles], 'start', D['masterplan']['start'])

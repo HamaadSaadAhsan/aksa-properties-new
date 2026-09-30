@@ -605,7 +605,7 @@ function hoverEl(el){
   showSpot(el.getAttribute('d'));
   if(el.dataset.kind==='outline'){
     if(el.dataset.id==='commercial')showChip(`<strong>Commercial building</strong><span class="meta">Offices and retail on the boulevard</span><span class="cta">${touch?'Tap again for the renders':'Click for the renders'}</span>`);
-    else{const T=towerById(el.dataset.id),us=DATA.units.filter(u=>u.tower===el.dataset.id);showChip(`<strong>${T?T.name:DATA.project.name}</strong><span class="meta">${us.length} residences · ${typesOf(us)}</span><span class="cta">${touch?'Tap again to choose a floor':'Click to choose a floor'}</span>`);}}
+    else{const T=towerById(el.dataset.id),us=T?DATA.units.filter(u=>u.tower===el.dataset.id):DATA.units;showChip(`<strong>${T?T.name:DATA.project.name}</strong><span class="meta">${us.length} residences · ${typesOf(us)}</span><span class="cta">${touch?'Tap again to choose a floor':'Click to choose a floor'}</span>`);}}
   else{const f=closeFloors()[+el.dataset.k];const T=towerById(f.tower);const us=DATA.units.filter(u=>u.tower===f.tower&&u.floor===f.floor);
     showChip(`<strong>${T.name} · ${DATA.floorNames[f.floor]}</strong><span class="meta">${us.length?us.length+' residences · '+typesOf(us):'Roof terraces and storage · no homes'}</span><span class="cta">${touch?'Tap again for the floor plan':'Click for the floor plan'}</span>`);}
 }
@@ -663,12 +663,12 @@ async function rotate(dir,rate=1){
   if(state==='mp'){
     const n=DATA.masterplan.angles.length,to=(angleIdx+dir+n)%n;
     const tk=(DATA.masterplan.trans||{})[angleId(angleIdx)+'>'+angleId(to)];
-    if(tk)await playClip(tk,rate);else if(DATA.masterplan.transition)await playClip(transURL(angleId(angleIdx),angleId(to)),rate);else await crossfadeTo(DATA.masterplan.angles[to].still,dir);
+    if(tk)await playClip(tk,rate);else if(DATA.masterplan.transition)await playClip(transURL(angleId(angleIdx),angleId(to)),rate);else await crossfadeTo(DATA.masterplan.angles[to].still);
     await showAngle(to);
   }else{
     const C=DATA.close.angles,n=C.length,to=(closeIdx+dir+n)%n;
     const tk=(DATA.close.trans||{})[C[closeIdx].id+'>'+C[to].id];
-    if(tk)await playClip(tk,rate);else if(DATA.close.transition)await playClip(transURL(C[closeIdx].id,C[to].id,DATA.close),rate);else await crossfadeTo(C[to].still,dir);
+    if(tk)await playClip(tk,rate);else if(DATA.close.transition)await playClip(transURL(C[closeIdx].id,C[to].id,DATA.close),rate);else await crossfadeTo(C[to].still);
     await showClose(to);
   }
   busy=false;
@@ -1073,6 +1073,7 @@ function frame(now){requestAnimationFrame(frame);const dt=Math.min(.05,(now-last
   DATA=await loadManifest();
   if(!DATA){$('#err').hidden=false;$('#loader').hidden=true;return;}
   DATA.__mp3d=DATA.masterplan;const MPd=DATA.masterplan;
+  {const R3=reelFor('3d');idx3d=Math.max(0,R3.angles.findIndex(x=>x.id===R3.start));}
   const st=angleIndexOf(MPd.start),order=MPd.angles.map((a,i)=>MPd.angles[(st+i)%MPd.angles.length]);
   const urls=[...order.flatMap(a=>[a.still,a.loop]),...DATA.close.angles.map(a=>a.still)].filter(Boolean);
   if(MPd.transition)MPd.angles.forEach((a,i)=>{const b=MPd.angles[(i+1)%MPd.angles.length];urls.push(transURL(a.id,b.id),transURL(b.id,a.id));});
