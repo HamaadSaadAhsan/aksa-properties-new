@@ -1,4 +1,8 @@
-<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>AKSA Residencies</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -336,6 +340,8 @@ button:focus-visible{outline:2px solid var(--sea);outline-offset:2px}
 }
 @media (prefers-reduced-motion:reduce){.pin .ring,.clouds img{animation:none}.frame{transition:none}}
 </style>
+</head>
+<body>
 
 <div id="app">
   <div class="stage" id="stage">
@@ -628,7 +634,7 @@ function placeChip(){const c=$('#chip');if(c.hidden)return;const w=c.offsetWidth
 let viewMode='real',realIdx=0,idx3d=0;
 const hasReal=()=>!!(DATA.realReel&&DATA.realReel.angles.length);
 const realOn=()=>false;                                   // the old full-screen video layer is retired; real views now use the stage itself
-const reelFor=m=>m==='real'&&hasReal()?DATA.realReel:DATA.__mp3d;    // 3D-model stills only: the AI reel redrew the building differently at each angle
+const reelFor=m=>m==='real'&&hasReal()?DATA.realReel:DATA.__mp3d;    // 3D-model views only: the AI reel redrew the building differently at each angle
 const HINT_AI='AI-rendered from our 3D model · Drag or use the arrows to go round · Hover a block or a pin';
 const HINT_REAL='Studio renders · moving cars and people added with AI · Hover a block or a pin';
 function applyMode(){$('#mode').hidden=!(state==='mp'&&hasReal());
@@ -1109,4 +1115,5 @@ function frame(now){requestAnimationFrame(frame);const dt=Math.min(.05,(now-last
 })();
 </script>
 
-</body></html>
+</body>
+</html>
