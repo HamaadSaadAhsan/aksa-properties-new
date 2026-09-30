@@ -627,7 +627,7 @@ function placeChip(){const c=$('#chip');if(c.hidden)return;const w=c.offsetWidth
 let viewMode='real',realIdx=0,idx3d=0;
 const hasReal=()=>!!(DATA.realReel&&DATA.realReel.angles.length);
 const realOn=()=>false;                                   // the old full-screen video layer is retired; real views now use the stage itself
-const reelFor=m=>m==='real'&&hasReal()?DATA.realReel:(DATA.aiReel&&DATA.aiReel.angles.length===8?DATA.aiReel:DATA.__mp3d);
+const reelFor=m=>m==='real'&&hasReal()?DATA.realReel:(DATA.aiReel&&DATA.aiReel.angles.length>=6?DATA.aiReel:DATA.__mp3d);
 const HINT_AI='AI-rendered from our 3D model · Drag or use the arrows to go round · Hover a block or a pin';
 const HINT_REAL='Studio renders · moving cars and people added with AI · Hover a block or a pin';
 function applyMode(){$('#mode').hidden=!(state==='mp'&&hasReal());
