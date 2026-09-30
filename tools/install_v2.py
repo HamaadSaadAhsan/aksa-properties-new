@@ -23,7 +23,7 @@ for x in D['masterplan']['angles']:
         if not m['visible'] or m['id'] in ('pergola', 'play') or any(q['id'] == m['id'] for q in am): continue
         am.append({'id': m['id'], 'x': round(m['x'], 1), 'y': round(m['y'], 1)})
     x['amenities'] = am; x['loop'] = None      # the old 3D loops show the old scene
-DROP = {'000'}   # AI still off-design (Sept 2026): hidden until regenerated to match 045
+DROP = set()   # 000 regenerated 30 Sept (GPT 2.5 via Magnific, 045 as style reference)
 angles = []
 for x in D['masterplan']['angles']:
     if x['id'] in DROP: continue
@@ -37,6 +37,10 @@ for f in glob.glob(f'{SITE}/media/mp/ai_trans_*.mp4'):
 TR = {k: v for k, v in TR.items() if not set(k.split('>')) & DROP}
 D['aiReel'] = {'trans': TR, 'viewBox': D['masterplan']['viewBox'], 'start': '045',   # 045: the AI view closest to the studio renders
                  'angles': angles, 'ai': True}
-D['close']['fly'] = {}; D['close'].pop('transition', None); D['masterplan'].pop('transition', None)   # old-scene rotation clips                               # fly clips show the old scene; close-ups cross-fade instead
+CT = {}
+for f in glob.glob(f'{SITE}/media/close/ai_ctrans_*.mp4'):   # Residences orbit clips (Magnific Kling 3.0, 30 Sept)
+    a, b = os.path.basename(f)[10:-4].split('-'); CT[f'{a}>{b}'] = 'media/close/' + os.path.basename(f)
+D['close']['trans'] = CT
+D['close']['fly'] = {};D['close'].pop('transition', None); D['masterplan'].pop('transition', None)   # old-scene rotation clips                               # fly clips show the old scene; close-ups cross-fade instead
 json.dump(D, open(f'{SITE}/data.json', 'w'), separators=(',', ':'), ensure_ascii=False)
 print('aiReel', [(a['id'], bool(a['loop'])) for a in angles], 'start', D['masterplan']['start'])
