@@ -30,6 +30,18 @@ for x in D['masterplan']['angles']:
     y = dict(x); y['still'] = f'media/mp/ai_{x["id"]}.jpg'
     y['loop'] = f'media/mp/ai2_{x["id"]}_loop.mp4' if os.path.exists(f'{SITE}/media/mp/ai2_{x["id"]}_loop.mp4') else None
     y['label'] = x['label'].replace('Aerial', 'Aerial 360°'); angles.append(y)
+# v3 (30 Sept): the 045 and 180 AI stills are used unwarped, so map their 3D-camera overlays onto the photo
+import numpy as np
+CORR = json.load(open('/home/claude/aksa/hf/v3/final/corr.json'))
+vw, vh = D['masterplan']['viewBox']; Dv = np.diag([vw / 2688, vh / 1520, 1.0])
+def mapxy(Hm, x, y):
+    p = Hm @ np.array([x, y, 1.0]); return round(float(p[0] / p[2]), 1), round(float(p[1] / p[2]), 1)
+for y in angles:
+    if y['id'] not in CORR: continue
+    Hm = Dv @ np.array(CORR[y['id']]) @ np.linalg.inv(Dv)
+    y['outlines'] = [dict(o, polys=[[list(mapxy(Hm, *q)) for q in p] for p in o['polys']]) for o in y['outlines']]
+    y['amenities'] = [dict(m, **dict(zip('xy', mapxy(Hm, m['x'], m['y'])))) for m in y.get('amenities', [])]
+    y['markers'] = [dict(m, **dict(zip('xy', mapxy(Hm, m['x'], m['y'])))) for m in y.get('markers', [])]
 import glob
 TR = {}
 for f in glob.glob(f'{SITE}/media/mp/ai_trans_*.mp4'):
