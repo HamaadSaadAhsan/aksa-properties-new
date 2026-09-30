@@ -1,10 +1,10 @@
 """Lanes for moving cars (real roads near the site from OpenStreetMap + the site-plan streets) and walking loops, in world metres."""
-import json, math
+import json, math, os
 SC = json.load(open('scene/scene.json')); PL = SC['plot']
 TH = math.radians(-74.2); C, S = math.cos(TH), math.sin(TH)
 W = lambda u, v: (PL['x'] + u * C + v * S, PL['z'] - u * S + v * C)
 ways = []
-for f in ['/home/claude/aksa/src/aksa_osm.json', '/home/claude/aksa/src/aksa_osm_site.json']: ways += json.load(open(f))['ways']
+for f in [os.path.join(os.path.dirname(os.path.abspath(__file__)), 'src', n) for n in ('aksa_osm.json', 'aksa_osm_site.json')]: ways += json.load(open(f))['ways']
 pts = lambda w: [(w['p'][i], w['p'][i + 1]) for i in range(0, len(w['p']), 2)]
 RW = {'trunk': 14, 'primary': 12, 'secondary': 11, 'tertiary': 9.5, 'unclassified': 7.5, 'residential': 7.5}
 def offset(P, d):
