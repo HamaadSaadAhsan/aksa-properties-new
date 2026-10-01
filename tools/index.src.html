@@ -167,6 +167,8 @@ button:focus-visible{outline:2px solid var(--sea);outline-offset:2px}
 .btn.primary:hover{background:var(--sea)}
 .btn.primary:disabled{background:#B9BFC2;cursor:not-allowed}
 .btn.ghost{border:1px solid var(--line)}
+.u-cta{display:flex;flex-wrap:wrap;gap:8px;margin:14px 0 4px}
+a.btn{display:inline-flex;align-items:center;text-decoration:none;color:inherit}a.btn.primary{color:#fff}
 .note{margin:0;font-size:12px;color:var(--ink-2)}
 .plan-stage{position:relative;display:grid;place-items:center;padding:56px 56px 40px 40px;background:radial-gradient(ellipse at 50% 45%,#FFFFFF 0%,#F3EEE6 70%);min-height:0}
 #plan-svg{width:100%;height:100%;max-height:100%}
@@ -879,7 +881,7 @@ function openPlan(tower,floor,selId){
   anim(m.querySelector('.sheet'),{opacity:[0,1],y:[28,0],scale:[.97,1]},{type:'spring',stiffness:240,damping:26});
   setTimeout(()=>$('#plan-close').focus({preventScroll:true}),60);
 }
-function closePlan(instant){const m=$('#plan');planOpen=false;if(instant){m.hidden=true;return;}
+function closePlan(instant){const m=$('#plan');planOpen=false;viewHash();if(instant){m.hidden=true;return;}
   anim(m.querySelector('.sheet'),{opacity:0,y:16,scale:.98},{duration:.2});anim(m,{opacity:0},{duration:.25}).then(()=>{if(!planOpen)m.hidden=true;});}
 const floorUnits=()=>DATA.units.filter(u=>u.tower===plan.tower&&u.floor===plan.floor);
 function renderPlan(){
@@ -902,7 +904,18 @@ function renderPlan(){
 }
 function applyFilter(){const units=floorUnits();document.querySelectorAll('#plan-svg .u').forEach(el=>{const u=units[+el.dataset.k];
   el.classList.toggle('dim',(plan.filter!==0&&u.type!==plan.filter)||(SR.open&&srActive()&&!srMatch(u)));el.classList.toggle('sel',!!plan.sel&&plan.sel.id===u.id);});}
-function selectUnit(u){plan.sel=u;$('#plan-tip').hidden=true;applyFilter();renderSide();}
+function selectUnit(u){plan.sel=u;$('#plan-tip').hidden=true;applyFilter();renderSide();setHash('u-'+u.id);}
+// the address goes back to the current view when no residence is open
+function viewHash(){if(state==='close')setHash('c'+DATA.close.angles[closeIdx].id);else if(state==='mp'&&viewMode!=='real')setHash('a'+DATA.masterplan.angles[angleIdx].id);}
+// "Request a call": WhatsApp and/or email from DATA.project.contact; hidden until a contact is set
+function contactLinks(u){const C=DATA.project.contact||{},i=u.inv||{},T=towerById(u.tower);
+  const msg=`Hello, I'm interested in residence ${u.id} at ${DATA.project.name} (${i.typology||u.type}${i.duplex?' duplex':''}, ${(+(i.living||u.m2)).toFixed(1)} m², ${T?T.name:''}, ${DATA.floorNames[u.floor]}). ${location.href}`;
+  const wa=(C.whatsapp||'').replace(/\D/g,''),out=[];
+  if(wa)out.push(`<a class="btn primary" href="https://wa.me/${wa}?text=${encodeURIComponent(msg)}" target="_blank" rel="noopener">Request a call</a>`);
+  if(C.email)out.push(`<a class="btn ${wa?'ghost':'primary'}" href="mailto:${C.email}?subject=${encodeURIComponent(DATA.project.name+' · residence '+u.id)}&body=${encodeURIComponent(msg)}">${wa?'Email':'Request a call'}</a>`);
+  return out.join('');}
+async function copyLink(btn){const url=location.href;try{await navigator.clipboard.writeText(url);btn.textContent='Link copied';}catch(e){prompt('Copy this link',url);}
+  setTimeout(()=>{btn.textContent='Copy link';},1800);}
 // one residence's sales record (tools/build_inventory.py -> u.inv)
 const m2=v=>v==null?'':`${(+v).toFixed(2)} m²`;
 function invList(u){const i=u.inv,s=ST[u.status]||ST.available;
@@ -915,10 +928,11 @@ function renderSide(){
   const box=$('#plan-info');
   if(plan.sel){const u=plan.sel;
     box.innerHTML=`<div class="unit"><p class="eyebrow">Residence</p><h3>${u.id}</h3><span class="status" style="--c:${tyc(u.type)}">${u.type}${u.duplex?' duplex':''} · ${u.beds} bedroom${u.beds>1?'s':''}</span>
-      ${u.inv?invList(u):`<dl>${u.code?`<dt>Designation</dt><dd>${u.code} · Building ${u.bld}</dd>`:''}<dt>Fração</dt><dd>${u.frac}</dd><dt>Type</dt><dd>${u.type}${u.duplex?' duplex (level 4 + roof level)':''}</dd><dt>${u.duplex?'Level 4 area':'Area'}</dt><dd>${u.m2.toFixed(2)} m² · ${fmtInt(u.m2*10.764)} ft²</dd>${u.upper?`<dt>Roof level</dt><dd>${u.upper.toFixed(2)} m²</dd><dt>Total living</dt><dd>${(u.m2+u.upper).toFixed(2)} m²</dd>`:''}${u.terrace?`<dt>Roof terrace</dt><dd>${u.terrace.toFixed(2)} m²</dd>`:''}${u.balc?`<dt>Balconies</dt><dd>${u.balc.toFixed(2)} m²</dd>`:''}${u.parking?`<dt>Parking</dt><dd>${u.parking} space${u.parking>1?'s':''} in the basement</dd>`:''}${u.aspect?`<dt>Aspect</dt><dd>${u.aspect}</dd>`:''}<dt>Price</dt><dd>On request</dd></dl>`}</div>
+      <div class="u-cta">${contactLinks(u)}<button class="btn ghost" id="u-link">Copy link</button></div>${u.inv?invList(u):`<dl>${u.code?`<dt>Designation</dt><dd>${u.code} · Building ${u.bld}</dd>`:''}<dt>Fração</dt><dd>${u.frac}</dd><dt>Type</dt><dd>${u.type}${u.duplex?' duplex (level 4 + roof level)':''}</dd><dt>${u.duplex?'Level 4 area':'Area'}</dt><dd>${u.m2.toFixed(2)} m² · ${fmtInt(u.m2*10.764)} ft²</dd>${u.upper?`<dt>Roof level</dt><dd>${u.upper.toFixed(2)} m²</dd><dt>Total living</dt><dd>${(u.m2+u.upper).toFixed(2)} m²</dd>`:''}${u.terrace?`<dt>Roof terrace</dt><dd>${u.terrace.toFixed(2)} m²</dd>`:''}${u.balc?`<dt>Balconies</dt><dd>${u.balc.toFixed(2)} m²</dd>`:''}${u.parking?`<dt>Parking</dt><dd>${u.parking} space${u.parking>1?'s':''} in the basement</dd>`:''}${u.aspect?`<dt>Aspect</dt><dd>${u.aspect}</dd>`:''}<dt>Price</dt><dd>On request</dd></dl>`}</div>
       <p class="note">${u.inv?'Status, areas and parking from the sales inventory.':'Area and typology as stated on the architect\'s floor plan.'}</p>
       <div class="side-actions"><button class="btn ghost" id="u-back">All residences</button></div>`;
-    $('#u-back').addEventListener('click',()=>{plan.sel=null;applyFilter();renderSide();});
+    $('#u-back').addEventListener('click',()=>{plan.sel=null;applyFilter();renderSide();viewHash();});
+    $('#u-link').addEventListener('click',e=>copyLink(e.currentTarget));
   }else if(!floorUnits().length){const P=DATA.plans[plan.tower+':'+plan.floor];
     box.innerHTML=`<p class="lede">${P.note||'No homes on this level.'}</p>`;
   }else{const us=floorUnits();const types=[...new Set(us.map(u=>u.type))].sort();
@@ -932,8 +946,8 @@ function renderSide(){
 }
 $('#plan-close').addEventListener('click',()=>closePlan());
 $('#plan').addEventListener('click',e=>{if(e.target.id==='plan')closePlan();});
-$('#lvl-up').addEventListener('click',()=>{plan.floor++;plan.sel=null;renderPlan();});
-$('#lvl-down').addEventListener('click',()=>{plan.floor--;plan.sel=null;renderPlan();});
+$('#lvl-up').addEventListener('click',()=>{plan.floor++;plan.sel=null;renderPlan();viewHash();});
+$('#lvl-down').addEventListener('click',()=>{plan.floor--;plan.sel=null;renderPlan();viewHash();});
 
 /* ---------------- 360 viewer (equirectangular, plain WebGL) ---------------- */
 const V={yaw:0,pitch:0,fov:70,auto:true,tex:null,ready:false,hot:[],flat:false};
@@ -1066,6 +1080,7 @@ function readHash(){const h=(location.hash||'').slice(1);if(!h)return null;
   if(h==='amenities')return {kind:'amen'};
   m=/^v(\d{2})$/.exec(h);if(m)return {kind:'angle',id:m[1]};
   m=/^c(\d{2,3})$/.exec(h);if(m)return {kind:'close',id:m[1]};
+  m=/^u-([NS]-\d\.\d{2})$/.exec(h);if(m)return {kind:'unit',id:m[1]};          // one residence: #u-N-3.04
   if(DATA.panos[h])return {kind:'pano',id:h};
   m=/^([a-z0-9_]+)~(-?[\d.]+)~(-?[\d.]+)~([\d.]+)$/i.exec(h);if(!m)return null;
   for(const [key,T] of Object.entries(DATA.tours))if(T.rooms.some(r=>r.id===m[1]))return {kind:'tour',tour:key,room:m[1],view:{yaw:+m[2],pitch:+m[3],fov:+m[4]}};return null;}
@@ -1188,18 +1203,20 @@ function frame(now){requestAnimationFrame(frame);const dt=Math.min(.05,(now-last
   await preload([...new Set(urls)],p=>{const v=Math.round(p*100);if(v>shown){shown=v;$('#pct').textContent=v+'%';$('#ld-bar').style.width=v+'%';}});
   buildTourMenu();buildSearch();
   const h=readHash();
-  if(!hasReal()||(h&&['angle','close','pano','tour'].includes(h.kind)))viewMode='3d';        // Real views open by default; a###  links open the 3D model
+  if(!hasReal()||(h&&['angle','close','pano','tour','unit'].includes(h.kind)))viewMode='3d';        // Real views open by default; a###  links open the 3D model
   if(viewMode==='real'){DATA.masterplan=DATA.realReel;if(h&&h.kind==='live')realIdx=Math.max(0,angleIndexOf(h.id));}
   else DATA.masterplan=reelFor('3d');
   state='mp';setState('mp');
   const startIdx=viewMode==='real'?realIdx:h&&h.kind==='angle'&&angleIndexOf(h.id)>=0?angleIndexOf(h.id):angleIndexOf(MPd.start);
-  await showAngle(h&&(h.kind==='close'||h.kind==='pano')?angleIndexOf(DATA.close.from):startIdx);
+  await showAngle(h&&(h.kind==='close'||h.kind==='pano'||h.kind==='unit')?angleIndexOf(DATA.close.from):startIdx);
   if(h&&h.kind==='close'){setState('close');await showClose(closeAngleIndexOf(h.id));}
+  if(h&&h.kind==='unit'){setState('close');await showClose(closeAngleIndexOf(DATA.close.from));}
   await anim($('#loader'),{opacity:0},{duration:.6});$('#loader').hidden=true;
   requestAnimationFrame(frame);
   preload([...new Set(later)],()=>{});
   // background-load 360 panoramas
   Object.values(DATA.panos).forEach(p=>loadImage(p.image).catch(()=>{}));
+  if(h&&h.kind==='unit'){const u=DATA.units.find(x=>x.id===h.id);if(u)openPlan(u.tower,u.floor,u.id);}
   if(h&&h.kind==='loc')openLoc();
   if(h&&h.kind==='gal')openGallery();
   if(h&&h.kind==='amen')openAmen();
