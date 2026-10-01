@@ -62,6 +62,32 @@ button:focus-visible{outline:2px solid var(--sea);outline-offset:2px}
 .clouds img{position:absolute;left:0;width:560px;max-width:none;opacity:.35;animation:drift linear infinite}
 @keyframes drift{from{transform:translateX(-620px)}to{transform:translateX(calc(100vw + 60px))}}
 
+/* home search */
+.search{position:absolute;left:16px;top:calc(env(safe-area-inset-top,0px) + 76px);bottom:92px;width:344px;max-width:calc(100% - 32px);display:flex;flex-direction:column;background:var(--paper);border-radius:16px;box-shadow:0 18px 50px rgba(0,20,30,.35);z-index:6;overflow:hidden}
+.search .sh{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;padding:20px 20px 12px;border-bottom:1px solid var(--line)}
+.search h2{margin:2px 0 0;font-family:var(--display);font-weight:400;font-size:28px;line-height:1.05}
+.search .count{margin:6px 0 0;font-family:var(--mono);font-size:12px;color:var(--ink-2)}
+.search .close-s{width:34px;height:34px;flex:none;border-radius:50%;display:grid;place-items:center;background:var(--sand)}
+.search .close-s svg{width:16px;height:16px}
+.search .sb{overflow:auto;flex:1;padding:14px 20px 20px;display:flex;flex-direction:column;gap:14px}
+.sf p{margin:0 0 6px;font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-2)}
+.sf .chips{display:flex;flex-wrap:wrap;gap:6px}
+.sf button{padding:7px 12px;border-radius:999px;border:1px solid var(--line);font-size:13px;font-weight:600;color:var(--ink);background:#fff;transition:background .15s,color .15s}
+.sf button[aria-pressed="true"]{background:var(--sea);border-color:var(--sea);color:#fff}
+.sr-actions{display:flex;justify-content:space-between;align-items:center;gap:8px}
+.sr-actions button{font-size:12px;font-weight:700;color:var(--sea);text-decoration:underline;text-underline-offset:3px}
+.results{display:flex;flex-direction:column;gap:8px}
+.rc{display:grid;grid-template-columns:auto 1fr auto;gap:2px 12px;align-items:center;text-align:left;padding:12px;border-radius:12px;background:#fff;border:1px solid var(--line);transition:border-color .15s,transform .15s}
+.rc:hover{border-color:var(--sea);transform:translateY(-1px)}
+.rc .ty{grid-row:span 2;width:40px;height:40px;border-radius:10px;display:grid;place-items:center;color:#fff;font-weight:700;font-size:13px;background:var(--c)}
+.rc b{font-family:var(--mono);font-size:13px;font-weight:500}
+.rc .m{font-size:12px;color:var(--ink-2)}
+.rc .st{grid-row:span 2;font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--c)}
+.rc-more{padding:10px;border-radius:10px;background:var(--sand);font-size:13px;font-weight:600}
+.sr-empty{margin:0;font-size:14px;color:var(--ink-2)}
+#hits .hit.match{fill:rgba(15,111,124,.42);stroke:#fff;stroke-width:1.5;vector-effect:non-scaling-stroke}
+@media (max-width:640px){.search{left:8px;right:8px;width:auto;max-width:none;top:auto;bottom:8px;max-height:74vh}}
+
 /* 360 viewer */
 #pano{position:absolute;inset:0;width:100%;height:100%;touch-action:none;cursor:grab;background:#000 repeat-x}
 #pano.grabbing{cursor:grabbing}
@@ -363,6 +389,7 @@ button:focus-visible{outline:2px solid var(--sea);outline-offset:2px}
     <div class="brand"><span class="mark">AKSA</span><span class="sub">Residencies · Montijo · Lisbon</span></div>
     <div class="actions">
       <button class="round" id="btn-notes" aria-label="How this is built"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 11v6M12 7.5v.01"/></svg></button>
+      <button class="round" id="btn-search" aria-label="Find a home" aria-expanded="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="6.5"/><path d="M16 16l4.5 4.5"/></svg></button>
       <button class="round" id="btn-close" aria-label="Back" hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
     </div>
   </header>
@@ -388,6 +415,14 @@ button:focus-visible{outline:2px solid var(--sea);outline-offset:2px}
       <button class="pill-btn" id="btn-tours" aria-expanded="false" aria-controls="tour-list"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 15l6-6 6 6"/></svg>360° tours</button>
     </div>
   </footer>
+
+  <aside id="search" class="search" aria-labelledby="sr-title" hidden>
+    <div class="sh"><div><p class="eyebrow">Residences</p><h2 id="sr-title">Find your home</h2><p class="count" id="sr-count" aria-live="polite"></p></div>
+      <button class="close-s" id="sr-close" aria-label="Close search"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div>
+    <div class="sb"><div id="sr-filters" style="display:flex;flex-direction:column;gap:14px"></div>
+      <div class="sr-actions"><span class="label-sm" id="sr-note"></span><button id="sr-reset">Clear filters</button></div>
+      <div class="results" id="sr-results"></div></div>
+  </aside>
 
   <section id="plan" class="modal" hidden>
     <div class="sheet" role="dialog" aria-modal="true" aria-labelledby="plan-title">
@@ -593,6 +628,7 @@ const closeFloors=()=>DATA.close.angles[closeIdx].floors;
 function drawCloseOverlay(){
   setViewBox(...DATA.close.viewBox);clearOverlay();
   closeFloors().forEach((f,k)=>{const p=document.createElementNS(NS,'path');p.setAttribute('d',pathOf(f.polys));p.setAttribute('class','hit');p.dataset.kind='floor';p.dataset.k=k;hitsG.appendChild(p);});
+  paintMatches();
 }
 
 /* spotlight + glow (same SVG trick as the reference: mask with a hole) */
@@ -607,7 +643,7 @@ function hoverEl(el){
     if(el.dataset.id==='commercial')showChip(`<strong>Commercial building</strong><span class="meta">Offices and retail on the boulevard</span><span class="cta">${touch?'Tap again for the renders':'Click for the renders'}</span>`);
     else{const T=towerById(el.dataset.id),us=T?DATA.units.filter(u=>u.tower===el.dataset.id):DATA.units;showChip(`<strong>${T?T.name:DATA.project.name}</strong><span class="meta">${us.length} residences · ${typesOf(us)}</span><span class="cta">${touch?'Tap again to choose a floor':'Click to choose a floor'}</span>`);}}
   else{const f=closeFloors()[+el.dataset.k];const T=towerById(f.tower);const us=DATA.units.filter(u=>u.tower===f.tower&&u.floor===f.floor);
-    showChip(`<strong>${T.name} · ${DATA.floorNames[f.floor]}</strong><span class="meta">${us.length?us.length+' residences · '+typesOf(us):'Roof terraces and storage · no homes'}</span><span class="cta">${touch?'Tap again for the floor plan':'Click for the floor plan'}</span>`);}
+    showChip(`<strong>${T.name} · ${DATA.floorNames[f.floor]}</strong>${SR.open&&srActive()&&us.length?`<span class="meta">${us.filter(srMatch).length} match your search</span>`:''}<span class="meta">${us.length?us.length+' residences · '+typesOf(us):'Roof terraces and storage · no homes'}</span><span class="cta">${touch?'Tap again for the floor plan':'Click for the floor plan'}</span>`);}
 }
 const towerById=id=>DATA.towers.find(t=>t.id===id);
 const typesOf=us=>{const c={};us.forEach(u=>c[u.type]=(c[u.type]||0)+1);return Object.keys(c).sort().map(k=>`${c[k]} × ${k}`).join(' · ');};
@@ -774,6 +810,65 @@ function closeTours(){$('#tour-list').hidden=true;$('#btn-tours').setAttribute('
 $('#btn-tours').addEventListener('click',()=>{const l=$('#tour-list');l.hidden=!l.hidden;$('#btn-tours').setAttribute('aria-expanded',String(!l.hidden));
   if(!l.hidden)anim(l.children,{opacity:[0,1],y:[10,0]},{delay:stagger(.05,{from:'last'}),duration:.25});});
 
+/* ---------------- home search: filters, results, and matches lit up on the building and the floor plans ---------------- */
+const SR={open:false,shown:30,f:{beds:new Set(),tower:new Set(),floor:new Set(),area:new Set(),face:new Set(),duplex:false,avail:false}};
+const AREAS=[['lt60','Under 60 m²',0,60],['60-90','60–90 m²',60,90],['90-120','90–120 m²',90,120],['120+','120 m² +',120,1e9]];
+const FACES=['North','East','South','West'];
+const uTyp=u=>(u.inv&&u.inv.typology)||u.type, uLiv=u=>(u.inv&&u.inv.living)||u.m2, uFace=u=>(u.inv&&u.inv.orientation)||'';
+function srActive(){const f=SR.f;return f.duplex||f.avail||['beds','tower','floor','area','face'].some(k=>f[k].size);}
+function srMatch(u){const f=SR.f;
+  if(f.beds.size&&!f.beds.has(uTyp(u)))return false;
+  if(f.tower.size&&!f.tower.has(u.tower))return false;
+  if(f.floor.size&&!f.floor.has(u.floor))return false;
+  if(f.duplex&&!((u.inv&&u.inv.duplex)||u.duplex))return false;
+  if(f.avail&&u.status&&u.status!=='available')return false;
+  if(f.area.size){const a=uLiv(u);if(!AREAS.some(([k,,lo,hi])=>f.area.has(k)&&a>=lo&&a<hi))return false;}
+  if(f.face.size&&!FACES.some(x=>f.face.has(x)&&uFace(u).includes(x)))return false;
+  return true;}
+const srList=()=>DATA.units.filter(srMatch).sort((a,b)=>a.tower.localeCompare(b.tower)||a.floor-b.floor||a.n-b.n);
+function buildSearch(){
+  const types=[...new Set(DATA.units.map(uTyp))].sort(),floors=[...new Set(DATA.units.map(u=>u.floor))].sort((a,b)=>a-b);
+  const grp=(key,label,items)=>`<div class="sf"><p>${label}</p><div class="chips" role="group" aria-label="${label}">${items.map(([v,t])=>`<button data-k="${key}" data-v="${v}" aria-pressed="false">${t}</button>`).join('')}</div></div>`;
+  $('#sr-filters').innerHTML=grp('beds','Bedrooms',types.map(t=>[t,t]))+grp('tower','Block',DATA.towers.map(T=>[T.id,T.name]))+
+    grp('floor','Floor',floors.map(f=>[f,f===0?'Ground':'Level '+f]))+grp('area','Living area',AREAS.map(([k,t])=>[k,t]))+
+    grp('face','Facing',FACES.map(x=>[x,x]))+grp('opt','Show only',[['avail','Available'],['duplex','Duplex penthouses']]);
+  $('#sr-filters').addEventListener('click',e=>{const b=e.target.closest('button[data-k]');if(!b)return;const k=b.dataset.k,f=SR.f;
+    if(k==='opt'){f[b.dataset.v]=!f[b.dataset.v];}
+    else{const v=k==='floor'?+b.dataset.v:b.dataset.v;f[k].has(v)?f[k].delete(v):f[k].add(v);}
+    SR.shown=30;srUpdate();});
+  $('#sr-reset').addEventListener('click',()=>{Object.values(SR.f).forEach(v=>v instanceof Set&&v.clear());SR.f.duplex=SR.f.avail=false;SR.shown=30;srUpdate();});
+  $('#sr-results').addEventListener('click',e=>{const m=e.target.closest('.rc-more');if(m){SR.shown+=30;srUpdate();return;}
+    const c=e.target.closest('.rc');if(c)openUnit(c.dataset.id);});
+  $('#btn-search').addEventListener('click',()=>SR.open?closeSearch():openSearch());
+  $('#sr-close').addEventListener('click',()=>closeSearch());
+  document.addEventListener('keydown',e=>{if(e.key==='Escape'&&SR.open&&!planOpen)closeSearch();});
+}
+function srUpdate(){const f=SR.f,list=srList(),n=DATA.units.length;
+  $('#sr-filters').querySelectorAll('button[data-k]').forEach(b=>{const k=b.dataset.k,v=k==='floor'?+b.dataset.v:b.dataset.v;
+    b.setAttribute('aria-pressed',String(k==='opt'?!!f[v]:f[k].has(v)));});
+  $('#sr-count').textContent=`${list.length} of ${n} homes`;
+  const fl=new Set(list.map(u=>u.tower+':'+u.floor));
+  $('#sr-note').textContent=srActive()?`On ${fl.size} floor${fl.size===1?'':'s'}, lit up on the building`:'All homes';
+  $('#sr-reset').hidden=!srActive();
+  const card=u=>{const s=ST[u.status]||ST.available,T=towerById(u.tower);
+    return `<button class="rc" data-id="${u.id}"><span class="ty" style="--c:${tyc(uTyp(u))}">${uTyp(u)}</span><b>${u.id}${(u.inv&&u.inv.duplex)||u.duplex?' · duplex':''}</b><span class="st" style="--c:${s.hex}">${s.label}</span>`+
+      `<span class="m">${T?T.name:''} · ${DATA.floorNames[u.floor]} · ${(+uLiv(u)).toFixed(1)} m²${uFace(u)?' · '+uFace(u):''}</span></button>`;};
+  $('#sr-results').innerHTML=list.length?list.slice(0,SR.shown).map(card).join('')+(list.length>SR.shown?`<button class="rc-more">Show ${Math.min(30,list.length-SR.shown)} more</button>`:''):
+    '<p class="sr-empty">No homes match these filters. Clear a filter to see more.</p>';
+  paintMatches();if(planOpen){applyFilter();renderSide();}
+}
+function paintMatches(){if(state!=='close')return;const on=SR.open&&srActive();
+  hitsG.querySelectorAll('.hit[data-kind="floor"]').forEach(el=>{const f=closeFloors()[+el.dataset.k];
+    el.classList.toggle('match',on&&DATA.units.some(u=>u.tower===f.tower&&u.floor===f.floor&&srMatch(u)));});}
+async function openSearch(){SR.open=true;$('#search').hidden=false;$('#btn-search').setAttribute('aria-expanded','true');srUpdate();
+  anim($('#search'),{opacity:[0,1],x:[-16,0]},SPRING);
+  if(state==='mp'&&!busy)await enterClose();paintMatches();}           // results light up on the Residences close-up
+function closeSearch(){SR.open=false;$('#btn-search').setAttribute('aria-expanded','false');paintMatches();if(planOpen)applyFilter();
+  anim($('#search'),{opacity:0,x:-12},{duration:.18}).then(()=>{if(!SR.open)$('#search').hidden=true;});}
+async function openUnit(id){const u=DATA.units.find(x=>x.id===id);if(!u||busy)return;
+  if(state==='mp')await enterClose();else if(state!=='close')await leavePage('close');
+  openPlan(u.tower,u.floor,u.id);}
+
 /* ---------------- floor plan modal ---------------- */
 const plan={tower:'AKSA',floor:5,sel:null,filter:0,returnUnit:null};
 let planOpen=false;
@@ -806,7 +901,7 @@ function renderPlan(){
   anim(svg.querySelectorAll('.ug'),{opacity:[0,1]},{delay:stagger(.035),duration:.3});
 }
 function applyFilter(){const units=floorUnits();document.querySelectorAll('#plan-svg .u').forEach(el=>{const u=units[+el.dataset.k];
-  el.classList.toggle('dim',plan.filter!==0&&u.type!==plan.filter);el.classList.toggle('sel',!!plan.sel&&plan.sel.id===u.id);});}
+  el.classList.toggle('dim',(plan.filter!==0&&u.type!==plan.filter)||(SR.open&&srActive()&&!srMatch(u)));el.classList.toggle('sel',!!plan.sel&&plan.sel.id===u.id);});}
 function selectUnit(u){plan.sel=u;$('#plan-tip').hidden=true;applyFilter();renderSide();}
 // one residence's sales record (tools/build_inventory.py -> u.inv)
 const m2=v=>v==null?'':`${(+v).toFixed(2)} m²`;
@@ -827,7 +922,7 @@ function renderSide(){
   }else if(!floorUnits().length){const P=DATA.plans[plan.tower+':'+plan.floor];
     box.innerHTML=`<p class="lede">${P.note||'No homes on this level.'}</p>`;
   }else{const us=floorUnits();const types=[...new Set(us.map(u=>u.type))].sort();
-    box.innerHTML=`<p class="lede">Select a residence to see its fração, typology and area.</p>${us.some(u=>u.status)?(c=>`<p class="label-sm">${['available','reserved','sold'].filter(k=>c[k]).map(k=>`${c[k]} ${ST[k].label.toLowerCase()}`).join(' · ')}</p>`)(us.reduce((c,u)=>(c[u.status]=(c[u.status]||0)+1,c),{})):''}
+    box.innerHTML=`<p class="lede">Select a residence to see its fração, typology and area.</p>${SR.open&&srActive()?`<p class="label-sm">${us.filter(srMatch).length} on this floor match your search</p>`:''}${us.some(u=>u.status)?(c=>`<p class="label-sm">${['available','reserved','sold'].filter(k=>c[k]).map(k=>`${c[k]} ${ST[k].label.toLowerCase()}`).join(' · ')}</p>`)(us.reduce((c,u)=>(c[u.status]=(c[u.status]||0)+1,c),{})):''}
       <div class="stats">${types.map(t=>`<div><b>${pad2(us.filter(u=>u.type===t).length)}</b><span style="--c:${tyc(t)}">${t}</span></div>`).join('')}</div>
       <p class="label-sm">Typology</p>
       <div class="filters" role="group" aria-label="Filter by typology"><button data-b="0" aria-pressed="${plan.filter===0}">All</button>${types.map(t=>`<button data-b="${t}" aria-pressed="${plan.filter===t}">${t}</button>`).join('')}</div>`;
@@ -1091,7 +1186,7 @@ function frame(now){requestAnimationFrame(frame);const dt=Math.min(.05,(now-last
   if(DATA.realReel&&DATA.realReel.angles[0])urls.unshift(DATA.realReel.angles[0].still,DATA.realReel.angles[0].loop);
   let shown=0;
   await preload([...new Set(urls)],p=>{const v=Math.round(p*100);if(v>shown){shown=v;$('#pct').textContent=v+'%';$('#ld-bar').style.width=v+'%';}});
-  buildTourMenu();
+  buildTourMenu();buildSearch();
   const h=readHash();
   if(!hasReal()||(h&&['angle','close','pano','tour'].includes(h.kind)))viewMode='3d';        // Real views open by default; a###  links open the 3D model
   if(viewMode==='real'){DATA.masterplan=DATA.realReel;if(h&&h.kind==='live')realIdx=Math.max(0,angleIndexOf(h.id));}
