@@ -210,13 +210,15 @@ SB.blocks.forEach(([bu,bv],ti)=>{
 });
 // commercial building (offices): 4 storeys, dark glass between white projecting slabs
 { const C=SB.commercial,cu=(C.u0+C.u1)/2,cv=(C.v0+C.v1)/2,L=C.u1-C.u0,D=C.v1-C.v0,HF=3.8;
-  const glass=std(0x2A3238,{roughness:.1,metalness:.5}),white=std(0xF4F2EE,{roughness:.6});
+  const glass=std(0x0B1013,{roughness:.22,metalness:.1,envMapIntensity:.25}),white=std(0xF4F2EE,{roughness:.6}),mull=std(0x3A3F43,{roughness:.5});   // dark tinted glass as on renders 26-28
   const cgp=new THREE.Group();cgp.position.set(cu,0,cv);sg.add(cgp);
   const box=(w,h,d,m,x,y,z)=>{const o=new THREE.Mesh(new THREE.BoxGeometry(w,h,d),m);o.position.set(x,y,z);o.castShadow=o.receiveShadow=true;cgp.add(o);return o;};
-  box(L*.42,HF,D-2,glass,-L*.29,HF/2,0);box(L*.42,HF,D-2,glass,L*.29,HF/2,0);             // ground floor, passage in the middle
-  for(let f=1;f<4;f++){box(L-2,HF-.4,D-3,glass,0,f*HF+(HF-.4)/2,0);box(L+2,.35,D+1.5,white,0,f*HF,0);}
+  box(L*.42,HF,D-.6,glass,-L*.29,HF/2,0);box(L*.42,HF,D-.6,glass,L*.29,HF/2,0);             // ground floor, passage in the middle
+  for(let f=1;f<4;f++){box(L-2,HF-.3,D-.6,glass,0,f*HF+(HF-.3)/2,0);box(L+2,.3,D+1.2,white,0,f*HF,0);}
   box(L+2,.5,D+1.5,white,0,4*HF,0);box(L*.4,2.6,D*.5,white,0,4*HF+1.55,0);
-  box(1.2,4*HF+.5,D+1.5,white,-L/2-.4,(4*HF+.5)/2,0);box(1.2,4*HF+.5,D+1.5,white,L/2+.4,(4*HF+.5)/2,0);
+  { const FW=L*.62,T=1.6,HT=4*HF+.8;   // white portal frame standing proud of each long facade (renders 26-28); the ends stay open slabs + glass
+    [-1,1].forEach(sz=>{const z=sz*(D/2+.6+T/2);box(FW,1.6,T,white,0,HT-.8,z);box(1.8,HT,T,white,-FW/2+.9,HT/2,z);box(1.8,HT,T,white,FW/2-.9,HT/2,z);}); }
+  for(let x=-L/2+2.5;x<L/2-1;x+=2.5)[-(D-.6)/2-.03,(D-.6)/2+.03].forEach(z=>box(.08,3*HF,.06,mull,x,HF+1.5*HF,z));   // vertical mullions on the long glass faces
   cgp.traverse(o=>{if(o.isMesh)o.userData={comm:1};});
 }
 // pavilions (sales office / café)
