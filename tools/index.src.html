@@ -194,11 +194,11 @@ a.btn{display:inline-flex;align-items:center;text-decoration:none;color:inherit}
 .note{margin:0;font-size:12px;color:var(--ink-2)}
 .plan-stage{position:relative;display:grid;place-items:center;padding:56px 56px 40px 40px;background:radial-gradient(ellipse at 50% 45%,#FFFFFF 0%,#F3EEE6 70%);min-height:0}
 #plan-svg{width:100%;height:100%;max-height:100%}
-#plan-svg .u{cursor:pointer;stroke-width:.35;fill-opacity:.34;transition:fill-opacity .2s,opacity .2s}
-#plan-svg .u:hover{fill-opacity:.62}
-#plan-svg .u.sel{stroke:var(--ink);stroke-width:.8;fill-opacity:.7}
-#plan-svg .u.dim{opacity:.2}#plan-svg .u.st-reserved{fill:#C4923F;stroke:#C4923F}#plan-svg .u.st-sold{fill:#8B9298;stroke:#8B9298;fill-opacity:.55}
-#plan-svg .ul{font-family:var(--mono);font-size:2.4px;fill:var(--ink);pointer-events:none;text-anchor:middle;dominant-baseline:middle}
+#plan-svg .u{cursor:pointer;stroke:#FAF7F2!important;stroke-width:.3;stroke-linejoin:round;fill-opacity:.78;transition:fill-opacity .2s,opacity .2s}
+#plan-svg .u:hover{fill-opacity:1}
+#plan-svg .u.sel{stroke:var(--ink)!important;stroke-width:.7;fill-opacity:1}
+#plan-svg .u.dim{opacity:.22}#plan-svg .u.st-reserved{fill:#C4923F;stroke:#C4923F}#plan-svg .u.st-sold{fill:#8B9298;stroke:#8B9298;fill-opacity:.55}
+#plan-svg .ul{font-family:var(--mono);font-size:2.2px;font-weight:500;paint-order:stroke;fill:#fff;stroke:rgba(20,35,43,.35);stroke-width:.35px;fill:var(--ink);pointer-events:none;text-anchor:middle;dominant-baseline:middle}
 #plan-tip{position:absolute;left:0;top:0;pointer-events:none;padding:8px 10px;border-radius:8px;background:rgba(20,35,43,.94);color:#fff;font-size:12px;line-height:1.4;white-space:nowrap;font-variant-numeric:tabular-nums}
 #plan-tip b{font-family:var(--mono);font-weight:500}
 .stepper{position:absolute;right:16px;top:50%;transform:translateY(-50%);display:flex;flex-direction:column;align-items:center;gap:6px}
@@ -876,7 +876,7 @@ footer a{color:#0F6F7C;word-break:break-all}
 <h1>Residence ${u.id}<span class="pill">${s.label}</span></h1>
 <div class="sub">${uTyp(u)}${i.duplex||u.duplex?' duplex':''} · ${u.beds} bedroom${u.beds>1?'s':''} · ${T?T.name:''} · ${DATA.floorNames[u.floor]} · ${(+uLiv(u)).toFixed(1)} m² living</div>
 <h2>Where it is</h2><figure class="bld"><img src="${abs(C.still)}" alt=""><svg viewBox="0 0 ${cw} ${ch}" preserveAspectRatio="xMidYMid slice">${F?`<path d="${path(F.polys)}" fill="rgba(15,111,124,.42)" stroke="#fff" stroke-width="5"/>`:''}</svg></figure>
-<div class="grid"><div><h2>Floor plan · ${DATA.floorNames[u.floor]}</h2><figure><img src="${abs(P.image)}" alt=""><svg viewBox="${P.viewBox.join(' ')}" preserveAspectRatio="none"><polygon points="${pts(u.poly)}" fill="rgba(15,111,124,.45)" stroke="#0F6F7C" stroke-width=".7"/></svg></figure></div>
+<div class="grid"><div><h2>Floor plan · ${DATA.floorNames[u.floor]}</h2><figure><img src="${abs(P.image)}" alt=""><svg viewBox="${P.viewBox.join(' ')}" preserveAspectRatio="none">${DATA.units.filter(v=>v.tower===u.tower&&v.floor===u.floor).map(v=>`<polygon points="${pts(v.poly)}" fill="${tyc(v.type)}" fill-opacity="${v.id===u.id?1:.35}" stroke="${v.id===u.id?'#14232B':'#FAF7F2'}" stroke-width="${v.id===u.id?.7:.3}"/><text x="${v.cx}" y="${v.cy}" font-size="2.2" font-family="monospace" text-anchor="middle" dominant-baseline="middle" fill="${v.id===u.id?'#fff':'#14232B'}">${(v.inv&&v.inv.code)||''}</text>`).join('')}</svg></figure></div>
 <div><h2>Details</h2><table><tr><th>Unit</th><td>${i.code?i.code+' · sales block '+i.block:(u.code||u.id)}</td></tr><tr><th>Fração</th><td>${u.frac}</td></tr>${rows}</table></div></div>
 <footer><div>${[K.whatsapp&&'WhatsApp '+K.whatsapp,K.email].filter(Boolean).join(' · ')||'AKSA Properties'}<br><a href="${link}">${link}</a></div><div>Areas and parking from the sales inventory. Plans are indicative.</div></footer>
 </body></html>`;}
@@ -1003,7 +1003,7 @@ function renderPlan(){
   const pts=a=>a.map(p=>p[0]+','+p[1]).join(' ');
   svg.innerHTML=`<image href="${src(P.image)}" x="${x}" y="${y}" width="${w}" height="${h}"/>`+
     units.map((u,k)=>`<g class="ug"><polygon class="u${u.status&&u.status!=='available'?' st-'+u.status:''}" data-k="${k}" points="${pts(u.poly)}" fill="${tyc(u.type)}" stroke="${tyc(u.type)}"/></g>`).join('')+
-    units.map(u=>`<text class="ul" x="${u.cx}" y="${u.cy}">${pad2(u.n)}</text>`).join('');
+    units.map(u=>`<text class="ul" x="${u.cx}" y="${u.cy}">${(u.inv&&u.inv.code)||pad2(u.n)}</text>`).join('');
   svg.querySelectorAll('.u').forEach(el=>{const u=units[+el.dataset.k];
     el.addEventListener('mousemove',e=>{const r=$('#plan-stage').getBoundingClientRect(),t=$('#plan-tip');
       t.innerHTML=u.inv?`<b>${u.id}</b> · ${u.inv.code}<br>${u.inv.typology}${u.inv.duplex?' duplex':''} · ${(+u.inv.living).toFixed(1)} m² · ${u.inv.status}`:`<b>${u.id}</b>${u.code?' · '+u.code:''}<br>${u.type}${u.duplex?' duplex':''} · ${(u.m2+(u.upper||0)).toFixed(1)} m²${u.aspect?' · '+u.aspect:''}`;t.hidden=false;
