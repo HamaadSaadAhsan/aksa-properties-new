@@ -147,7 +147,7 @@ button:focus-visible{outline:2px solid var(--sea);outline-offset:2px}
 #plan-svg .u{cursor:pointer;stroke-width:.35;fill-opacity:.34;transition:fill-opacity .2s,opacity .2s}
 #plan-svg .u:hover{fill-opacity:.62}
 #plan-svg .u.sel{stroke:var(--ink);stroke-width:.8;fill-opacity:.7}
-#plan-svg .u.dim{opacity:.2}
+#plan-svg .u.dim{opacity:.2}#plan-svg .u.st-reserved{fill:#C4923F;stroke:#C4923F}#plan-svg .u.st-sold{fill:#8B9298;stroke:#8B9298;fill-opacity:.55}
 #plan-svg .ul{font-family:var(--mono);font-size:2.4px;fill:var(--ink);pointer-events:none;text-anchor:middle;dominant-baseline:middle}
 #plan-tip{position:absolute;left:0;top:0;pointer-events:none;padding:8px 10px;border-radius:8px;background:rgba(20,35,43,.94);color:#fff;font-size:12px;line-height:1.4;white-space:nowrap;font-variant-numeric:tabular-nums}
 #plan-tip b{font-family:var(--mono);font-weight:500}
@@ -794,11 +794,11 @@ function renderPlan(){
   const [x,y,w,h]=P.viewBox,svg=$('#plan-svg');svg.setAttribute('viewBox',P.viewBox.join(' '));
   const pts=a=>a.map(p=>p[0]+','+p[1]).join(' ');
   svg.innerHTML=`<image href="${src(P.image)}" x="${x}" y="${y}" width="${w}" height="${h}"/>`+
-    units.map((u,k)=>`<g class="ug"><polygon class="u" data-k="${k}" points="${pts(u.poly)}" fill="${tyc(u.type)}" stroke="${tyc(u.type)}"/></g>`).join('')+
+    units.map((u,k)=>`<g class="ug"><polygon class="u${u.status&&u.status!=='available'?' st-'+u.status:''}" data-k="${k}" points="${pts(u.poly)}" fill="${tyc(u.type)}" stroke="${tyc(u.type)}"/></g>`).join('')+
     units.map(u=>`<text class="ul" x="${u.cx}" y="${u.cy}">${pad2(u.n)}</text>`).join('');
   svg.querySelectorAll('.u').forEach(el=>{const u=units[+el.dataset.k];
     el.addEventListener('mousemove',e=>{const r=$('#plan-stage').getBoundingClientRect(),t=$('#plan-tip');
-      t.innerHTML=`<b>${u.id}</b>${u.code?' · '+u.code:''}<br>${u.type}${u.duplex?' duplex':''} · ${(u.m2+(u.upper||0)).toFixed(1)} m²${u.aspect?' · '+u.aspect:''}`;t.hidden=false;
+      t.innerHTML=u.inv?`<b>${u.id}</b> · ${u.inv.code}<br>${u.inv.typology}${u.inv.duplex?' duplex':''} · ${(+u.inv.living).toFixed(1)} m² · ${u.inv.status}`:`<b>${u.id}</b>${u.code?' · '+u.code:''}<br>${u.type}${u.duplex?' duplex':''} · ${(u.m2+(u.upper||0)).toFixed(1)} m²${u.aspect?' · '+u.aspect:''}`;t.hidden=false;
       let px=e.clientX-r.left+14,py=e.clientY-r.top+14;if(px+t.offsetWidth>r.width-8)px-=t.offsetWidth+28;t.style.left=px+'px';t.style.top=py+'px';});
     el.addEventListener('mouseleave',()=>{$('#plan-tip').hidden=true;});
     el.addEventListener('click',()=>selectUnit(u));});
@@ -808,18 +808,26 @@ function renderPlan(){
 function applyFilter(){const units=floorUnits();document.querySelectorAll('#plan-svg .u').forEach(el=>{const u=units[+el.dataset.k];
   el.classList.toggle('dim',plan.filter!==0&&u.type!==plan.filter);el.classList.toggle('sel',!!plan.sel&&plan.sel.id===u.id);});}
 function selectUnit(u){plan.sel=u;$('#plan-tip').hidden=true;applyFilter();renderSide();}
+// one residence's sales record (tools/build_inventory.py -> u.inv)
+const m2=v=>v==null?'':`${(+v).toFixed(2)} m²`;
+function invList(u){const i=u.inv,s=ST[u.status]||ST.available;
+  return `<p><span class="status" style="--c:${s.hex}">${i.status}</span></p><dl><dt>Unit</dt><dd>${i.code} · Sales block ${i.block}</dd><dt>Fração</dt><dd>${u.frac}</dd>`+
+    `<dt>Type</dt><dd>${i.typology}${i.duplex?' duplex (level 4 + roof level)':''}</dd><dt>Living area</dt><dd>${m2(i.living)} · ${fmtInt(i.living*10.764)} ft²</dd><dt>Gross area</dt><dd>${m2(i.gross)}</dd>`+
+    `${i.balc_ext||i.balc_int?`<dt>Balconies</dt><dd>${[i.balc_ext&&m2(i.balc_ext)+' outside',i.balc_int&&m2(i.balc_int)+' inset'].filter(Boolean).join(' · ')}</dd>`:''}${i.terrace?`<dt>Roof terrace</dt><dd>${m2(i.terrace)}</dd>`:''}`+
+    `${i.total?`<dt>Total incl. outdoor</dt><dd>${m2(i.total)}</dd>`:''}${i.parking?`<dt>Parking</dt><dd>${i.parking} space${i.parking>1?'s':''}${i.parking_id?' · '+i.parking_id:''} (level −1)</dd>`:''}`+
+    `${i.orientation?`<dt>Orientation</dt><dd>${i.orientation}</dd>`:''}<dt>Price</dt><dd>${i.price?'€ '+fmtInt(i.price):'On request'}</dd></dl>`;}
 function renderSide(){
   const box=$('#plan-info');
   if(plan.sel){const u=plan.sel;
     box.innerHTML=`<div class="unit"><p class="eyebrow">Residence</p><h3>${u.id}</h3><span class="status" style="--c:${tyc(u.type)}">${u.type}${u.duplex?' duplex':''} · ${u.beds} bedroom${u.beds>1?'s':''}</span>
-      <dl>${u.code?`<dt>Designation</dt><dd>${u.code} · Building ${u.bld}</dd>`:''}<dt>Fração</dt><dd>${u.frac}</dd><dt>Type</dt><dd>${u.type}${u.duplex?' duplex (level 4 + roof level)':''}</dd><dt>${u.duplex?'Level 4 area':'Area'}</dt><dd>${u.m2.toFixed(2)} m² · ${fmtInt(u.m2*10.764)} ft²</dd>${u.upper?`<dt>Roof level</dt><dd>${u.upper.toFixed(2)} m²</dd><dt>Total living</dt><dd>${(u.m2+u.upper).toFixed(2)} m²</dd>`:''}${u.terrace?`<dt>Roof terrace</dt><dd>${u.terrace.toFixed(2)} m²</dd>`:''}${u.balc?`<dt>Balconies</dt><dd>${u.balc.toFixed(2)} m²</dd>`:''}${u.parking?`<dt>Parking</dt><dd>${u.parking} space${u.parking>1?'s':''} in the basement</dd>`:''}${u.aspect?`<dt>Aspect</dt><dd>${u.aspect}</dd>`:''}<dt>Price</dt><dd>On request</dd></dl></div>
-      <p class="note">Area and typology as stated on the architect's floor plan.</p>
+      ${u.inv?invList(u):`<dl>${u.code?`<dt>Designation</dt><dd>${u.code} · Building ${u.bld}</dd>`:''}<dt>Fração</dt><dd>${u.frac}</dd><dt>Type</dt><dd>${u.type}${u.duplex?' duplex (level 4 + roof level)':''}</dd><dt>${u.duplex?'Level 4 area':'Area'}</dt><dd>${u.m2.toFixed(2)} m² · ${fmtInt(u.m2*10.764)} ft²</dd>${u.upper?`<dt>Roof level</dt><dd>${u.upper.toFixed(2)} m²</dd><dt>Total living</dt><dd>${(u.m2+u.upper).toFixed(2)} m²</dd>`:''}${u.terrace?`<dt>Roof terrace</dt><dd>${u.terrace.toFixed(2)} m²</dd>`:''}${u.balc?`<dt>Balconies</dt><dd>${u.balc.toFixed(2)} m²</dd>`:''}${u.parking?`<dt>Parking</dt><dd>${u.parking} space${u.parking>1?'s':''} in the basement</dd>`:''}${u.aspect?`<dt>Aspect</dt><dd>${u.aspect}</dd>`:''}<dt>Price</dt><dd>On request</dd></dl>`}</div>
+      <p class="note">${u.inv?'Status, areas and parking from the sales inventory.':'Area and typology as stated on the architect\'s floor plan.'}</p>
       <div class="side-actions"><button class="btn ghost" id="u-back">All residences</button></div>`;
     $('#u-back').addEventListener('click',()=>{plan.sel=null;applyFilter();renderSide();});
   }else if(!floorUnits().length){const P=DATA.plans[plan.tower+':'+plan.floor];
     box.innerHTML=`<p class="lede">${P.note||'No homes on this level.'}</p>`;
   }else{const us=floorUnits();const types=[...new Set(us.map(u=>u.type))].sort();
-    box.innerHTML=`<p class="lede">Select a residence to see its fração, typology and area.</p>
+    box.innerHTML=`<p class="lede">Select a residence to see its fração, typology and area.</p>${us.some(u=>u.status)?(c=>`<p class="label-sm">${['available','reserved','sold'].filter(k=>c[k]).map(k=>`${c[k]} ${ST[k].label.toLowerCase()}`).join(' · ')}</p>`)(us.reduce((c,u)=>(c[u.status]=(c[u.status]||0)+1,c),{})):''}
       <div class="stats">${types.map(t=>`<div><b>${pad2(us.filter(u=>u.type===t).length)}</b><span style="--c:${tyc(t)}">${t}</span></div>`).join('')}</div>
       <p class="label-sm">Typology</p>
       <div class="filters" role="group" aria-label="Filter by typology"><button data-b="0" aria-pressed="${plan.filter===0}">All</button>${types.map(t=>`<button data-b="${t}" aria-pressed="${plan.filter===t}">${t}</button>`).join('')}</div>`;
