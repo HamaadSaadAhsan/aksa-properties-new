@@ -683,6 +683,8 @@ function hoverEl(el){
   if(el.dataset.kind==='outline'){
     if(el.dataset.id==='commercial')showChip(`<strong>Commercial building</strong><span class="meta">Offices and retail on the boulevard</span><span class="cta">${touch?'Tap again for the renders':'Click for the renders'}</span>`);
     else{const T=towerById(el.dataset.id),us=T?DATA.units.filter(u=>u.tower===el.dataset.id):DATA.units;showChip(`<strong>${T?T.name:DATA.project.name}</strong><span class="meta">${us.length} residences · ${typesOf(us)}</span><span class="cta">${touch?'Tap again to choose a floor':'Click to choose a floor'}</span>`);}}
+  else if(closeFloors()[+el.dataset.k].unit){const u=DATA.units.find(x=>x.id===closeFloors()[+el.dataset.k].unit),i=u.inv||{},s=ST[u.status]||ST.available;
+    showChip(`<strong>${u.id}${i.code?' · '+i.code:''}</strong><span class="meta">${uTyp(u)}${i.duplex||u.duplex?' duplex':''} · ${(+uLiv(u)).toFixed(1)} m² · ${towerById(u.tower).name} · ${DATA.floorNames[u.floor]}</span><span class="meta" style="display:block;margin-top:3px;color:#fff"><b style="color:${s.hex};filter:brightness(1.6)">●</b> ${s.label}${SR.open&&srActive()?(srMatch(u)?' · matches your search':''):''}</span><span class="cta">${touch?'Tap again for this home':'Click for this home'}</span>`);}
   else{const f=closeFloors()[+el.dataset.k];const T=towerById(f.tower);const us=DATA.units.filter(u=>u.tower===f.tower&&u.floor===f.floor&&(!f.block||(u.inv&&u.inv.block)===f.block));
     showChip(`<strong>${T.name} · ${f.block?'Block '+f.block+' · ':''}${DATA.floorNames[f.floor]}</strong>${SR.open&&srActive()&&us.length?`<span class="meta">${us.filter(srMatch).length} match your search</span>`:''}<span class="meta">${us.length?us.length+' residences · '+typesOf(us):'Roof terraces and storage · no homes'}</span><span class="cta">${touch?'Tap again for the floor plan':'Click for the floor plan'}</span>`);}
 }
@@ -788,7 +790,7 @@ async function exitClose(){
 }
 
 /* ---------------- UI state ---------------- */
-const HINT={mp:'Drag or use the arrows to rotate · Hover a block or a pin',close:'Rendered from our 3D model, real surroundings · Hover a block on any floor for its floor plan'};
+const HINT={mp:'Drag or use the arrows to rotate · Hover a block or a pin',close:'Rendered from our 3D model, real surroundings · Hover any apartment for its details'};
 function setState(s){
   state=s;
   const stageS=s==='mp'||s==='close';
@@ -827,7 +829,7 @@ hitsG.addEventListener('click',e=>{
   if(busy||(drag&&drag.moved>6))return;const el=e.target.closest('.hit');if(!el)return;
   if(touch&&hovered!==el){hoverEl(el);return;}
   if(el.dataset.kind==='outline'){if(el.dataset.id==='commercial'){clearHover();openGallery('commercial');}else enterClose();}
-  else{const f=closeFloors()[+el.dataset.k];clearHover();openPlan(f.tower,f.floor,null,f.block);}
+  else{const f=closeFloors()[+el.dataset.k];clearHover();openPlan(f.tower,f.floor,f.unit||null,f.block);}
 });
 stage.addEventListener('click',e=>{if(!e.target.closest('.hit')&&touch)clearHover();});
 $('#prev').addEventListener('click',()=>rotate(-1));
@@ -854,7 +856,10 @@ $('#btn-tours').addEventListener('click',()=>{const l=$('#tour-list');l.hidden=!
 /* ---------------- one-page brochure for a residence: opens in a new tab, Save as PDF from the print dialog ---------------- */
 function brochureHTML(u){const i=u.inv||{},T=towerById(u.tower),P=DATA.plans[u.tower+':'+u.floor],abs=p=>new URL(p,location.href).href,s=ST[u.status]||ST.available;
   const [x,y,w,h]=P.viewBox,pts=a=>a.map(p=>p[0]+','+p[1]).join(' '),path=ps=>ps.map(p=>'M'+p.map(q=>q[0]+' '+q[1]).join('L')+'Z').join('');
-  const C=DATA.close.angles.find(a=>a.id===DATA.close.from)||DATA.close.angles[0],F=(C.floors||[]).find(f=>f.tower===u.tower&&f.floor===u.floor&&(!f.block||f.block===(u.inv&&u.inv.block))),[cw,ch]=DATA.close.viewBox;
+  const area=ps=>ps.reduce((t,p)=>t+Math.abs(p.reduce((a,q,i)=>{const r=p[(i+1)%p.length];return a+q[0]*r[1]-r[0]*q[1];},0))/2,0);
+  let C=DATA.close.angles.find(a=>a.id===DATA.close.from)||DATA.close.angles[0],F=null;          // the angle where this home shows largest
+  DATA.close.angles.forEach(A=>{const x=(A.floors||[]).find(f=>f.unit===u.id);if(x&&(!F||area(x.polys)>area(F.polys))){C=A;F=x;}});
+  const [cw,ch]=DATA.close.viewBox;
   const rows=CMP_ROWS.filter(([l])=>l!=='Status').map(([l,fn])=>`<tr><th>${l}</th><td>${fn(u)}</td></tr>`).join('');
   const K=DATA.project.contact||{},link=location.origin+location.pathname+'#u-'+u.id;
   return `<!doctype html><html lang="en"><head><meta charset="utf-8"><title>${DATA.project.name} · Residence ${u.id}</title><style>
@@ -973,7 +978,7 @@ function srUpdate(){const f=SR.f,list=srList(),n=DATA.units.length;
 }
 function paintMatches(){if(state!=='close')return;const on=SR.open&&srActive();
   hitsG.querySelectorAll('.hit[data-kind="floor"]').forEach(el=>{const f=closeFloors()[+el.dataset.k];
-    el.classList.toggle('match',on&&DATA.units.some(u=>u.tower===f.tower&&u.floor===f.floor&&(!f.block||(u.inv&&u.inv.block)===f.block)&&srMatch(u)));});}
+    el.classList.toggle('match',on&&DATA.units.some(u=>(f.unit?u.id===f.unit:u.tower===f.tower&&u.floor===f.floor&&(!f.block||(u.inv&&u.inv.block)===f.block))&&srMatch(u)));});}
 async function openSearch(){if(FAV.open)closeFav();SR.open=true;$('#search').hidden=false;$('#btn-search').setAttribute('aria-expanded','true');srUpdate();
   anim($('#search'),{opacity:[0,1],x:[-16,0]},SPRING);
   if(state==='mp'&&!busy)await enterClose();paintMatches();}           // results light up on the Residences close-up

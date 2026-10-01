@@ -422,20 +422,20 @@ eqScene.add(new THREE.Mesh(new THREE.PlaneGeometry(2,2),eqMat));
 // centroids of the homes, their sales-block index and the plan offset; a fragment takes the block of the nearest home.
 const salesMats={};let SALES=null;
 R.sales=cfg=>{SALES=cfg;};
-function salesMat(ti,f){const k=ti+':'+f;if(salesMats[k])return salesMats[k];const c=SALES[ti][Math.min(f,SALES[ti].length-1)];
+function salesMat(ti,f,mode){const k=mode+ti+':'+f;if(salesMats[k])return salesMats[k];const c=SALES[ti][Math.min(f,SALES[ti].length-1)];
   const n=c.pts.length,m=new THREE.MeshBasicMaterial({color:0xffffff,toneMapped:false,side:THREE.DoubleSide});
   m.onBeforeCompile=sh=>{sh.uniforms.invB={value:blocks[ti].bg.matrixWorld.clone().invert()};sh.uniforms.off={value:new V2(c.off[0],c.off[1])};
-    sh.uniforms.cp={value:c.pts.map(p=>new V2(p[0],p[1]))};sh.uniforms.cb={value:c.blk};
+    sh.uniforms.cp={value:c.pts.map(p=>new V2(p[0],p[1]))};sh.uniforms.cb={value:mode==='units'?c.n:c.blk};
     sh.vertexShader=sh.vertexShader.replace('#include <common>','#include <common>\nvarying vec3 vW;').replace('#include <begin_vertex>',
       '#include <begin_vertex>\nvec4 wq=vec4(transformed,1.);\n#ifdef USE_INSTANCING\nwq=instanceMatrix*wq;\n#endif\nvW=(modelMatrix*wq).xyz;');
     sh.fragmentShader=sh.fragmentShader.replace('#include <common>',`#include <common>\nvarying vec3 vW;uniform mat4 invB;uniform vec2 off;uniform vec2 cp[${n}];uniform float cb[${n}];`)
-      .replace('#include <dithering_fragment>',`#include <dithering_fragment>\nvec3 l=(invB*vec4(vW,1.)).xyz;vec2 q=l.xz+off;float bd=1e9,bk=0.;for(int i=0;i<${n};i++){float d=distance(q,cp[i]);if(d<bd){bd=d;bk=cb[i];}}\ngl_FragColor=vec4(${(40+ti*80).toFixed(1)},${(10+f*8).toFixed(1)},60.+40.*bk,255.)/255.;`);};
+      .replace('#include <dithering_fragment>',`#include <dithering_fragment>\nvec3 l=(invB*vec4(vW,1.)).xyz;vec2 q=l.xz+off;float bd=1e9,bk=0.;for(int i=0;i<${n};i++){float d=distance(q,cp[i]);if(d<bd){bd=d;bk=cb[i];}}\ngl_FragColor=vec4(${(40+ti*80).toFixed(1)},${(10+f*8).toFixed(1)},${mode==='units'?'20.+7.*bk':'60.+40.*bk'},255.)/255.;`);};
   m.customProgramCacheKey=()=>'sales'+k;return salesMats[k]=m;}
 R.mask=mode=>{
   const saved=[];const fog=scene.fog;scene.fog=null;
   scene.traverse(o=>{
     if(!o.isMesh)return;saved.push([o,o.material,o.visible]);const u=o.userData||{};
-    if(u.tower!=null){o.visible=true;o.material=mode==='dev'?flatMat(255,0,0):mode==='blocks'?flatMat(40+u.tower*80,200,60):(u.floor>=0?(mode==='sales'?salesMat(u.tower,u.floor):flatMat(40+u.tower*80,10+u.floor*8,200)):BLACK);return;}
+    if(u.tower!=null){o.visible=true;o.material=mode==='dev'?flatMat(255,0,0):mode==='blocks'?flatMat(40+u.tower*80,200,60):(u.floor>=0?(mode==='sales'||mode==='units'?(mode==='units'&&u.floor>=SALES[u.tower].length?flatMat(40+u.tower*80,10+u.floor*8,250):salesMat(u.tower,u.floor,mode)):flatMat(40+u.tower*80,10+u.floor*8,200)):BLACK);return;}
     if(u.comm){o.visible=mode==='dev';o.material=mode==='dev'?flatMat(0,255,0):BLACK;return;}
     if(o.material&&o.material.transparent){o.visible=false;return;}
     o.material=o.isInstancedMesh?(o.userData.blk||(o.userData.blk=new THREE.MeshBasicMaterial({color:0,toneMapped:false}))):BLACK;});
