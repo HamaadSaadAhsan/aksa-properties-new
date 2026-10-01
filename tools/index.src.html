@@ -88,6 +88,28 @@ button:focus-visible{outline:2px solid var(--sea);outline-offset:2px}
 #hits .hit.match{fill:rgba(15,111,124,.42);stroke:#fff;stroke-width:1.5;vector-effect:non-scaling-stroke}
 @media (max-width:640px){.search{left:8px;right:8px;width:auto;max-width:none;top:auto;bottom:8px;max-height:74vh}}
 
+/* saved homes + compare */
+.round{position:relative}
+.badge{position:absolute;top:-4px;right:-4px;min-width:18px;height:18px;padding:0 5px;border-radius:9px;background:var(--sea);color:#fff;font-size:11px;font-weight:700;display:grid;place-items:center}
+[data-fav][aria-pressed="true"] svg{fill:var(--sea);color:var(--sea)}
+.fav-btn{display:inline-flex;align-items:center;gap:6px}.fav-btn svg{width:14px;height:14px}
+.rcw{position:relative}.rcw .rc{width:100%;padding-right:48px}
+.fav-mini{position:absolute;right:10px;top:50%;translate:0 -50%;width:32px;height:32px;border-radius:50%;display:grid;place-items:center;color:var(--ink-2);background:var(--sand)}
+.fav-mini svg{width:16px;height:16px}
+.fav-actions{display:flex;flex-wrap:wrap;gap:8px}
+.sheet.cmp-sheet{display:flex;flex-direction:column;height:auto;max-height:100%}
+.cmp-head{display:flex;align-items:center;gap:16px;padding:24px 28px;border-bottom:1px solid var(--line)}
+.cmp-head h2{margin:2px 0 0;font-family:var(--display);font-weight:400;font-size:32px}
+.cmp-head label{margin-left:auto;display:flex;align-items:center;gap:8px;font-size:13px;font-weight:600;color:var(--ink-2)}
+.cmp-wrap{overflow:auto;padding:0 0 12px}
+.cmp{border-collapse:collapse;min-width:100%}
+.cmp th,.cmp td{padding:10px 16px;border-bottom:1px solid var(--line);text-align:left;font-size:13px;white-space:nowrap;vertical-align:top}
+.cmp tbody th{position:sticky;left:0;background:var(--paper);color:var(--ink-2);font-weight:600}
+.cmp thead th{font-family:var(--mono);font-weight:500;font-size:14px}
+.cmp thead .ca{display:flex;gap:10px;margin-top:6px;font-family:var(--ui)}
+.cmp thead .ca button{font-size:12px;font-weight:700;color:var(--sea);text-decoration:underline;text-underline-offset:3px}
+.cmp tr.same{display:none}.cmp.all tr.same{display:table-row}
+
 /* 360 viewer */
 #pano{position:absolute;inset:0;width:100%;height:100%;touch-action:none;cursor:grab;background:#000 repeat-x}
 #pano.grabbing{cursor:grabbing}
@@ -391,6 +413,7 @@ a.btn{display:inline-flex;align-items:center;text-decoration:none;color:inherit}
     <div class="brand"><span class="mark">AKSA</span><span class="sub">Residencies · Montijo · Lisbon</span></div>
     <div class="actions">
       <button class="round" id="btn-notes" aria-label="How this is built"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 11v6M12 7.5v.01"/></svg></button>
+      <button class="round" id="btn-fav" aria-label="Saved homes" aria-expanded="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"/></svg><span class="badge" id="fav-n" hidden>0</span></button>
       <button class="round" id="btn-search" aria-label="Find a home" aria-expanded="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="6.5"/><path d="M16 16l4.5 4.5"/></svg></button>
       <button class="round" id="btn-close" aria-label="Back" hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
     </div>
@@ -425,6 +448,21 @@ a.btn{display:inline-flex;align-items:center;text-decoration:none;color:inherit}
       <div class="sr-actions"><span class="label-sm" id="sr-note"></span><button id="sr-reset">Clear filters</button></div>
       <div class="results" id="sr-results"></div></div>
   </aside>
+
+  <aside id="fav" class="search" aria-labelledby="fav-title" hidden>
+    <div class="sh"><div><p class="eyebrow">Your list</p><h2 id="fav-title">Saved homes</h2><p class="count" id="fav-count" aria-live="polite"></p></div>
+      <button class="close-s" id="fav-close" aria-label="Close saved homes"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div>
+    <div class="sb"><div class="fav-actions"><button class="btn primary" id="fav-compare">Compare</button><button class="btn ghost" id="fav-share">Share list</button></div>
+      <div class="results" id="fav-list"></div></div>
+  </aside>
+  <section id="cmp" class="modal" hidden>
+    <div class="sheet cmp-sheet" role="dialog" aria-modal="true" aria-labelledby="cmp-title">
+      <div class="cmp-head"><div><p class="eyebrow">Saved homes</p><h2 id="cmp-title">Compare</h2></div>
+        <label><input type="checkbox" id="cmp-diff" checked> Only differences</label>
+        <button class="round" id="cmp-close" aria-label="Close compare"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div>
+      <div class="cmp-wrap" id="cmp-wrap"></div>
+    </div>
+  </section>
 
   <section id="plan" class="modal" hidden>
     <div class="sheet" role="dialog" aria-modal="true" aria-labelledby="plan-title">
@@ -812,6 +850,49 @@ function closeTours(){$('#tour-list').hidden=true;$('#btn-tours').setAttribute('
 $('#btn-tours').addEventListener('click',()=>{const l=$('#tour-list');l.hidden=!l.hidden;$('#btn-tours').setAttribute('aria-expanded',String(!l.hidden));
   if(!l.hidden)anim(l.children,{opacity:[0,1],y:[10,0]},{delay:stagger(.05,{from:'last'}),duration:.25});});
 
+/* ---------------- saved homes: favourites (this browser), compare, share link ---------------- */
+const FAV={ids:[],open:false};
+const HEART='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"/></svg>';
+function favLoad(){try{FAV.ids=JSON.parse(localStorage.getItem('aksa-saved')||'[]').filter(id=>DATA.units.some(u=>u.id===id));}catch(e){FAV.ids=[];}}
+function favStore(){try{localStorage.setItem('aksa-saved',JSON.stringify(FAV.ids));}catch(e){}}
+const isFav=id=>FAV.ids.includes(id);
+function toggleFav(id){FAV.ids=isFav(id)?FAV.ids.filter(x=>x!==id):[...FAV.ids,id];favStore();favSync();}
+function favSync(){const n=FAV.ids.length,b=$('#fav-n');b.textContent=n;b.hidden=!n;
+  document.querySelectorAll('[data-fav]').forEach(el=>{const on=isFav(el.dataset.fav);el.setAttribute('aria-pressed',String(on));const t=el.querySelector('.t');if(t)t.textContent=on?'Saved':'Save';});
+  if(FAV.open)favRender();if(!$('#cmp').hidden)cmpRender();}
+// one result card (search + saved list): opens the home; the heart saves it
+function unitCard(u){const s=ST[u.status]||ST.available,T=towerById(u.tower);
+  return `<div class="rcw"><button class="rc" data-id="${u.id}"><span class="ty" style="--c:${tyc(uTyp(u))}">${uTyp(u)}</span><b>${u.id}${(u.inv&&u.inv.duplex)||u.duplex?' · duplex':''}</b><span class="st" style="--c:${s.hex}">${s.label}</span>`+
+    `<span class="m">${T?T.name:''} · ${DATA.floorNames[u.floor]} · ${(+uLiv(u)).toFixed(1)} m²${uFace(u)?' · '+uFace(u):''}</span></button>`+
+    `<button class="fav-mini" data-fav="${u.id}" aria-pressed="${isFav(u.id)}" aria-label="Save ${u.id}">${HEART}</button></div>`;}
+function favRender(){const us=FAV.ids.map(id=>DATA.units.find(u=>u.id===id)).filter(Boolean),n=us.length;
+  $('#fav-count').textContent=`${n} home${n===1?'':'s'}`;$('#fav-compare').disabled=n<2;$('#fav-share').disabled=!n;
+  $('#fav-list').innerHTML=n?us.map(unitCard).join(''):'<p class="sr-empty">Tap the heart on any home to save it here. The list stays on this device; Share list sends it to someone else.</p>';}
+function openFav(){if(SR.open)closeSearch();FAV.open=true;$('#fav').hidden=false;$('#btn-fav').setAttribute('aria-expanded','true');favRender();anim($('#fav'),{opacity:[0,1],x:[-16,0]},SPRING);}
+function closeFav(){FAV.open=false;$('#btn-fav').setAttribute('aria-expanded','false');anim($('#fav'),{opacity:0,x:-12},{duration:.18}).then(()=>{if(!FAV.open)$('#fav').hidden=true;});}
+async function shareFav(btn){const url=location.origin+location.pathname+'#saved='+FAV.ids.join(',');
+  try{await navigator.clipboard.writeText(url);btn.textContent='Link copied';}catch(e){prompt('Copy this link',url);}setTimeout(()=>{btn.textContent='Share list';},1800);}
+const CMP_ROWS=[['Type',u=>uTyp(u)+((u.inv&&u.inv.duplex)||u.duplex?' duplex':'')],['Bedrooms',u=>u.beds],['Block',u=>(towerById(u.tower)||{}).name],['Floor',u=>DATA.floorNames[u.floor]],
+  ['Living area',u=>(+uLiv(u)).toFixed(2)+' m²'],['Gross area',u=>u.inv&&u.inv.gross?u.inv.gross.toFixed(2)+' m²':'—'],
+  ['Balconies',u=>{const i=u.inv||{},b=(i.balc_ext||0)+(i.balc_int||0);return b?b.toFixed(2)+' m²':'—';}],['Roof terrace',u=>u.inv&&u.inv.terrace?u.inv.terrace.toFixed(2)+' m²':'—'],
+  ['Total incl. outdoor',u=>u.inv&&u.inv.total?u.inv.total.toFixed(2)+' m²':'—'],['Parking',u=>u.inv&&u.inv.parking?`${u.inv.parking} · ${u.inv.parking_id||''}`:'—'],
+  ['Orientation',u=>uFace(u)||u.aspect||'—'],['Status',u=>(ST[u.status]||ST.available).label],['Price',u=>u.price?'€ '+fmtInt(u.price):'On request']];
+function cmpRender(){const us=FAV.ids.map(id=>DATA.units.find(u=>u.id===id)).filter(Boolean);
+  if(us.length<2){closeCompare();return;}
+  $('#cmp-wrap').innerHTML=`<table class="cmp${$('#cmp-diff').checked?'':' all'}"><thead><tr><th></th>${us.map(u=>`<th scope="col">${u.id}<div class="ca"><button data-view="${u.id}">View</button><button data-fav="${u.id}">Remove</button></div></th>`).join('')}</tr></thead><tbody>`+
+    CMP_ROWS.map(([l,fn])=>{const v=us.map(u=>String(fn(u)));return `<tr class="${new Set(v).size===1?'same':''}"><th scope="row">${l}</th>${v.map(x=>`<td>${x}</td>`).join('')}</tr>`;}).join('')+'</tbody></table>';}
+function openCompare(){if(FAV.ids.length<2)return;const m=$('#cmp');m.hidden=false;cmpRender();anim(m,{opacity:[0,1]},{duration:.25});anim(m.querySelector('.sheet'),{opacity:[0,1],y:[28,0]},SPRING);}
+function closeCompare(){const m=$('#cmp');if(m.hidden)return;anim(m,{opacity:0},{duration:.2}).then(()=>{m.hidden=true;});}
+function buildFav(){favLoad();favSync();
+  $('#btn-fav').addEventListener('click',()=>FAV.open?closeFav():openFav());$('#fav-close').addEventListener('click',closeFav);
+  $('#fav-compare').addEventListener('click',openCompare);$('#fav-share').addEventListener('click',e=>shareFav(e.currentTarget));
+  $('#fav-list').addEventListener('click',e=>{if(e.target.closest('[data-fav]'))return;const c=e.target.closest('.rc');if(c)openUnit(c.dataset.id);});
+  $('#cmp-close').addEventListener('click',closeCompare);$('#cmp').addEventListener('click',e=>{if(e.target.id==='cmp')closeCompare();});
+  $('#cmp-diff').addEventListener('change',cmpRender);
+  $('#cmp-wrap').addEventListener('click',e=>{const v=e.target.closest('[data-view]');if(v){closeCompare();openUnit(v.dataset.view);}});
+  document.addEventListener('click',e=>{const b=e.target.closest('[data-fav]');if(b){e.stopPropagation();e.preventDefault();toggleFav(b.dataset.fav);}},true);   // hearts everywhere
+  document.addEventListener('keydown',e=>{if(e.key!=='Escape')return;if(!$('#cmp').hidden)closeCompare();else if(FAV.open&&!planOpen)closeFav();});}
+
 /* ---------------- home search: filters, results, and matches lit up on the building and the floor plans ---------------- */
 const SR={open:false,shown:30,f:{beds:new Set(),tower:new Set(),floor:new Set(),area:new Set(),face:new Set(),duplex:false,avail:false}};
 const AREAS=[['lt60','Under 60 m²',0,60],['60-90','60–90 m²',60,90],['90-120','90–120 m²',90,120],['120+','120 m² +',120,1e9]];
@@ -839,7 +920,7 @@ function buildSearch(){
     else{const v=k==='floor'?+b.dataset.v:b.dataset.v;f[k].has(v)?f[k].delete(v):f[k].add(v);}
     SR.shown=30;srUpdate();});
   $('#sr-reset').addEventListener('click',()=>{Object.values(SR.f).forEach(v=>v instanceof Set&&v.clear());SR.f.duplex=SR.f.avail=false;SR.shown=30;srUpdate();});
-  $('#sr-results').addEventListener('click',e=>{const m=e.target.closest('.rc-more');if(m){SR.shown+=30;srUpdate();return;}
+  $('#sr-results').addEventListener('click',e=>{if(e.target.closest('[data-fav]'))return;const m=e.target.closest('.rc-more');if(m){SR.shown+=30;srUpdate();return;}
     const c=e.target.closest('.rc');if(c)openUnit(c.dataset.id);});
   $('#btn-search').addEventListener('click',()=>SR.open?closeSearch():openSearch());
   $('#sr-close').addEventListener('click',()=>closeSearch());
@@ -852,17 +933,14 @@ function srUpdate(){const f=SR.f,list=srList(),n=DATA.units.length;
   const fl=new Set(list.map(u=>u.tower+':'+u.floor));
   $('#sr-note').textContent=srActive()?`On ${fl.size} floor${fl.size===1?'':'s'}, lit up on the building`:'All homes';
   $('#sr-reset').hidden=!srActive();
-  const card=u=>{const s=ST[u.status]||ST.available,T=towerById(u.tower);
-    return `<button class="rc" data-id="${u.id}"><span class="ty" style="--c:${tyc(uTyp(u))}">${uTyp(u)}</span><b>${u.id}${(u.inv&&u.inv.duplex)||u.duplex?' · duplex':''}</b><span class="st" style="--c:${s.hex}">${s.label}</span>`+
-      `<span class="m">${T?T.name:''} · ${DATA.floorNames[u.floor]} · ${(+uLiv(u)).toFixed(1)} m²${uFace(u)?' · '+uFace(u):''}</span></button>`;};
-  $('#sr-results').innerHTML=list.length?list.slice(0,SR.shown).map(card).join('')+(list.length>SR.shown?`<button class="rc-more">Show ${Math.min(30,list.length-SR.shown)} more</button>`:''):
+  $('#sr-results').innerHTML=list.length?list.slice(0,SR.shown).map(unitCard).join('')+(list.length>SR.shown?`<button class="rc-more">Show ${Math.min(30,list.length-SR.shown)} more</button>`:''):
     '<p class="sr-empty">No homes match these filters. Clear a filter to see more.</p>';
   paintMatches();if(planOpen){applyFilter();renderSide();}
 }
 function paintMatches(){if(state!=='close')return;const on=SR.open&&srActive();
   hitsG.querySelectorAll('.hit[data-kind="floor"]').forEach(el=>{const f=closeFloors()[+el.dataset.k];
     el.classList.toggle('match',on&&DATA.units.some(u=>u.tower===f.tower&&u.floor===f.floor&&srMatch(u)));});}
-async function openSearch(){SR.open=true;$('#search').hidden=false;$('#btn-search').setAttribute('aria-expanded','true');srUpdate();
+async function openSearch(){if(FAV.open)closeFav();SR.open=true;$('#search').hidden=false;$('#btn-search').setAttribute('aria-expanded','true');srUpdate();
   anim($('#search'),{opacity:[0,1],x:[-16,0]},SPRING);
   if(state==='mp'&&!busy)await enterClose();paintMatches();}           // results light up on the Residences close-up
 function closeSearch(){SR.open=false;$('#btn-search').setAttribute('aria-expanded','false');paintMatches();if(planOpen)applyFilter();
@@ -928,7 +1006,7 @@ function renderSide(){
   const box=$('#plan-info');
   if(plan.sel){const u=plan.sel;
     box.innerHTML=`<div class="unit"><p class="eyebrow">Residence</p><h3>${u.id}</h3><span class="status" style="--c:${tyc(u.type)}">${u.type}${u.duplex?' duplex':''} · ${u.beds} bedroom${u.beds>1?'s':''}</span>
-      <div class="u-cta">${contactLinks(u)}<button class="btn ghost" id="u-link">Copy link</button></div>${u.inv?invList(u):`<dl>${u.code?`<dt>Designation</dt><dd>${u.code} · Building ${u.bld}</dd>`:''}<dt>Fração</dt><dd>${u.frac}</dd><dt>Type</dt><dd>${u.type}${u.duplex?' duplex (level 4 + roof level)':''}</dd><dt>${u.duplex?'Level 4 area':'Area'}</dt><dd>${u.m2.toFixed(2)} m² · ${fmtInt(u.m2*10.764)} ft²</dd>${u.upper?`<dt>Roof level</dt><dd>${u.upper.toFixed(2)} m²</dd><dt>Total living</dt><dd>${(u.m2+u.upper).toFixed(2)} m²</dd>`:''}${u.terrace?`<dt>Roof terrace</dt><dd>${u.terrace.toFixed(2)} m²</dd>`:''}${u.balc?`<dt>Balconies</dt><dd>${u.balc.toFixed(2)} m²</dd>`:''}${u.parking?`<dt>Parking</dt><dd>${u.parking} space${u.parking>1?'s':''} in the basement</dd>`:''}${u.aspect?`<dt>Aspect</dt><dd>${u.aspect}</dd>`:''}<dt>Price</dt><dd>On request</dd></dl>`}</div>
+      <div class="u-cta">${contactLinks(u)}<button class="btn ghost fav-btn" data-fav="${u.id}" aria-pressed="${isFav(u.id)}">${HEART}<span class="t">${isFav(u.id)?'Saved':'Save'}</span></button><button class="btn ghost" id="u-link">Copy link</button></div>${u.inv?invList(u):`<dl>${u.code?`<dt>Designation</dt><dd>${u.code} · Building ${u.bld}</dd>`:''}<dt>Fração</dt><dd>${u.frac}</dd><dt>Type</dt><dd>${u.type}${u.duplex?' duplex (level 4 + roof level)':''}</dd><dt>${u.duplex?'Level 4 area':'Area'}</dt><dd>${u.m2.toFixed(2)} m² · ${fmtInt(u.m2*10.764)} ft²</dd>${u.upper?`<dt>Roof level</dt><dd>${u.upper.toFixed(2)} m²</dd><dt>Total living</dt><dd>${(u.m2+u.upper).toFixed(2)} m²</dd>`:''}${u.terrace?`<dt>Roof terrace</dt><dd>${u.terrace.toFixed(2)} m²</dd>`:''}${u.balc?`<dt>Balconies</dt><dd>${u.balc.toFixed(2)} m²</dd>`:''}${u.parking?`<dt>Parking</dt><dd>${u.parking} space${u.parking>1?'s':''} in the basement</dd>`:''}${u.aspect?`<dt>Aspect</dt><dd>${u.aspect}</dd>`:''}<dt>Price</dt><dd>On request</dd></dl>`}</div>
       <p class="note">${u.inv?'Status, areas and parking from the sales inventory.':'Area and typology as stated on the architect\'s floor plan.'}</p>
       <div class="side-actions"><button class="btn ghost" id="u-back">All residences</button></div>`;
     $('#u-back').addEventListener('click',()=>{plan.sel=null;applyFilter();renderSide();viewHash();});
@@ -1080,6 +1158,7 @@ function readHash(){const h=(location.hash||'').slice(1);if(!h)return null;
   if(h==='amenities')return {kind:'amen'};
   m=/^v(\d{2})$/.exec(h);if(m)return {kind:'angle',id:m[1]};
   m=/^c(\d{2,3})$/.exec(h);if(m)return {kind:'close',id:m[1]};
+  m=/^saved=([A-Z0-9.,-]+)$/i.exec(h);if(m)return {kind:'saved',ids:m[1].split(',')};   // a shared list of homes
   m=/^u-([NS]-\d\.\d{2})$/.exec(h);if(m)return {kind:'unit',id:m[1]};          // one residence: #u-N-3.04
   if(DATA.panos[h])return {kind:'pano',id:h};
   m=/^([a-z0-9_]+)~(-?[\d.]+)~(-?[\d.]+)~([\d.]+)$/i.exec(h);if(!m)return null;
@@ -1201,7 +1280,7 @@ function frame(now){requestAnimationFrame(frame);const dt=Math.min(.05,(now-last
   if(DATA.realReel&&DATA.realReel.angles[0])urls.unshift(DATA.realReel.angles[0].still,DATA.realReel.angles[0].loop);
   let shown=0;
   await preload([...new Set(urls)],p=>{const v=Math.round(p*100);if(v>shown){shown=v;$('#pct').textContent=v+'%';$('#ld-bar').style.width=v+'%';}});
-  buildTourMenu();buildSearch();
+  buildTourMenu();buildSearch();buildFav();
   const h=readHash();
   if(!hasReal()||(h&&['angle','close','pano','tour','unit'].includes(h.kind)))viewMode='3d';        // Real views open by default; a###  links open the 3D model
   if(viewMode==='real'){DATA.masterplan=DATA.realReel;if(h&&h.kind==='live')realIdx=Math.max(0,angleIndexOf(h.id));}
@@ -1217,6 +1296,7 @@ function frame(now){requestAnimationFrame(frame);const dt=Math.min(.05,(now-last
   // background-load 360 panoramas
   Object.values(DATA.panos).forEach(p=>loadImage(p.image).catch(()=>{}));
   if(h&&h.kind==='unit'){const u=DATA.units.find(x=>x.id===h.id);if(u)openPlan(u.tower,u.floor,u.id);}
+  if(h&&h.kind==='saved'){h.ids.forEach(id=>{if(!isFav(id)&&DATA.units.some(u=>u.id===id))FAV.ids.push(id);});favStore();favSync();openFav();}
   if(h&&h.kind==='loc')openLoc();
   if(h&&h.kind==='gal')openGallery();
   if(h&&h.kind==='amen')openAmen();
