@@ -1020,12 +1020,12 @@ function selectUnit(u){plan.sel=u;$('#plan-tip').hidden=true;applyFilter();rende
 function viewHash(){if(state==='close')setHash('c'+DATA.close.angles[closeIdx].id);else if(state==='mp'&&viewMode!=='real')setHash('a'+DATA.masterplan.angles[angleIdx].id);}
 // "Request a call": WhatsApp and/or email from DATA.project.contact; hidden until a contact is set
 function contactLinks(u){const C=DATA.project.contact||{},i=u.inv||{},T=towerById(u.tower);
-  const msg=`Hello, I'm interested in residence ${u.id} at ${DATA.project.name} (${i.typology||u.type}${i.duplex?' duplex':''}, ${(+(i.living||u.m2)).toFixed(1)} m², ${T?T.name:''}, ${DATA.floorNames[u.floor]}). ${location.href}`;
+  const msg=`Hello, I'm interested in residence ${u.id} at ${DATA.project.name} (${i.typology||u.type}${i.duplex?' duplex':''}, ${(+(i.living||u.m2)).toFixed(1)} m², ${T?T.name:''}, ${DATA.floorNames[u.floor]}). ${location.origin+location.pathname}#u-${u.id}`;
   const wa=(C.whatsapp||'').replace(/\D/g,''),out=[];
   if(wa)out.push(`<a class="btn primary" href="https://wa.me/${wa}?text=${encodeURIComponent(msg)}" target="_blank" rel="noopener">Request a call</a>`);
   if(C.email)out.push(`<a class="btn ${wa?'ghost':'primary'}" href="mailto:${C.email}?subject=${encodeURIComponent(DATA.project.name+' · residence '+u.id)}&body=${encodeURIComponent(msg)}">${wa?'Email':'Request a call'}</a>`);
   return out.join('');}
-async function copyLink(btn){const url=location.href;try{await navigator.clipboard.writeText(url);btn.textContent='Link copied';}catch(e){prompt('Copy this link',url);}
+async function copyLink(btn){const url=location.origin+location.pathname+(plan.sel?'#u-'+plan.sel.id:location.hash);try{await navigator.clipboard.writeText(url);btn.textContent='Link copied';}catch(e){prompt('Copy this link',url);}
   setTimeout(()=>{btn.textContent='Copy link';},1800);}
 // one residence's sales record (tools/build_inventory.py -> u.inv)
 const m2=v=>v==null?'':`${(+v).toFixed(2)} m²`;
