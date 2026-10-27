@@ -198,7 +198,7 @@ button:focus-visible{outline:2px solid var(--sea);outline-offset:2px}
 .u-cta{display:flex;flex-wrap:wrap;gap:8px;margin:14px 0 4px}
 a.btn{display:inline-flex;align-items:center;text-decoration:none;color:inherit}a.btn.primary{color:#fff}
 .note{margin:0;font-size:12px;color:var(--ink-2)}
-.plan-stage{position:relative;display:grid;place-items:center;padding:56px 56px 40px 40px;background:radial-gradient(ellipse at 50% 45%,#FFFFFF 0%,#F3EEE6 70%);min-height:0}
+.plan-stage{position:relative;display:grid;place-items:center;padding:56px 92px 40px 40px;background:radial-gradient(ellipse at 50% 45%,#FFFFFF 0%,#F3EEE6 70%);min-height:0}
 #plan-svg{width:100%;height:100%;max-height:100%}
 #plan-svg .u{cursor:pointer;stroke:#FAF7F2!important;stroke-width:.3;stroke-linejoin:round;fill-opacity:.78;transition:fill-opacity .2s,opacity .2s}
 #plan-svg .u:hover{fill-opacity:1}
@@ -207,11 +207,22 @@ a.btn{display:inline-flex;align-items:center;text-decoration:none;color:inherit}
 #plan-svg .ul{font-family:var(--mono);font-size:2.2px;font-weight:500;paint-order:stroke;fill:#fff;stroke:rgba(20,35,43,.35);stroke-width:.35px;fill:var(--ink);pointer-events:none;text-anchor:middle;dominant-baseline:middle}
 #plan-tip{position:absolute;left:0;top:0;pointer-events:none;padding:8px 10px;border-radius:8px;background:rgba(20,35,43,.94);color:#fff;font-size:12px;line-height:1.4;white-space:nowrap;font-variant-numeric:tabular-nums}
 #plan-tip b{font-family:var(--mono);font-weight:500}
-.stepper{position:absolute;right:16px;top:50%;transform:translateY(-50%);display:flex;flex-direction:column;align-items:center;gap:6px}
-.stepper button{width:36px;height:36px;border-radius:50%;border:1px solid var(--line);background:#fff;display:grid;place-items:center}
-.stepper button:disabled{opacity:.35;cursor:default}
-.stepper svg{width:14px;height:14px}
-.stepper span{font-family:var(--mono);font-size:12px;font-variant-numeric:tabular-nums}
+/* level rail: every level of the block, top to bottom, with homes still available */
+.levels{position:absolute;right:16px;top:50%;transform:translateY(-50%);display:flex;flex-direction:column;gap:2px;padding:6px;border-radius:16px;background:rgba(255,255,255,.9);border:1px solid var(--line);box-shadow:0 6px 20px rgba(20,35,43,.08)}
+.levels .lh{margin:2px 0 4px;font-size:9px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-2);text-align:center}
+.levels button{width:56px;padding:7px 0 6px;border-radius:11px;display:flex;flex-direction:column;align-items:center;gap:3px;transition:background .15s,color .15s}
+.levels button b{font-family:var(--mono);font-size:16px;font-weight:500;line-height:1}
+.levels button small{font-size:9px;letter-spacing:.04em;color:var(--ink-2);white-space:nowrap}
+.levels button:hover{background:var(--sand)}
+.levels button[aria-current="true"]{background:var(--ink);color:#fff}
+.levels button[aria-current="true"] small{color:rgba(255,255,255,.72)}
+.u-head{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.u-step{display:flex;gap:6px;flex:none}
+.u-step button{width:38px;height:38px;border-radius:50%;border:1px solid var(--line);background:#fff;display:grid;place-items:center}
+.u-step button:hover{background:var(--sand)}
+.u-step svg{width:14px;height:14px}
+.kbd-hint{margin:0;font-size:11px;color:var(--ink-2)}
+@media (pointer:coarse){.kbd-hint{display:none}}
 .sheet>.round{position:absolute;top:16px;right:16px;z-index:2;background:#fff}
 
 /* 360 ui */
@@ -341,7 +352,7 @@ a.btn{display:inline-flex;align-items:center;text-decoration:none;color:inherit}
   .sheet{grid-template-columns:1fr;grid-template-rows:auto minmax(280px,1fr);height:100%;overflow:auto}
   .plan-side{border-right:0;border-bottom:1px solid var(--line);padding:24px 20px 20px;overflow:visible}
   .plan-side h2{font-size:32px}
-  .plan-stage{padding:40px 56px 24px 16px}
+  .plan-stage{padding:40px 88px 24px 16px}
   .pano-rooms{max-width:100%;bottom:calc(env(safe-area-inset-bottom,0px) + 74px)}
   .clouds img{width:340px}
 }
@@ -354,7 +365,8 @@ a.btn{display:inline-flex;align-items:center;text-decoration:none;color:inherit}
   .angle{display:block;flex:1;min-width:0;text-align:center;font-size:11px;padding:8px 10px}
   #plan{padding:0}
   .sheet{border-radius:0;height:100dvh;grid-template-rows:56dvh auto}
-  .plan-stage{order:-1;padding:56px 60px 12px 12px;height:56dvh;min-height:0;overflow:hidden;box-sizing:border-box}
+  .plan-stage{order:-1;padding:56px 76px 12px 12px;height:56dvh;min-height:0;overflow:hidden;box-sizing:border-box}
+  .levels{right:10px;top:calc(50% + 22px)}.levels button{padding:5px 0 4px;width:50px}.levels .lh{display:none}
   .plan-side{padding:20px 20px calc(env(safe-area-inset-bottom,0px) + 24px)}
   .plan-side h2{font-size:28px}
   .gal-head h2{font-size:28px}
@@ -383,7 +395,8 @@ a.btn{display:inline-flex;align-items:center;text-decoration:none;color:inherit}
   .sheet{grid-template-columns:minmax(220px,270px) 1fr;grid-template-rows:none;height:100%}
   .plan-side{padding:20px 18px;border-right:1px solid var(--line);border-bottom:0;overflow:auto}
   .plan-side h2{font-size:24px}
-  .plan-stage{order:0;padding:18px 56px 12px 12px;min-height:0}
+  .plan-stage{order:0;padding:18px 76px 12px 12px;min-height:0}
+  .levels button{padding:4px 0 3px;width:50px}.levels button b{font-size:14px}.levels .lh{display:none}
   .gal-wrap{padding-top:calc(env(safe-area-inset-top,0px) + 64px)}
   .loc-wrap{padding-top:calc(env(safe-area-inset-top,0px) + 64px)}
   .loc-top{height:calc(env(safe-area-inset-top,0px) + 58px)}
@@ -482,11 +495,7 @@ a.btn{display:inline-flex;align-items:center;text-decoration:none;color:inherit}
       <div class="plan-stage" id="plan-stage">
         <svg id="plan-svg" role="img" aria-label="Floor plan"></svg>
         <div id="plan-tip" hidden></div>
-        <div class="stepper">
-          <button id="lvl-up" aria-label="Level up"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 15l6-6 6 6"/></svg></button>
-          <span id="lvl-num">06</span>
-          <button id="lvl-down" aria-label="Level down"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></button>
-        </div>
+        <nav class="levels" id="levels" aria-label="Levels"></nav>
       </div>
       <button class="round" id="plan-close" aria-label="Close floor plan"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
     </div>
@@ -996,10 +1005,10 @@ async function openUnit(id){const u=DATA.units.find(x=>x.id===id);if(!u||busy)re
   openPlan(u.tower,u.floor,u.id);}
 
 /* ---------------- floor plan modal ---------------- */
-const plan={tower:'AKSA',floor:5,sel:null,filter:0,returnUnit:null};
+const plan={tower:'AKSA',floor:5,sel:null,filter:0,returnUnit:null,stack:null};
 let planOpen=false;
 function openPlan(tower,floor,selId,block){
-  planOpen=true;Object.assign(plan,{tower,floor,sel:null,filter:0,block:block||null});clearHover();
+  planOpen=true;Object.assign(plan,{tower,floor,sel:null,filter:0,block:block||null,stack:null});clearHover();
   renderPlan();if(selId){const u=DATA.units.find(x=>x.id===selId);if(u)selectUnit(u);}
   const m=$('#plan');m.hidden=false;anim(m,{opacity:[0,1]},{duration:.25});
   anim(m.querySelector('.sheet'),{opacity:[0,1],y:[28,0],scale:[.97,1]},{type:'spring',stiffness:240,damping:26});
@@ -1010,8 +1019,8 @@ function closePlan(instant){const m=$('#plan');planOpen=false;viewHash();if(inst
 const floorUnits=()=>DATA.units.filter(u=>u.tower===plan.tower&&u.floor===plan.floor);
 function renderPlan(){
   const T=towerById(plan.tower),P=DATA.plans[plan.tower+':'+plan.floor],units=floorUnits();
-  $('#plan-tower').textContent=DATA.project.name+' · '+T.name;$('#plan-title').innerHTML=`${DATA.floorNames[plan.floor]}<br>floor plan`;
-  $('#lvl-num').textContent=plan.floor===0?'G':String(plan.floor);$('#lvl-up').disabled=plan.floor>=T.floors-1;$('#lvl-down').disabled=plan.floor<=0;
+  $('#plan-tower').textContent=DATA.project.name+' · '+T.name;$('#plan-title').innerHTML=`${DATA.floorNames[plan.floor].replace(/ floor$/i,'')}<br>floor plan`;
+  renderLevels(T);
   const [x,y,w,h]=P.viewBox,svg=$('#plan-svg');svg.setAttribute('viewBox',P.viewBox.join(' '));
   const pts=a=>a.map(p=>p[0]+','+p[1]).join(' ');
   svg.innerHTML=`<image href="${src(P.image)}" x="${x}" y="${y}" width="${w}" height="${h}"/>`+
@@ -1026,9 +1035,20 @@ function renderPlan(){
   applyFilter();renderSide();
   anim(svg.querySelectorAll('.ug'),{opacity:[0,1]},{delay:stagger(.035),duration:.3});
 }
+const dimmed=u=>(plan.filter!==0&&u.type!==plan.filter)||(plan.block&&(u.inv&&u.inv.block)!==plan.block)||(SR.open&&srActive()&&!srMatch(u));
 function applyFilter(){const units=floorUnits();document.querySelectorAll('#plan-svg .u').forEach(el=>{const u=units[+el.dataset.k];
-  el.classList.toggle('dim',(plan.filter!==0&&u.type!==plan.filter)||(plan.block&&(u.inv&&u.inv.block)!==plan.block)||(SR.open&&srActive()&&!srMatch(u)));el.classList.toggle('sel',!!plan.sel&&plan.sel.id===u.id);});}
-function selectUnit(u){plan.sel=u;$('#plan-tip').hidden=true;applyFilter();renderSide();setHash('u-'+u.id);}
+  el.classList.toggle('dim',dimmed(u));el.classList.toggle('sel',!!plan.sel&&plan.sel.id===u.id);});}
+function selectUnit(u){plan.sel=u;plan.stack=u.n;$('#plan-tip').hidden=true;applyFilter();renderSide();setHash('u-'+u.id);}
+// level rail: G at the bottom, roof level on top, with the homes still available on each
+function renderLevels(T){const fl=[...Array(T.floors).keys()].reverse();
+  $('#levels').innerHTML='<p class="lh">Level</p>'+fl.map(f=>{const us=DATA.units.filter(u=>u.tower===plan.tower&&u.floor===f),av=us.some(u=>u.status)?us.filter(u=>u.status==='available').length:us.length;
+    return `<button data-f="${f}" aria-current="${f===plan.floor}" title="${DATA.floorNames[f]}${us.length?' · '+av+' available':''}"><b>${f===0?'G':!us.length&&f===T.floors-1?'R':f}</b><small>${us.length?av+' avail':'terrace'}</small></button>`;}).join('');}
+// change level and stay on the same home stack (same unit number) when there is one
+function goFloor(f){const T=towerById(plan.tower);if(f<0||f>=T.floors||f===plan.floor)return;
+  plan.floor=f;plan.sel=null;renderPlan();const u=plan.stack&&floorUnits().find(x=>x.n===plan.stack);if(u)selectUnit(u);else viewHash();}
+// previous / next home on this level, in unit order, skipping homes the filters dim
+function stepUnit(d){const all=floorUnits().sort((a,b)=>a.n-b.n);if(!all.length)return;let pool=all.filter(u=>!dimmed(u)||u===plan.sel);if(pool.length<2)pool=all;
+  const i=plan.sel?pool.indexOf(plan.sel):d>0?-1:0;selectUnit(pool[(i+d+pool.length)%pool.length]);}
 // the address goes back to the current view when no residence is open
 function viewHash(){if(state==='close')setHash('c'+DATA.close.angles[closeIdx].id);else if(state==='mp'&&viewMode!=='real')setHash('a'+DATA.masterplan.angles[angleIdx].id);}
 // "Request a call": WhatsApp and/or email from DATA.project.contact; hidden until a contact is set
@@ -1051,17 +1071,18 @@ function invList(u){const i=u.inv,s=ST[u.status]||ST.available;
 function renderSide(){
   const box=$('#plan-info');
   if(plan.sel){const u=plan.sel;
-    box.innerHTML=`<div class="unit"><p class="eyebrow">Residence</p><h3>${u.id}</h3><span class="status" style="--c:${tyc(u.type)}">${u.type}${u.duplex?' duplex':''} · ${u.beds} bedroom${u.beds>1?'s':''}</span>
+    box.innerHTML=`<div class="unit"><p class="eyebrow">Residence</p><div class="u-head"><h3>${u.id}</h3><span class="u-step"><button id="u-prev" aria-label="Previous residence"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M15 6l-6 6 6 6"/></svg></button><button id="u-next" aria-label="Next residence"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></button></span></div><span class="status" style="--c:${tyc(u.type)}">${u.type}${u.duplex?' duplex':''} · ${u.beds} bedroom${u.beds>1?'s':''}</span>
       <div class="u-cta">${contactLinks(u)}<button class="btn ghost fav-btn" data-fav="${u.id}" aria-pressed="${isFav(u.id)}">${HEART}<span class="t">${isFav(u.id)?'Saved':'Save'}</span></button><button class="btn ghost" id="u-link">Copy link</button><button class="btn ghost" id="u-pdf">Download PDF</button></div>${u.inv?invList(u):`<dl>${u.code?`<dt>Designation</dt><dd>${u.code} · Building ${u.bld}</dd>`:''}<dt>Fração</dt><dd>${u.frac}</dd><dt>Type</dt><dd>${u.type}${u.duplex?' duplex (level 4 + roof level)':''}</dd><dt>${u.duplex?'Level 4 area':'Area'}</dt><dd>${u.m2.toFixed(2)} m² · ${fmtInt(u.m2*10.764)} ft²</dd>${u.upper?`<dt>Roof level</dt><dd>${u.upper.toFixed(2)} m²</dd><dt>Total living</dt><dd>${(u.m2+u.upper).toFixed(2)} m²</dd>`:''}${u.terrace?`<dt>Roof terrace</dt><dd>${u.terrace.toFixed(2)} m²</dd>`:''}${u.balc?`<dt>Balconies</dt><dd>${u.balc.toFixed(2)} m²</dd>`:''}${u.parking?`<dt>Parking</dt><dd>${u.parking} space${u.parking>1?'s':''} in the basement</dd>`:''}${u.aspect?`<dt>Aspect</dt><dd>${u.aspect}</dd>`:''}<dt>Price</dt><dd>On request</dd></dl>`}</div>
       <p class="note">${u.inv?'Status, areas and parking from the sales inventory.':'Area and typology as stated on the architect\'s floor plan.'}</p>
       <div class="side-actions"><button class="btn ghost" id="u-back">All residences</button></div>`;
-    $('#u-back').addEventListener('click',()=>{plan.sel=null;applyFilter();renderSide();viewHash();});
+    $('#u-back').addEventListener('click',()=>{plan.sel=null;plan.stack=null;applyFilter();renderSide();viewHash();});
+    $('#u-prev').addEventListener('click',()=>stepUnit(-1));$('#u-next').addEventListener('click',()=>stepUnit(1));
     $('#u-link').addEventListener('click',e=>copyLink(e.currentTarget));
     $('#u-pdf').addEventListener('click',()=>openBrochure(u));
   }else if(!floorUnits().length){const P=DATA.plans[plan.tower+':'+plan.floor];
     box.innerHTML=`<p class="lede">${P.note||'No homes on this level.'}</p>`;
   }else{const us=floorUnits();const types=[...new Set(us.map(u=>u.type))].sort();
-    box.innerHTML=`<p class="lede">Select a residence to see its fração, typology and area.</p>${plan.block?`<p class="label-sm">Block ${plan.block} · ${us.filter(u=>u.inv&&u.inv.block===plan.block).length} homes on this floor · <button class="linkish" id="blk-all">Show whole floor</button></p>`:''}${SR.open&&srActive()?`<p class="label-sm">${us.filter(srMatch).length} on this floor match your search</p>`:''}${us.some(u=>u.status)?(c=>`<p class="label-sm">${['available','reserved','sold'].filter(k=>c[k]).map(k=>`${c[k]} ${ST[k].label.toLowerCase()}`).join(' · ')}</p>`)(us.reduce((c,u)=>(c[u.status]=(c[u.status]||0)+1,c),{})):''}
+    box.innerHTML=`<p class="lede">Select a residence to see its fração, typology and area.</p><p class="kbd-hint">Arrow keys: ← → homes on this level, ↑ ↓ levels.</p>${plan.block?`<p class="label-sm">Block ${plan.block} · ${us.filter(u=>u.inv&&u.inv.block===plan.block).length} homes on this floor · <button class="linkish" id="blk-all">Show whole floor</button></p>`:''}${SR.open&&srActive()?`<p class="label-sm">${us.filter(srMatch).length} on this floor match your search</p>`:''}${us.some(u=>u.status)?(c=>`<p class="label-sm">${['available','reserved','sold'].filter(k=>c[k]).map(k=>`${c[k]} ${ST[k].label.toLowerCase()}`).join(' · ')}</p>`)(us.reduce((c,u)=>(c[u.status]=(c[u.status]||0)+1,c),{})):''}
       <div class="stats">${types.map(t=>`<div><b>${pad2(us.filter(u=>u.type===t).length)}</b><span style="--c:${tyc(t)}">${t}</span></div>`).join('')}</div>
       <p class="label-sm">Typology</p>
       <div class="filters" role="group" aria-label="Filter by typology"><button data-b="0" aria-pressed="${plan.filter===0}">All</button>${types.map(t=>`<button data-b="${t}" aria-pressed="${plan.filter===t}">${t}</button>`).join('')}</div>`;
@@ -1072,8 +1093,7 @@ function renderSide(){
 }
 $('#plan-close').addEventListener('click',()=>closePlan());
 $('#plan').addEventListener('click',e=>{if(e.target.id==='plan')closePlan();});
-$('#lvl-up').addEventListener('click',()=>{plan.floor++;plan.sel=null;renderPlan();viewHash();});
-$('#lvl-down').addEventListener('click',()=>{plan.floor--;plan.sel=null;renderPlan();viewHash();});
+$('#levels').addEventListener('click',e=>{const b=e.target.closest('button[data-f]');if(b)goFloor(+b.dataset.f);});
 
 /* ---------------- 360 viewer (equirectangular, plain WebGL) ---------------- */
 const V={yaw:0,pitch:0,fov:70,auto:true,tex:null,ready:false,hot:[],flat:false};
@@ -1304,6 +1324,9 @@ $('#notes-close').addEventListener('click',closeNotes);
 addEventListener('keydown',e=>{
   if(e.key==='Escape'){if(!$('#notes').hidden){closeNotes();return;}if(planOpen){closePlan();return;}back();return;}
   if(!$('#lightbox').hidden){if(e.key==='ArrowLeft')lbStep(-1);if(e.key==='ArrowRight')lbStep(1);return;}
+  if(planOpen&&$('#notes').hidden&&$('#cmp').hidden&&!e.target.closest('input,select,textarea')){
+    const k={ArrowLeft:()=>stepUnit(-1),ArrowRight:()=>stepUnit(1),ArrowUp:()=>goFloor(plan.floor+1),ArrowDown:()=>goFloor(plan.floor-1)}[e.key];
+    if(k){e.preventDefault();k();return;}}
   if(planOpen||!$('#notes').hidden||state==='loc'||state==='gal'||state==='amen')return;
   if(e.key==='ArrowLeft')rotate(-1);if(e.key==='ArrowRight')rotate(1);
 });
