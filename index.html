@@ -489,6 +489,7 @@ a.btn{display:inline-flex;align-items:center;text-decoration:none;color:inherit}
     <div class="sheet" role="dialog" aria-modal="true" aria-labelledby="plan-title">
       <div class="plan-side">
         <p class="eyebrow" id="plan-tower">AKSA Residencies</p>
+        <div class="filters" id="plan-blocks" role="group" aria-label="Block"></div>
         <h2 id="plan-title">Level 6<br>floor plan</h2>
         <div id="plan-info" style="display:flex;flex-direction:column;gap:18px;flex:1"></div>
       </div>
@@ -1019,7 +1020,8 @@ function closePlan(instant){const m=$('#plan');planOpen=false;viewHash();if(inst
 const floorUnits=()=>DATA.units.filter(u=>u.tower===plan.tower&&u.floor===plan.floor);
 function renderPlan(){
   const T=towerById(plan.tower),P=DATA.plans[plan.tower+':'+plan.floor],units=floorUnits();
-  $('#plan-tower').textContent=DATA.project.name+' · '+T.name;$('#plan-title').innerHTML=`${DATA.floorNames[plan.floor].replace(/ floor$/i,'')}<br>floor plan`;
+  $('#plan-tower').textContent=DATA.project.name;$('#plan-blocks').hidden=DATA.towers.length<2;
+  $('#plan-blocks').innerHTML=DATA.towers.map(t=>`<button data-t="${t.id}" aria-pressed="${t.id===plan.tower}">${t.name}</button>`).join('');$('#plan-title').innerHTML=`${DATA.floorNames[plan.floor].replace(/ floor$/i,'')}<br>floor plan`;
   renderLevels(T);
   const [x,y,w,h]=P.viewBox,svg=$('#plan-svg');svg.setAttribute('viewBox',P.viewBox.join(' '));
   const pts=a=>a.map(p=>p[0]+','+p[1]).join(' ');
@@ -1045,7 +1047,10 @@ function renderLevels(T){const fl=[...Array(T.floors).keys()].reverse();
     return `<button data-f="${f}" aria-current="${f===plan.floor}" title="${DATA.floorNames[f]}${us.length?' · '+av+' available':''}"><b>${f===0?'G':!us.length&&f===T.floors-1?'R':f}</b><small>${us.length?av+' avail':'terrace'}</small></button>`;}).join('');}
 // change level and stay on the same home stack (same unit number) when there is one
 function goFloor(f){const T=towerById(plan.tower);if(f<0||f>=T.floors||f===plan.floor)return;
-  plan.floor=f;plan.sel=null;renderPlan();const u=plan.stack&&floorUnits().find(x=>x.n===plan.stack);if(u)selectUnit(u);else viewHash();}
+  plan.floor=f;plan.sel=null;renderPlan();keepStack();}
+// switch block on the same level, onto the same home position when one is selected
+function goTower(id){if(id===plan.tower)return;plan.tower=id;plan.block=null;plan.floor=Math.min(plan.floor,towerById(id).floors-1);plan.sel=null;renderPlan();keepStack();}
+function keepStack(){const u=plan.stack&&floorUnits().find(x=>x.n===plan.stack);if(u)selectUnit(u);else viewHash();}
 // previous / next home on this level, in unit order, skipping homes the filters dim
 function stepUnit(d){const all=floorUnits().sort((a,b)=>a.n-b.n);if(!all.length)return;let pool=all.filter(u=>!dimmed(u)||u===plan.sel);if(pool.length<2)pool=all;
   const i=plan.sel?pool.indexOf(plan.sel):d>0?-1:0;selectUnit(pool[(i+d+pool.length)%pool.length]);}
@@ -1094,6 +1099,7 @@ function renderSide(){
 $('#plan-close').addEventListener('click',()=>closePlan());
 $('#plan').addEventListener('click',e=>{if(e.target.id==='plan')closePlan();});
 $('#levels').addEventListener('click',e=>{const b=e.target.closest('button[data-f]');if(b)goFloor(+b.dataset.f);});
+$('#plan-blocks').addEventListener('click',e=>{const b=e.target.closest('button[data-t]');if(b)goTower(b.dataset.t);});
 
 /* ---------------- 360 viewer (equirectangular, plain WebGL) ---------------- */
 const V={yaw:0,pitch:0,fov:70,auto:true,tex:null,ready:false,hot:[],flat:false};
