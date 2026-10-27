@@ -217,6 +217,17 @@ a.btn{display:inline-flex;align-items:center;text-decoration:none;color:inherit}
 .u-step button:hover{background:var(--sand)}
 .u-step svg{width:14px;height:14px}
 .kbd-hint{margin:0;font-size:11px;color:var(--ink-2)}
+.u-up{align-self:flex-start;font-size:12px;text-decoration:none;margin-bottom:-6px}
+.u-badges{display:flex;flex-wrap:wrap;gap:6px}
+.unit dl.kf{margin-top:16px}
+.u-price{margin:16px 0 0;font-family:var(--display);font-size:24px;line-height:1.1}
+.u-cta a.btn{flex:1 1 100%;justify-content:center}
+.u-tools{display:flex;flex-wrap:wrap;gap:6px}
+.btn.sm{padding:8px 12px;font-size:11px;display:inline-flex;align-items:center;gap:6px}.btn.sm svg{width:13px;height:13px}
+.u-more{margin-top:16px;border-top:1px solid var(--line);padding-top:12px}
+.u-more summary{cursor:pointer;list-style:none;display:flex;justify-content:space-between;font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-2)}
+.u-more summary::-webkit-details-marker{display:none}.u-more summary::after{content:'+';font-size:15px;line-height:1}.u-more[open] summary::after{content:'−'}
+.u-more dl{margin-top:12px}.u-more .note{margin-top:12px}
 @media (pointer:coarse){.kbd-hint{display:none}}
 .sheet>.round{position:absolute;top:16px;right:16px;z-index:2;background:#fff}
 
@@ -436,6 +447,7 @@ a.btn{display:inline-flex;align-items:center;text-decoration:none;color:inherit}
     <span class="crumb-ind" id="crumb-ind" aria-hidden="true"></span>
     <button data-go="mp"><span class="l">Masterplan</span><span class="s">Aerial</span></button>
     <button data-go="close"><span class="l">Residences</span><span class="s">Homes</span></button>
+    <button data-go="units"><span class="l">Project</span><span class="s">Project</span></button>
     <button data-go="amen"><span class="l">Amenities</span><span class="s">Amenities</span></button>
     <button data-go="gal"><span class="l">Gallery</span><span class="s">Gallery</span></button>
     <button data-go="loc"><span class="l">Location</span><span class="s">Location</span></button>
@@ -846,6 +858,7 @@ $('#prev').addEventListener('click',()=>rotate(-1));
 $('#next').addEventListener('click',()=>rotate(1));
 document.querySelectorAll('#crumbs button').forEach(b=>b.addEventListener('click',()=>goCrumb(b.dataset.go)));
 async function goCrumb(g){if(busy||g===state)return;
+  if(g==='units'){location.href='project.html';return;}   // the project page is its own document
   const page=s=>s==='loc'||s==='gal'||s==='amen';
   if(page(g)){if(page(state)){$('#loc-video').pause();}({loc:openLoc,gal:openGallery,amen:openAmen})[g]();return;}
   if(page(state)){await leavePage(g);return;}
@@ -1037,7 +1050,7 @@ function selectUnit(u){plan.sel=u;plan.stack=u.n;$('#plan-tip').hidden=true;appl
 // level rail: G at the bottom, roof level on top, with the homes still available on each
 function renderLevels(T){const fl=[...Array(T.floors).keys()].reverse();
   $('#levels').innerHTML='<p class="lh">Level</p>'+fl.map(f=>{const us=DATA.units.filter(u=>u.tower===plan.tower&&u.floor===f),av=us.some(u=>u.status)?us.filter(u=>u.status==='available').length:us.length;
-    return `<button data-f="${f}" aria-current="${f===plan.floor}" title="${DATA.floorNames[f]}${us.length?' · '+av+' available':''}"><b>${f===0?'G':!us.length&&f===T.floors-1?'R':f}</b><small>${us.length?av+' avail':'terrace'}</small></button>`;}).join('');}
+    return `<button data-f="${f}" aria-current="${f===plan.floor}" title="${DATA.floorNames[f]}${us.length?' · '+av+' available':''}"><b>${f===0?'G':!us.length&&f===T.floors-1?'R':f}</b>${!us.length?'<small>roof</small>':av<us.length?`<small>${av} left</small>`:''}</button>`;}).join('');}
 // change level and stay on the same home stack (same unit number) when there is one
 function goFloor(f){const T=towerById(plan.tower);if(f<0||f>=T.floors||f===plan.floor)return;
   plan.floor=f;plan.sel=null;renderPlan();keepStack();}
@@ -1060,8 +1073,8 @@ async function copyLink(btn){const url=location.origin+location.pathname+(plan.s
   setTimeout(()=>{btn.textContent='Copy link';},1800);}
 // one residence's sales record (tools/build_inventory.py -> u.inv)
 const m2=v=>v==null?'':`${(+v).toFixed(2)} m²`;
-function invList(u){const i=u.inv,s=ST[u.status]||ST.available;
-  return `<p><span class="status" style="--c:${s.hex}">${i.status}</span></p><dl><dt>Unit</dt><dd>${i.code} · Sales block ${i.block}</dd><dt>Fração</dt><dd>${u.frac}</dd>`+
+function invList(u){const i=u.inv;
+  return `<dl><dt>Unit</dt><dd>${i.code} · Sales block ${i.block}</dd><dt>Fração</dt><dd>${u.frac}</dd>`+
     `<dt>Type</dt><dd>${i.typology}${i.duplex?' duplex (level 4 + roof level)':''}</dd><dt>Living area</dt><dd>${m2(i.living)} · ${fmtInt(i.living*10.764)} ft²</dd><dt>Gross area</dt><dd>${m2(i.gross)}</dd>`+
     `${i.balc_ext||i.balc_int?`<dt>Balconies</dt><dd>${[i.balc_ext&&m2(i.balc_ext)+' outside',i.balc_int&&m2(i.balc_int)+' inset'].filter(Boolean).join(' · ')}</dd>`:''}${i.terrace?`<dt>Roof terrace</dt><dd>${m2(i.terrace)}</dd>`:''}`+
     `${i.total?`<dt>Total incl. outdoor</dt><dd>${m2(i.total)}</dd>`:''}${i.parking?`<dt>Parking</dt><dd>${i.parking} space${i.parking>1?'s':''}${i.parking_id?' · '+i.parking_id:''} (level −1)</dd>`:''}`+
@@ -1069,10 +1082,15 @@ function invList(u){const i=u.inv,s=ST[u.status]||ST.available;
 function renderSide(){
   const box=$('#plan-info');
   if(plan.sel){const u=plan.sel;
-    box.innerHTML=`<div class="unit"><p class="eyebrow">Residence</p><div class="u-head"><h3>${u.id}</h3><span class="u-step"><button id="u-prev" aria-label="Previous residence"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M15 6l-6 6 6 6"/></svg></button><button id="u-next" aria-label="Next residence"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></button></span></div><span class="status" style="--c:${tyc(u.type)}">${u.type}${u.duplex?' duplex':''} · ${u.beds} bedroom${u.beds>1?'s':''}</span>
-      <div class="u-cta">${contactLinks(u)}<button class="btn ghost fav-btn" data-fav="${u.id}" aria-pressed="${isFav(u.id)}">${HEART}<span class="t">${isFav(u.id)?'Saved':'Save'}</span></button><button class="btn ghost" id="u-link">Copy link</button><button class="btn ghost" id="u-pdf">Download PDF</button></div>${u.inv?invList(u):`<dl>${u.code?`<dt>Designation</dt><dd>${u.code} · Building ${u.bld}</dd>`:''}<dt>Fração</dt><dd>${u.frac}</dd><dt>Type</dt><dd>${u.type}${u.duplex?' duplex (level 4 + roof level)':''}</dd><dt>${u.duplex?'Level 4 area':'Area'}</dt><dd>${u.m2.toFixed(2)} m² · ${fmtInt(u.m2*10.764)} ft²</dd>${u.upper?`<dt>Roof level</dt><dd>${u.upper.toFixed(2)} m²</dd><dt>Total living</dt><dd>${(u.m2+u.upper).toFixed(2)} m²</dd>`:''}${u.terrace?`<dt>Roof terrace</dt><dd>${u.terrace.toFixed(2)} m²</dd>`:''}${u.balc?`<dt>Balconies</dt><dd>${u.balc.toFixed(2)} m²</dd>`:''}${u.parking?`<dt>Parking</dt><dd>${u.parking} space${u.parking>1?'s':''} in the basement</dd>`:''}${u.aspect?`<dt>Aspect</dt><dd>${u.aspect}</dd>`:''}<dt>Price</dt><dd>On request</dd></dl>`}</div>
-      <p class="note">${u.inv?'Status, areas and parking from the sales inventory.':'Area and typology as stated on the architect\'s floor plan.'}</p>
-      <div class="side-actions"><button class="btn ghost" id="u-back">All residences</button></div>`;
+    const i=u.inv||{},st=ST[u.status]||ST.available,out=i.outdoor!=null?i.outdoor:(u.balc||0)+(u.terrace||0),pk=i.parking||u.parking,ori=i.orientation||u.aspect;
+    box.innerHTML=`<button class="linkish u-up" id="u-back">← All homes on this level</button><div class="unit"><div class="u-head"><h3>${u.id}</h3><span class="u-step"><button id="u-prev" aria-label="Previous residence"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M15 6l-6 6 6 6"/></svg></button><button id="u-next" aria-label="Next residence"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></button></span></div>
+      <div class="u-badges"><span class="status" style="--c:${tyc(u.type)}">${u.type}${u.duplex?' duplex':''} · ${u.beds} bed${u.beds>1?'s':''}</span><span class="status" style="--c:${st.hex}">${st.label}</span></div>
+      <dl class="kf"><dt>Living area</dt><dd>${m2(i.living!=null?i.living:u.m2+(u.upper||0))}</dd>${out?`<dt>Outdoor</dt><dd>${m2(out)}</dd>`:''}${pk?`<dt>Parking</dt><dd>${pk} space${pk>1?'s':''}</dd>`:''}${ori?`<dt>Orientation</dt><dd>${ori}</dd>`:''}</dl>
+      <p class="u-price">${i.price?'€ '+fmtInt(i.price):'Price on request'}</p>
+      <div class="u-cta">${contactLinks(u)}</div>
+      <div class="u-tools"><button class="btn ghost sm fav-btn" data-fav="${u.id}" aria-pressed="${isFav(u.id)}">${HEART}<span class="t">${isFav(u.id)?'Saved':'Save'}</span></button><button class="btn ghost sm" id="u-link">Copy link</button><button class="btn ghost sm" id="u-pdf">PDF</button></div>
+      <details class="u-more"><summary>All details</summary>${u.inv?invList(u):`<dl>${u.code?`<dt>Designation</dt><dd>${u.code} · Building ${u.bld}</dd>`:''}<dt>Fração</dt><dd>${u.frac}</dd><dt>Type</dt><dd>${u.type}${u.duplex?' duplex (level 4 + roof level)':''}</dd><dt>${u.duplex?'Level 4 area':'Area'}</dt><dd>${u.m2.toFixed(2)} m² · ${fmtInt(u.m2*10.764)} ft²</dd>${u.upper?`<dt>Roof level</dt><dd>${u.upper.toFixed(2)} m²</dd><dt>Total living</dt><dd>${(u.m2+u.upper).toFixed(2)} m²</dd>`:''}${u.terrace?`<dt>Roof terrace</dt><dd>${u.terrace.toFixed(2)} m²</dd>`:''}${u.balc?`<dt>Balconies</dt><dd>${u.balc.toFixed(2)} m²</dd>`:''}${u.parking?`<dt>Parking</dt><dd>${u.parking} space${u.parking>1?'s':''} in the basement</dd>`:''}${u.aspect?`<dt>Aspect</dt><dd>${u.aspect}</dd>`:''}<dt>Price</dt><dd>On request</dd></dl>`}
+      <p class="note">${u.inv?'Status, areas and parking from the sales inventory.':'Area and typology as stated on the architect\'s floor plan.'}</p></details></div>`;
     $('#u-back').addEventListener('click',()=>{plan.sel=null;plan.stack=null;applyFilter();renderSide();viewHash();});
     $('#u-prev').addEventListener('click',()=>stepUnit(-1));$('#u-next').addEventListener('click',()=>stepUnit(1));
     $('#u-link').addEventListener('click',e=>copyLink(e.currentTarget));
