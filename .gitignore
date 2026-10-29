@@ -3,3 +3,4 @@ media.zip
 *.zip
 .DS_Store
 .idea/
+.env.local

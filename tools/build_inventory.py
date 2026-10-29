@@ -1,6 +1,6 @@
 """Sales inventory (Sales_Inventory_Aksa_Project.xlsx) -> u['inv'] on each of the 320 homes in data.json.
 The workbook splits each courtyard block into 4 sales blocks around the ring (A-D = North block, E-H = South block),
-7 / 9 / 9 / 7 homes per floor. For each block and floor the ring is cut into those 4 runs at the rotation where the
+7 / 7 / 9 / 9 homes per floor (lots 1-4 west wing, 5-8 east wing on the Planta Síntese). For each block and floor the ring is cut into those 4 runs at the rotation where the
 architect's codes ('Original Unit Code', e.g. 'B4A') best match the site's codes ('B4+A' -> 'B4A'), with the facade
 side as a tie-break, then each home takes the row with its own code.
 usage: python3 build_inventory.py <xlsx> <site_dir>"""
@@ -9,6 +9,7 @@ import json, sys, collections, openpyxl
 XL, SITE = sys.argv[1], sys.argv[2]
 TOWER_BLOCKS = {'N': 'ABCD', 'S': 'EFGH'}
 STATUS = {'Available': 'available', 'Reserved': 'reserved', 'On Contract': 'sold', 'Sold': 'sold', 'Deed Signed': 'sold'}   # workbook -> site (3 colours)
+ALIAS = {'Duplex': 'Duplex?', 'Living Area / Net Area (m²)': 'Living Area (m²)'}   # Block B's headers differ
 SIDE = {'W': 'West', 'E': 'East', 'N': 'North', 'S': 'South'}
 num = lambda v: None if v in (None, 'n/a', '') else (round(float(v), 2) if isinstance(v, (int, float)) else v)
 code = lambda u: (u.get('code') or '').replace('+', '')
@@ -18,7 +19,7 @@ inv = collections.defaultdict(list)
 wb = openpyxl.load_workbook(XL, data_only=True)
 for ws in wb:
     if not ws.title.startswith('Block'): continue
-    H = [c.value for c in ws[1]]; ix = {h: i for i, h in enumerate(H)}
+    H = [c.value for c in ws[1]]; ix = {ALIAS.get(h, h): i for i, h in enumerate(H)}
     for r in ws.iter_rows(min_row=2, values_only=True):
         if not r[ix['Unit Code']]: continue
         g = lambda h: r[ix[h]] if h in ix else None
