@@ -1,6 +1,6 @@
 {
   "project": {
-    "name": "AKSA Residencies",
+    "name": "AKSA Residence",
     "short": "AKSA",
     "place": "Montijo · Lisbon",
     "currency": "EUR",
@@ -30,7 +30,7 @@
         "outlines": [
           {
             "id": "aksa",
-            "label": "AKSA Residencies",
+            "label": "AKSA Residence",
             "target": "close",
             "polys": [
               [
@@ -1143,7 +1143,7 @@
         "outlines": [
           {
             "id": "aksa",
-            "label": "AKSA Residencies",
+            "label": "AKSA Residence",
             "target": "close",
             "polys": [
               [
@@ -2139,7 +2139,7 @@
         "outlines": [
           {
             "id": "aksa",
-            "label": "AKSA Residencies",
+            "label": "AKSA Residence",
             "target": "close",
             "polys": [
               [
@@ -2825,7 +2825,7 @@
         "outlines": [
           {
             "id": "aksa",
-            "label": "AKSA Residencies",
+            "label": "AKSA Residence",
             "target": "close",
             "polys": [
               [
@@ -3734,7 +3734,7 @@
         "outlines": [
           {
             "id": "aksa",
-            "label": "AKSA Residencies",
+            "label": "AKSA Residence",
             "target": "close",
             "polys": [
               [
@@ -4901,7 +4901,7 @@
         "outlines": [
           {
             "id": "aksa",
-            "label": "AKSA Residencies",
+            "label": "AKSA Residence",
             "target": "close",
             "polys": [
               [
@@ -6901,7 +6901,7 @@
         "outlines": [
           {
             "id": "aksa",
-            "label": "AKSA Residencies",
+            "label": "AKSA Residence",
             "target": "close",
             "polys": [
               [
@@ -8060,7 +8060,7 @@
         "outlines": [
           {
             "id": "aksa",
-            "label": "AKSA Residencies",
+            "label": "AKSA Residence",
             "target": "close",
             "polys": [
               [
@@ -103787,7 +103787,7 @@
         "orig": "C0B",
         "code": "C0I",
         "block": "C",
-        "status": "Available",
+        "status": "Coming soon",
         "typology": "T2",
         "duplex": false,
         "gross": 86,
@@ -103802,7 +103802,7 @@
         "orientation": "North / South",
         "price": 380000
       },
-      "status": "available",
+      "status": "soon",
       "price": 380000
     },
     {
@@ -103945,7 +103945,7 @@
         "orig": "C0A",
         "code": "C0H",
         "block": "C",
-        "status": "Available",
+        "status": "Coming soon",
         "typology": "T2",
         "duplex": false,
         "gross": 86,
@@ -103960,7 +103960,7 @@
         "orientation": "North / South",
         "price": 380000
       },
-      "status": "available",
+      "status": "soon",
       "price": 380000
     },
     {
@@ -104145,7 +104145,7 @@
         "orig": "B0D",
         "code": "C0G",
         "block": "C",
-        "status": "Available",
+        "status": "Coming soon",
         "typology": "T2",
         "duplex": false,
         "gross": 85.5,
@@ -104160,7 +104160,7 @@
         "orientation": "North / South",
         "price": 380000
       },
-      "status": "available",
+      "status": "soon",
       "price": 380000
     },
     {
@@ -104303,7 +104303,7 @@
         "orig": "B0C",
         "code": "C0F",
         "block": "C",
-        "status": "Available",
+        "status": "Coming soon",
         "typology": "T3",
         "duplex": false,
         "gross": 131.85,
@@ -104318,7 +104318,7 @@
         "orientation": "North / East",
         "price": 500000
       },
-      "status": "available",
+      "status": "soon",
       "price": 500000
     },
     {
@@ -104399,7 +104399,7 @@
         "orig": "B0B",
         "code": "C0E",
         "block": "C",
-        "status": "Available",
+        "status": "Coming soon",
         "typology": "T1",
         "duplex": false,
         "gross": 61.8,
@@ -104414,7 +104414,7 @@
         "orientation": "East",
         "price": 289000
       },
-      "status": "available",
+      "status": "soon",
       "price": 289000
     },
     {
@@ -104577,7 +104577,7 @@
         "orig": "B0A",
         "code": "C0D",
         "block": "C",
-        "status": "Available",
+        "status": "Coming soon",
         "typology": "T2",
         "duplex": false,
         "gross": 91.8,
@@ -104592,7 +104592,7 @@
         "orientation": "East / West",
         "price": 399000
       },
-      "status": "available",
+      "status": "soon",
       "price": 399000
     },
     {
@@ -104745,7 +104745,7 @@
         "orig": "A0C",
         "code": "C0C",
         "block": "C",
-        "status": "Available",
+        "status": "Coming soon",
         "typology": "T2",
         "duplex": false,
         "gross": 91.2,
@@ -104760,7 +104760,7 @@
         "orientation": "East / West",
         "price": 399000
       },
-      "status": "available",
+      "status": "soon",
       "price": 399000
     },
     {
@@ -104841,7 +104841,7 @@
         "orig": "A0B",
         "code": "C0B",
         "block": "C",
-        "status": "Available",
+        "status": "Coming soon",
         "typology": "T1",
         "duplex": false,
         "gross": 60.2,
@@ -104856,7 +104856,7 @@
         "orientation": "East",
         "price": 289000
       },
-      "status": "available",
+      "status": "soon",
       "price": 289000
     },
     {
@@ -105005,7 +105005,7 @@
         "orig": "A0A",
         "code": "C0A",
         "block": "C",
-        "status": "Available",
+        "status": "Coming soon",
         "typology": "T3",
         "duplex": false,
         "gross": 108.2,
@@ -105020,7 +105020,7 @@
         "orientation": "East / West",
         "price": 470000
       },
-      "status": "available",
+      "status": "soon",
       "price": 470000
     },
     {
@@ -105201,7 +105201,7 @@
         "orig": "A0A",
         "code": "D0A",
         "block": "D",
-        "status": "Available",
+        "status": "Coming soon",
         "typology": "T3",
         "duplex": false,
         "gross": 108.2,
@@ -105216,7 +105216,7 @@
         "orientation": "East / West",
         "price": 470000
       },
-      "status": "available",
+      "status": "soon",
       "price": 470000
     },
     {
@@ -105337,7 +105337,7 @@
         "orig": "A0B",
         "code": "D0B",
         "block": "D",
-        "status": "Available",
+        "status": "Coming soon",
         "typology": "T1",
         "duplex": false,
         "gross": 60.2,
@@ -105352,7 +105352,7 @@
         "orientation": "East",
         "price": 289000
       },
-      "status": "available",
+      "status": "soon",
       "price": 289000
     },
     {
@@ -105493,7 +105493,7 @@
         "orig": "A0C",
         "code": "D0C",
         "block": "D",
-        "status": "Available",
+        "status": "Coming soon",
         "typology": "T2",
         "duplex": false,
         "gross": 91.2,
@@ -105508,7 +105508,7 @@
         "orientation": "East / West",
         "price": 399000
       },
-      "status": "available",
+      "status": "soon",
       "price": 399000
     },
     {
@@ -105671,7 +105671,7 @@
         "orig": "B0A",
         "code": "D0D",
         "block": "D",
-        "status": "Available",
+        "status": "Coming soon",
         "typology": "T2",
         "duplex": false,
         "gross": 91.8,
@@ -105686,7 +105686,7 @@
         "orientation": "East / West",
         "price": 399000
       },
-      "status": "available",
+      "status": "soon",
       "price": 399000
     },
     {
@@ -105775,7 +105775,7 @@
         "orig": "B0B",
         "code": "D0E",
         "block": "D",
-        "status": "Available",
+        "status": "Coming soon",
         "typology": "T1",
         "duplex": false,
         "gross": 61.8,
@@ -105790,7 +105790,7 @@
         "orientation": "East",
         "price": 289000
       },
-      "status": "available",
+      "status": "soon",
       "price": 289000
     },
     {
@@ -105961,7 +105961,7 @@
         "orig": "B0C",
         "code": "D0F",
         "block": "D",
-        "status": "Available",
+        "status": "Coming soon",
         "typology": "T3",
         "duplex": false,
         "gross": 131.85,
@@ -105976,7 +105976,7 @@
         "orientation": "East / South",
         "price": 500000
       },
-      "status": "available",
+      "status": "soon",
       "price": 500000
     },
     {
@@ -106145,7 +106145,7 @@
         "orig": "B0D",
         "code": "D0G",
         "block": "D",
-        "status": "Available",
+        "status": "Coming soon",
         "typology": "T2",
         "duplex": false,
         "gross": 85.5,
@@ -106160,7 +106160,7 @@
         "orientation": "South / North",
         "price": 380000
       },
-      "status": "available",
+      "status": "soon",
       "price": 380000
     },
     {
@@ -106307,7 +106307,7 @@
         "orig": "C0A",
         "code": "D0H",
         "block": "D",
-        "status": "Available",
+        "status": "Coming soon",
         "typology": "T2",
         "duplex": false,
         "gross": 86,
@@ -106322,7 +106322,7 @@
         "orientation": "South / North",
         "price": 380000
       },
-      "status": "available",
+      "status": "soon",
       "price": 380000
     },
     {
@@ -106457,7 +106457,7 @@
         "orig": "C0B",
         "code": "D0I",
         "block": "D",
-        "status": "Available",
+        "status": "Coming soon",
         "typology": "T2",
         "duplex": false,
         "gross": 86,
@@ -106472,7 +106472,7 @@
         "orientation": "South / North",
         "price": 380000
       },
-      "status": "available",
+      "status": "soon",
       "price": 380000
     },
     {
@@ -109087,7 +109087,7 @@
         "orig": "C1B",
         "code": "C1I",
         "block": "C",
-        "status": "Available",
+        "status": "Coming soon",
         "typology": "T3",
         "duplex": false,
         "gross": 107.1,
@@ -109102,7 +109102,7 @@
         "orientation": "North / South",
         "price": 460000
       },
-      "status": "available",
+      "status": "soon",
       "price": 460000
     },
     {
@@ -109253,7 +109253,7 @@
         "orig": "C1A",
         "code": "C1H",
         "block": "C",
-        "status": "Available",
+        "status": "Coming soon",
         "typology": "T2",
         "duplex": false,
         "gross": 85.5,
@@ -109268,7 +109268,7 @@
         "orientation": "North / South",
         "price": 380000
       },
-      "status": "available",
+      "status": "soon",
       "price": 380000
     },
     {
@@ -109485,7 +109485,7 @@
         "orig": "B1D",
         "code": "C1G",
         "block": "C",
-        "status": "Available",
+        "status": "Coming soon",
         "typology": "T3",
         "duplex": false,
         "gross": 107.25,
@@ -109500,7 +109500,7 @@
         "orientation": "North / South",
         "price": 470000
       },
-      "status": "available",
+      "status": "soon",
       "price": 470000
     },
     {
@@ -109707,7 +109707,7 @@
         "orig": "B1C",
         "code": "C1F",
         "block": "C",
-        "status": "Available",
+        "status": "Coming soon",
         "typology": "T3",
         "duplex": false,
         "gross": 131.85,
@@ -109722,7 +109722,7 @@
         "orientation": "North / East",
         "price": 550000
       },
-      "status": "available",
+      "status": "soon",
       "price": 550000
     },
     {
@@ -109919,7 +109919,7 @@
         "orig": "B1B",
         "code": "C1E",
         "block": "C",
-        "status": "Available",
+        "status": "Coming soon",
         "typology": "T2",
         "duplex": false,
         "gross": 85.45,
@@ -109934,7 +109934,7 @@
         "orientation": "East",
         "price": 370000
       },
-      "status": "available",
+      "status": "soon",
       "price": 370000
     },
     {
@@ -110169,7 +110169,7 @@
         "orig": "B1A",
         "code": "C1D",
         "block": "C",
-        "status": "Available",
+        "status": "Coming soon",
         "typology": "T2",
         "duplex": false,
         "gross": 94.8,
@@ -110184,7 +110184,7 @@
         "orientation": "East / West",
         "price": 420000
       },
-      "status": "available",
+      "status": "soon",
       "price": 420000
     },
     {
@@ -110349,7 +110349,7 @@
         "orig": "A1C",
         "code": "C1C",
         "block": "C",
-        "status": "Available",
+        "status": "Coming soon",
         "typology": "T3",
         "duplex": false,
         "gross": 110.9,
@@ -110364,7 +110364,7 @@
         "orientation": "East / West",
         "price": 490000
       },
-      "status": "available",
+      "status": "soon",
       "price": 490000
     },
     {
@@ -110541,7 +110541,7 @@
         "orig": "A1B",
         "code": "C1B",
         "block": "C",
-        "status": "Available",
+        "status": "Coming soon",
         "typology": "T2",
         "duplex": false,
         "gross": 83.1,
@@ -110556,7 +110556,7 @@
         "orientation": "East",
         "price": 370000
       },
-      "status": "available",
+      "status": "soon",
       "price": 370000
     },
     {
@@ -110733,7 +110733,7 @@
         "orig": "A1A",
         "code": "C1A",
         "block": "C",
-        "status": "Available",
+        "status": "Coming soon",
         "typology": "T3",
         "duplex": false,
         "gross": 112.15,
@@ -110748,7 +110748,7 @@
         "orientation": "East / West",
         "price": 500000
       },
-      "status": "available",
+      "status": "soon",
       "price": 500000
     },
     {
@@ -110913,7 +110913,7 @@
         "orig": "A1A",
         "code": "D1A",
         "block": "D",
-        "status": "Available",
+        "status": "Coming soon",
         "typology": "T3",
         "duplex": false,
         "gross": 112.15,
@@ -110928,7 +110928,7 @@
         "orientation": "East / West",
         "price": 500000
       },
-      "status": "available",
+      "status": "soon",
       "price": 500000
     },
     {
@@ -111065,7 +111065,7 @@
         "orig": "A1B",
         "code": "D1B",
         "block": "D",
-        "status": "Available",
+        "status": "Coming soon",
         "typology": "T2",
         "duplex": false,
         "gross": 83.1,
@@ -111080,7 +111080,7 @@
         "orientation": "East",
         "price": 370000
       },
-      "status": "available",
+      "status": "soon",
       "price": 370000
     },
     {
@@ -111237,7 +111237,7 @@
         "orig": "A1C",
         "code": "D1C",
         "block": "D",
-        "status": "Available",
+        "status": "Coming soon",
         "typology": "T3",
         "duplex": false,
         "gross": 110.9,
@@ -111252,7 +111252,7 @@
         "orientation": "East / West",
         "price": 490000
       },
-      "status": "available",
+      "status": "soon",
       "price": 490000
     },
     {
@@ -111459,7 +111459,7 @@
         "orig": "B1A",
         "code": "D1D",
         "block": "D",
-        "status": "Available",
+        "status": "Coming soon",
         "typology": "T2",
         "duplex": false,
         "gross": 94.8,
@@ -111474,7 +111474,7 @@
         "orientation": "East / West",
         "price": 420000
       },
-      "status": "available",
+      "status": "soon",
       "price": 420000
     },
     {
@@ -111639,7 +111639,7 @@
         "orig": "B1B",
         "code": "D1E",
         "block": "D",
-        "status": "Available",
+        "status": "Coming soon",
         "typology": "T2",
         "duplex": false,
         "gross": 85.45,
@@ -111654,7 +111654,7 @@
         "orientation": "East",
         "price": 370000
       },
-      "status": "available",
+      "status": "soon",
       "price": 370000
     },
     {
@@ -111809,7 +111809,7 @@
         "orig": "B1C",
         "code": "D1F",
         "block": "D",
-        "status": "Available",
+        "status": "Coming soon",
         "typology": "T3",
         "duplex": false,
         "gross": 131.85,
@@ -111824,7 +111824,7 @@
         "orientation": "East / South",
         "price": 550000
       },
-      "status": "available",
+      "status": "soon",
       "price": 550000
     },
     {
@@ -112005,7 +112005,7 @@
         "orig": "B1D",
         "code": "D1G",
         "block": "D",
-        "status": "Available",
+        "status": "Coming soon",
         "typology": "T3",
         "duplex": false,
         "gross": 107.25,
@@ -112020,7 +112020,7 @@
         "orientation": "South / North",
         "price": 470000
       },
-      "status": "available",
+      "status": "soon",
       "price": 470000
     },
     {
@@ -112175,7 +112175,7 @@
         "orig": "C1A",
         "code": "D1H",
         "block": "D",
-        "status": "Available",
+        "status": "Coming soon",
         "typology": "T2",
         "duplex": false,
         "gross": 85.5,
@@ -112190,7 +112190,7 @@
         "orientation": "South / North",
         "price": 380000
       },
-      "status": "available",
+      "status": "soon",
       "price": 380000
     },
     {
@@ -112373,7 +112373,7 @@
         "orig": "C1B",
         "code": "D1I",
         "block": "D",
-        "status": "Available",
+        "status": "Coming soon",
         "typology": "T3",
         "duplex": false,
         "gross": 107.1,
@@ -112388,7 +112388,7 @@
         "orientation": "South / North",
         "price": 460000
       },
-      "status": "available",
+      "status": "soon",
       "price": 460000
     },
     {
@@ -115255,7 +115255,7 @@
         "orig": "C2B",
         "code": "C2I",
         "block": "C",
-        "status": "Available",
+        "status": "Coming soon",
         "typology": "T3",
         "duplex": false,
         "gross": 107.1,
@@ -115270,7 +115270,7 @@
         "orientation": "North / South",
         "price": 470000
       },
-      "status": "available",
+      "status": "soon",
       "price": 470000
     },
     {
@@ -115421,7 +115421,7 @@
         "orig": "C2A",
         "code": "C2H",
         "block": "C",
-        "status": "Available",
+        "status": "Coming soon",
         "typology": "T2",
         "duplex": false,
         "gross": 85.5,
@@ -115436,7 +115436,7 @@
         "orientation": "North / South",
         "price": 390000
       },
-      "status": "available",
+      "status": "soon",
       "price": 390000
     },
     {
@@ -115625,7 +115625,7 @@
         "orig": "B2D",
         "code": "C2G",
         "block": "C",
-        "status": "Available",
+        "status": "Coming soon",
         "typology": "T3",
         "duplex": false,
         "gross": 107.25,
@@ -115640,7 +115640,7 @@
         "orientation": "North / South",
         "price": 480000
       },
-      "status": "available",
+      "status": "soon",
       "price": 480000
     },
     {
@@ -115831,7 +115831,7 @@
         "orig": "B2C",
         "code": "C2F",
         "block": "C",
-        "status": "Available",
+        "status": "Coming soon",
         "typology": "T3",
         "duplex": false,
         "gross": 131.85,
@@ -115846,7 +115846,7 @@
         "orientation": "North / East",
         "price": 560000
       },
-      "status": "available",
+      "status": "soon",
       "price": 560000
     },
     {
@@ -116047,7 +116047,7 @@
         "orig": "B2B",
         "code": "C2E",
         "block": "C",
-        "status": "Available",
+        "status": "Coming soon",
         "typology": "T2",
         "duplex": false,
         "gross": 85.45,
@@ -116062,7 +116062,7 @@
         "orientation": "East",
         "price": 380000
       },
-      "status": "available",
+      "status": "soon",
       "price": 380000
     },
     {
@@ -116237,7 +116237,7 @@
         "orig": "B2A",
         "code": "C2D",
         "block": "C",
-        "status": "Available",
+        "status": "Coming soon",
         "typology": "T2",
         "duplex": false,
         "gross": 94.8,
@@ -116252,7 +116252,7 @@
         "orientation": "East / West",
         "price": 430000
       },
-      "status": "available",
+      "status": "soon",
       "price": 430000
     },
     {
@@ -116417,7 +116417,7 @@
         "orig": "A2C",
         "code": "C2C",
         "block": "C",
-        "status": "Available",
+        "status": "Coming soon",
         "typology": "T3",
         "duplex": false,
         "gross": 110.9,
@@ -116432,7 +116432,7 @@
         "orientation": "East / West",
         "price": 500000
       },
-      "status": "available",
+      "status": "soon",
       "price": 500000
     },
     {
@@ -116597,7 +116597,7 @@
         "orig": "A2B",
         "code": "C2B",
         "block": "C",
-        "status": "Available",
+        "status": "Coming soon",
         "typology": "T2",
         "duplex": false,
         "gross": 83.1,
@@ -116612,7 +116612,7 @@
         "orientation": "East",
         "price": 380000
       },
-      "status": "available",
+      "status": "soon",
       "price": 380000
     },
     {
@@ -116777,7 +116777,7 @@
         "orig": "A2A",
         "code": "C2A",
         "block": "C",
-        "status": "Available",
+        "status": "Coming soon",
         "typology": "T3",
         "duplex": false,
         "gross": 112.15,
@@ -116792,7 +116792,7 @@
         "orientation": "East / West",
         "price": 510000
       },
-      "status": "available",
+      "status": "soon",
       "price": 510000
     },
     {
@@ -116957,7 +116957,7 @@
         "orig": "A2A",
         "code": "D2A",
         "block": "D",
-        "status": "Available",
+        "status": "Coming soon",
         "typology": "T3",
         "duplex": false,
         "gross": 112.15,
@@ -116972,7 +116972,7 @@
         "orientation": "East / West",
         "price": 510000
       },
-      "status": "available",
+      "status": "soon",
       "price": 510000
     },
     {
@@ -117109,7 +117109,7 @@
         "orig": "A2B",
         "code": "D2B",
         "block": "D",
-        "status": "Available",
+        "status": "Coming soon",
         "typology": "T2",
         "duplex": false,
         "gross": 83.1,
@@ -117124,7 +117124,7 @@
         "orientation": "East",
         "price": 380000
       },
-      "status": "available",
+      "status": "soon",
       "price": 380000
     },
     {
@@ -117281,7 +117281,7 @@
         "orig": "A2C",
         "code": "D2C",
         "block": "D",
-        "status": "Available",
+        "status": "Coming soon",
         "typology": "T3",
         "duplex": false,
         "gross": 110.9,
@@ -117296,7 +117296,7 @@
         "orientation": "East / West",
         "price": 500000
       },
-      "status": "available",
+      "status": "soon",
       "price": 500000
     },
     {
@@ -117483,7 +117483,7 @@
         "orig": "B2A",
         "code": "D2D",
         "block": "D",
-        "status": "Available",
+        "status": "Coming soon",
         "typology": "T2",
         "duplex": false,
         "gross": 94.8,
@@ -117498,7 +117498,7 @@
         "orientation": "East / West",
         "price": 430000
       },
-      "status": "available",
+      "status": "soon",
       "price": 430000
     },
     {
@@ -117663,7 +117663,7 @@
         "orig": "B2B",
         "code": "D2E",
         "block": "D",
-        "status": "Available",
+        "status": "Coming soon",
         "typology": "T2",
         "duplex": false,
         "gross": 85.45,
@@ -117678,7 +117678,7 @@
         "orientation": "East",
         "price": 380000
       },
-      "status": "available",
+      "status": "soon",
       "price": 380000
     },
     {
@@ -117833,7 +117833,7 @@
         "orig": "B2C",
         "code": "D2F",
         "block": "D",
-        "status": "Available",
+        "status": "Coming soon",
         "typology": "T3",
         "duplex": false,
         "gross": 131.85,
@@ -117848,7 +117848,7 @@
         "orientation": "East / South",
         "price": 560000
       },
-      "status": "available",
+      "status": "soon",
       "price": 560000
     },
     {
@@ -118029,7 +118029,7 @@
         "orig": "B2D",
         "code": "D2G",
         "block": "D",
-        "status": "Available",
+        "status": "Coming soon",
         "typology": "T3",
         "duplex": false,
         "gross": 107.25,
@@ -118044,7 +118044,7 @@
         "orientation": "South / North",
         "price": 480000
       },
-      "status": "available",
+      "status": "soon",
       "price": 480000
     },
     {
@@ -118199,7 +118199,7 @@
         "orig": "C2A",
         "code": "D2H",
         "block": "D",
-        "status": "Available",
+        "status": "Coming soon",
         "typology": "T2",
         "duplex": false,
         "gross": 85.5,
@@ -118214,7 +118214,7 @@
         "orientation": "South / North",
         "price": 390000
       },
-      "status": "available",
+      "status": "soon",
       "price": 390000
     },
     {
@@ -118401,7 +118401,7 @@
         "orig": "C2B",
         "code": "D2I",
         "block": "D",
-        "status": "Available",
+        "status": "Coming soon",
         "typology": "T3",
         "duplex": false,
         "gross": 107.1,
@@ -118416,7 +118416,7 @@
         "orientation": "South / North",
         "price": 470000
       },
-      "status": "available",
+      "status": "soon",
       "price": 470000
     },
     {
@@ -121163,7 +121163,7 @@
         "orig": "C3B",
         "code": "C3I",
         "block": "C",
-        "status": "Available",
+        "status": "Coming soon",
         "typology": "T3",
         "duplex": false,
         "gross": 107.1,
@@ -121178,7 +121178,7 @@
         "orientation": "North / South",
         "price": 480000
       },
-      "status": "available",
+      "status": "soon",
       "price": 480000
     },
     {
@@ -121329,7 +121329,7 @@
         "orig": "C3A",
         "code": "C3H",
         "block": "C",
-        "status": "Available",
+        "status": "Coming soon",
         "typology": "T2",
         "duplex": false,
         "gross": 85.5,
@@ -121344,7 +121344,7 @@
         "orientation": "North / South",
         "price": 390000
       },
-      "status": "available",
+      "status": "soon",
       "price": 390000
     },
     {
@@ -121533,7 +121533,7 @@
         "orig": "B3D",
         "code": "C3G",
         "block": "C",
-        "status": "Available",
+        "status": "Coming soon",
         "typology": "T3",
         "duplex": false,
         "gross": 107.25,
@@ -121548,7 +121548,7 @@
         "orientation": "North / South",
         "price": 490000
       },
-      "status": "available",
+      "status": "soon",
       "price": 490000
     },
     {
@@ -121739,7 +121739,7 @@
         "orig": "B3C",
         "code": "C3F",
         "block": "C",
-        "status": "Available",
+        "status": "Coming soon",
         "typology": "T3",
         "duplex": false,
         "gross": 131.85,
@@ -121754,7 +121754,7 @@
         "orientation": "North / East",
         "price": 570000
       },
-      "status": "available",
+      "status": "soon",
       "price": 570000
     },
     {
@@ -121955,7 +121955,7 @@
         "orig": "B3B",
         "code": "C3E",
         "block": "C",
-        "status": "Available",
+        "status": "Coming soon",
         "typology": "T2",
         "duplex": false,
         "gross": 85.45,
@@ -121970,7 +121970,7 @@
         "orientation": "East",
         "price": 390000
       },
-      "status": "available",
+      "status": "soon",
       "price": 390000
     },
     {
@@ -122145,7 +122145,7 @@
         "orig": "B3A",
         "code": "C3D",
         "block": "C",
-        "status": "Available",
+        "status": "Coming soon",
         "typology": "T2",
         "duplex": false,
         "gross": 94.8,
@@ -122160,7 +122160,7 @@
         "orientation": "East / West",
         "price": 430000
       },
-      "status": "available",
+      "status": "soon",
       "price": 430000
     },
     {
@@ -122325,7 +122325,7 @@
         "orig": "A3C",
         "code": "C3C",
         "block": "C",
-        "status": "Available",
+        "status": "Coming soon",
         "typology": "T3",
         "duplex": false,
         "gross": 110.9,
@@ -122340,7 +122340,7 @@
         "orientation": "East / West",
         "price": 500000
       },
-      "status": "available",
+      "status": "soon",
       "price": 500000
     },
     {
@@ -122505,7 +122505,7 @@
         "orig": "A3B",
         "code": "C3B",
         "block": "C",
-        "status": "Available",
+        "status": "Coming soon",
         "typology": "T2",
         "duplex": false,
         "gross": 83.1,
@@ -122520,7 +122520,7 @@
         "orientation": "East",
         "price": 390000
       },
-      "status": "available",
+      "status": "soon",
       "price": 390000
     },
     {
@@ -122685,7 +122685,7 @@
         "orig": "A3A",
         "code": "C3A",
         "block": "C",
-        "status": "Available",
+        "status": "Coming soon",
         "typology": "T3",
         "duplex": false,
         "gross": 112.15,
@@ -122700,7 +122700,7 @@
         "orientation": "East / West",
         "price": 520000
       },
-      "status": "available",
+      "status": "soon",
       "price": 520000
     },
     {
@@ -122865,7 +122865,7 @@
         "orig": "A3A",
         "code": "D3A",
         "block": "D",
-        "status": "Available",
+        "status": "Coming soon",
         "typology": "T3",
         "duplex": false,
         "gross": 112.15,
@@ -122880,7 +122880,7 @@
         "orientation": "East / West",
         "price": 520000
       },
-      "status": "available",
+      "status": "soon",
       "price": 520000
     },
     {
@@ -123017,7 +123017,7 @@
         "orig": "A3B",
         "code": "D3B",
         "block": "D",
-        "status": "Available",
+        "status": "Coming soon",
         "typology": "T2",
         "duplex": false,
         "gross": 83.1,
@@ -123032,7 +123032,7 @@
         "orientation": "East",
         "price": 390000
       },
-      "status": "available",
+      "status": "soon",
       "price": 390000
     },
     {
@@ -123189,7 +123189,7 @@
         "orig": "A3C",
         "code": "D3C",
         "block": "D",
-        "status": "Available",
+        "status": "Coming soon",
         "typology": "T3",
         "duplex": false,
         "gross": 110.9,
@@ -123204,7 +123204,7 @@
         "orientation": "East / West",
         "price": 500000
       },
-      "status": "available",
+      "status": "soon",
       "price": 500000
     },
     {
@@ -123391,7 +123391,7 @@
         "orig": "B3A",
         "code": "D3D",
         "block": "D",
-        "status": "Available",
+        "status": "Coming soon",
         "typology": "T2",
         "duplex": false,
         "gross": 94.8,
@@ -123406,7 +123406,7 @@
         "orientation": "East / West",
         "price": 430000
       },
-      "status": "available",
+      "status": "soon",
       "price": 430000
     },
     {
@@ -123571,7 +123571,7 @@
         "orig": "B3B",
         "code": "D3E",
         "block": "D",
-        "status": "Available",
+        "status": "Coming soon",
         "typology": "T2",
         "duplex": false,
         "gross": 85.45,
@@ -123586,7 +123586,7 @@
         "orientation": "East",
         "price": 390000
       },
-      "status": "available",
+      "status": "soon",
       "price": 390000
     },
     {
@@ -123741,7 +123741,7 @@
         "orig": "B3C",
         "code": "D3F",
         "block": "D",
-        "status": "Available",
+        "status": "Coming soon",
         "typology": "T3",
         "duplex": false,
         "gross": 131.85,
@@ -123756,7 +123756,7 @@
         "orientation": "East / South",
         "price": 570000
       },
-      "status": "available",
+      "status": "soon",
       "price": 570000
     },
     {
@@ -123937,7 +123937,7 @@
         "orig": "B3D",
         "code": "D3G",
         "block": "D",
-        "status": "Available",
+        "status": "Coming soon",
         "typology": "T3",
         "duplex": false,
         "gross": 107.25,
@@ -123952,7 +123952,7 @@
         "orientation": "South / North",
         "price": 490000
       },
-      "status": "available",
+      "status": "soon",
       "price": 490000
     },
     {
@@ -124107,7 +124107,7 @@
         "orig": "C3A",
         "code": "D3H",
         "block": "D",
-        "status": "Available",
+        "status": "Coming soon",
         "typology": "T2",
         "duplex": false,
         "gross": 85.5,
@@ -124122,7 +124122,7 @@
         "orientation": "South / North",
         "price": 390000
       },
-      "status": "available",
+      "status": "soon",
       "price": 390000
     },
     {
@@ -124309,7 +124309,7 @@
         "orig": "C3B",
         "code": "D3I",
         "block": "D",
-        "status": "Available",
+        "status": "Coming soon",
         "typology": "T3",
         "duplex": false,
         "gross": 107.1,
@@ -124324,7 +124324,7 @@
         "orientation": "South / North",
         "price": 480000
       },
-      "status": "available",
+      "status": "soon",
       "price": 480000
     },
     {
@@ -127072,7 +127072,7 @@
         "orig": "C4B",
         "code": "C4I",
         "block": "C",
-        "status": "Available",
+        "status": "Coming soon",
         "typology": "T3",
         "duplex": true,
         "gross": 176.3,
@@ -127087,7 +127087,7 @@
         "orientation": "North / South",
         "price": 680000
       },
-      "status": "available",
+      "status": "soon",
       "price": 680000
     },
     {
@@ -127283,7 +127283,7 @@
         "orig": "C4A",
         "code": "C4H",
         "block": "C",
-        "status": "Available",
+        "status": "Coming soon",
         "typology": "T2",
         "duplex": true,
         "gross": 135.55,
@@ -127298,7 +127298,7 @@
         "orientation": "North / South",
         "price": 500000
       },
-      "status": "available",
+      "status": "soon",
       "price": 500000
     },
     {
@@ -127522,7 +127522,7 @@
         "orig": "B4D",
         "code": "C4G",
         "block": "C",
-        "status": "Available",
+        "status": "Coming soon",
         "typology": "T3",
         "duplex": true,
         "gross": 168.2,
@@ -127537,7 +127537,7 @@
         "orientation": "North / South",
         "price": 580000
       },
-      "status": "available",
+      "status": "soon",
       "price": 580000
     },
     {
@@ -127697,7 +127697,7 @@
         "orig": "B4C",
         "code": "C4F",
         "block": "C",
-        "status": "Available",
+        "status": "Coming soon",
         "typology": "T3",
         "duplex": true,
         "gross": 205.8,
@@ -127712,7 +127712,7 @@
         "orientation": "North / East",
         "price": 700000
       },
-      "status": "available",
+      "status": "soon",
       "price": 700000
     },
     {
@@ -127896,7 +127896,7 @@
         "orig": "B4B",
         "code": "C4E",
         "block": "C",
-        "status": "Available",
+        "status": "Coming soon",
         "typology": "T2",
         "duplex": true,
         "gross": 162.5,
@@ -127911,7 +127911,7 @@
         "orientation": "East",
         "price": 580000
       },
-      "status": "available",
+      "status": "soon",
       "price": 580000
     },
     {
@@ -128079,7 +128079,7 @@
         "orig": "B4A",
         "code": "C4D",
         "block": "C",
-        "status": "Available",
+        "status": "Coming soon",
         "typology": "T2",
         "duplex": true,
         "gross": 146.5,
@@ -128094,7 +128094,7 @@
         "orientation": "East / West",
         "price": 550000
       },
-      "status": "available",
+      "status": "soon",
       "price": 550000
     },
     {
@@ -128270,7 +128270,7 @@
         "orig": "A4C",
         "code": "C4C",
         "block": "C",
-        "status": "Available",
+        "status": "Coming soon",
         "typology": "T3",
         "duplex": true,
         "gross": 176.25,
@@ -128285,7 +128285,7 @@
         "orientation": "East / West",
         "price": 600000
       },
-      "status": "available",
+      "status": "soon",
       "price": 600000
     },
     {
@@ -128449,7 +128449,7 @@
         "orig": "A4B",
         "code": "C4B",
         "block": "C",
-        "status": "Available",
+        "status": "Coming soon",
         "typology": "T2",
         "duplex": true,
         "gross": 142.85,
@@ -128464,7 +128464,7 @@
         "orientation": "East",
         "price": 550000
       },
-      "status": "available",
+      "status": "soon",
       "price": 550000
     },
     {
@@ -128648,7 +128648,7 @@
         "orig": "A4A",
         "code": "C4A",
         "block": "C",
-        "status": "Available",
+        "status": "Coming soon",
         "typology": "T3",
         "duplex": true,
         "gross": 177.5,
@@ -128663,7 +128663,7 @@
         "orientation": "East / West",
         "price": 650000
       },
-      "status": "available",
+      "status": "soon",
       "price": 650000
     },
     {
@@ -128835,7 +128835,7 @@
         "orig": "A4A",
         "code": "D4A",
         "block": "D",
-        "status": "Available",
+        "status": "Coming soon",
         "typology": "T3",
         "duplex": true,
         "gross": 177.5,
@@ -128850,7 +128850,7 @@
         "orientation": "East / West",
         "price": 650000
       },
-      "status": "available",
+      "status": "soon",
       "price": 650000
     },
     {
@@ -128998,7 +128998,7 @@
         "orig": "A4B",
         "code": "D4B",
         "block": "D",
-        "status": "Available",
+        "status": "Coming soon",
         "typology": "T2",
         "duplex": true,
         "gross": 142.85,
@@ -129013,7 +129013,7 @@
         "orientation": "East",
         "price": 550000
       },
-      "status": "available",
+      "status": "soon",
       "price": 550000
     },
     {
@@ -129181,7 +129181,7 @@
         "orig": "A4C",
         "code": "D4C",
         "block": "D",
-        "status": "Available",
+        "status": "Coming soon",
         "typology": "T3",
         "duplex": true,
         "gross": 176.25,
@@ -129196,7 +129196,7 @@
         "orientation": "East / West",
         "price": 600000
       },
-      "status": "available",
+      "status": "soon",
       "price": 600000
     },
     {
@@ -129372,7 +129372,7 @@
         "orig": "B4A",
         "code": "D4D",
         "block": "D",
-        "status": "Available",
+        "status": "Coming soon",
         "typology": "T2",
         "duplex": true,
         "gross": 146.5,
@@ -129387,7 +129387,7 @@
         "orientation": "East / West",
         "price": 550000
       },
-      "status": "available",
+      "status": "soon",
       "price": 550000
     },
     {
@@ -129543,7 +129543,7 @@
         "orig": "B4B",
         "code": "D4E",
         "block": "D",
-        "status": "Available",
+        "status": "Coming soon",
         "typology": "T2",
         "duplex": true,
         "gross": 162.5,
@@ -129558,7 +129558,7 @@
         "orientation": "East",
         "price": 580000
       },
-      "status": "available",
+      "status": "soon",
       "price": 580000
     },
     {
@@ -129690,7 +129690,7 @@
         "orig": "B4C",
         "code": "D4F",
         "block": "D",
-        "status": "Available",
+        "status": "Coming soon",
         "typology": "T3",
         "duplex": true,
         "gross": 205.8,
@@ -129705,7 +129705,7 @@
         "orientation": "East / South",
         "price": 700000
       },
-      "status": "available",
+      "status": "soon",
       "price": 700000
     },
     {
@@ -129901,7 +129901,7 @@
         "orig": "B4D",
         "code": "D4G",
         "block": "D",
-        "status": "Available",
+        "status": "Coming soon",
         "typology": "T3",
         "duplex": true,
         "gross": 168.2,
@@ -129916,7 +129916,7 @@
         "orientation": "South / North",
         "price": 580000
       },
-      "status": "available",
+      "status": "soon",
       "price": 580000
     },
     {
@@ -130076,7 +130076,7 @@
         "orig": "C4A",
         "code": "D4H",
         "block": "D",
-        "status": "Available",
+        "status": "Coming soon",
         "typology": "T2",
         "duplex": true,
         "gross": 135.55,
@@ -130091,7 +130091,7 @@
         "orientation": "South / North",
         "price": 500000
       },
-      "status": "available",
+      "status": "soon",
       "price": 500000
     },
     {
@@ -130283,7 +130283,7 @@
         "orig": "C4B",
         "code": "D4I",
         "block": "D",
-        "status": "Available",
+        "status": "Coming soon",
         "typology": "T3",
         "duplex": true,
         "gross": 176.3,
@@ -130298,7 +130298,7 @@
         "orientation": "South / North",
         "price": 680000
       },
-      "status": "available",
+      "status": "soon",
       "price": 680000
     },
     {
@@ -132339,7 +132339,7 @@
         "orig": "B0A",
         "code": "F0D",
         "block": "F",
-        "status": "Available",
+        "status": "Coming soon",
         "typology": "T2",
         "duplex": false,
         "gross": 91.8,
@@ -132354,7 +132354,7 @@
         "orientation": "West / East",
         "price": 399000
       },
-      "status": "available",
+      "status": "soon",
       "price": 399000
     },
     {
@@ -132479,7 +132479,7 @@
         "orig": "B0B",
         "code": "F0E",
         "block": "F",
-        "status": "Available",
+        "status": "Coming soon",
         "typology": "T1",
         "duplex": false,
         "gross": 61.8,
@@ -132494,7 +132494,7 @@
         "orientation": "West",
         "price": 280000
       },
-      "status": "available",
+      "status": "soon",
       "price": 280000
     },
     {
@@ -132637,7 +132637,7 @@
         "orig": "B0C",
         "code": "F0F",
         "block": "F",
-        "status": "Available",
+        "status": "Coming soon",
         "typology": "T3",
         "duplex": false,
         "gross": 131.85,
@@ -132652,7 +132652,7 @@
         "orientation": "West / North",
         "price": 550000
       },
-      "status": "available",
+      "status": "soon",
       "price": 550000
     },
     {
@@ -132841,7 +132841,7 @@
         "orig": "B0D",
         "code": "F0G",
         "block": "F",
-        "status": "Available",
+        "status": "Coming soon",
         "typology": "T2",
         "duplex": false,
         "gross": 85.5,
@@ -132856,7 +132856,7 @@
         "orientation": "North / South",
         "price": 370000
       },
-      "status": "available",
+      "status": "soon",
       "price": 370000
     },
     {
@@ -133007,7 +133007,7 @@
         "orig": "C0B",
         "code": "G0I",
         "block": "G",
-        "status": "Available",
+        "status": "Coming soon",
         "typology": "T2",
         "duplex": false,
         "gross": 86,
@@ -133022,7 +133022,7 @@
         "orientation": "North / South",
         "price": 380000
       },
-      "status": "available",
+      "status": "soon",
       "price": 380000
     },
     {
@@ -133165,7 +133165,7 @@
         "orig": "C0A",
         "code": "G0H",
         "block": "G",
-        "status": "Available",
+        "status": "Coming soon",
         "typology": "T2",
         "duplex": false,
         "gross": 86,
@@ -133180,7 +133180,7 @@
         "orientation": "North / South",
         "price": 380000
       },
-      "status": "available",
+      "status": "soon",
       "price": 380000
     },
     {
@@ -133365,7 +133365,7 @@
         "orig": "B0D",
         "code": "G0G",
         "block": "G",
-        "status": "Available",
+        "status": "Coming soon",
         "typology": "T2",
         "duplex": false,
         "gross": 85.5,
@@ -133380,7 +133380,7 @@
         "orientation": "North / South",
         "price": 380000
       },
-      "status": "available",
+      "status": "soon",
       "price": 380000
     },
     {
@@ -133523,7 +133523,7 @@
         "orig": "B0C",
         "code": "G0F",
         "block": "G",
-        "status": "Available",
+        "status": "Coming soon",
         "typology": "T3",
         "duplex": false,
         "gross": 131.85,
@@ -133538,7 +133538,7 @@
         "orientation": "North / East",
         "price": 500000
       },
-      "status": "available",
+      "status": "soon",
       "price": 500000
     },
     {
@@ -133619,7 +133619,7 @@
         "orig": "B0B",
         "code": "G0E",
         "block": "G",
-        "status": "Available",
+        "status": "Coming soon",
         "typology": "T1",
         "duplex": false,
         "gross": 61.8,
@@ -133634,7 +133634,7 @@
         "orientation": "East",
         "price": 289000
       },
-      "status": "available",
+      "status": "soon",
       "price": 289000
     },
     {
@@ -133797,7 +133797,7 @@
         "orig": "B0A",
         "code": "G0D",
         "block": "G",
-        "status": "Available",
+        "status": "Coming soon",
         "typology": "T2",
         "duplex": false,
         "gross": 91.8,
@@ -133812,7 +133812,7 @@
         "orientation": "East / West",
         "price": 399000
       },
-      "status": "available",
+      "status": "soon",
       "price": 399000
     },
     {
@@ -133965,7 +133965,7 @@
         "orig": "A0C",
         "code": "G0C",
         "block": "G",
-        "status": "Available",
+        "status": "Coming soon",
         "typology": "T2",
         "duplex": false,
         "gross": 91.2,
@@ -133980,7 +133980,7 @@
         "orientation": "East / West",
         "price": 399000
       },
-      "status": "available",
+      "status": "soon",
       "price": 399000
     },
     {
@@ -134061,7 +134061,7 @@
         "orig": "A0B",
         "code": "G0B",
         "block": "G",
-        "status": "Available",
+        "status": "Coming soon",
         "typology": "T1",
         "duplex": false,
         "gross": 60.2,
@@ -134076,7 +134076,7 @@
         "orientation": "East",
         "price": 289000
       },
-      "status": "available",
+      "status": "soon",
       "price": 289000
     },
     {
@@ -134225,7 +134225,7 @@
         "orig": "A0A",
         "code": "G0A",
         "block": "G",
-        "status": "Available",
+        "status": "Coming soon",
         "typology": "T3",
         "duplex": false,
         "gross": 108.2,
@@ -134240,7 +134240,7 @@
         "orientation": "East / West",
         "price": 470000
       },
-      "status": "available",
+      "status": "soon",
       "price": 470000
     },
     {
@@ -134421,7 +134421,7 @@
         "orig": "A0A",
         "code": "H0A",
         "block": "H",
-        "status": "Available",
+        "status": "Coming soon",
         "typology": "T3",
         "duplex": false,
         "gross": 108.2,
@@ -134436,7 +134436,7 @@
         "orientation": "East / West",
         "price": 470000
       },
-      "status": "available",
+      "status": "soon",
       "price": 470000
     },
     {
@@ -134557,7 +134557,7 @@
         "orig": "A0B",
         "code": "H0B",
         "block": "H",
-        "status": "Available",
+        "status": "Coming soon",
         "typology": "T1",
         "duplex": false,
         "gross": 60.2,
@@ -134572,7 +134572,7 @@
         "orientation": "East",
         "price": 289000
       },
-      "status": "available",
+      "status": "soon",
       "price": 289000
     },
     {
@@ -134713,7 +134713,7 @@
         "orig": "A0C",
         "code": "H0C",
         "block": "H",
-        "status": "Available",
+        "status": "Coming soon",
         "typology": "T2",
         "duplex": false,
         "gross": 91.2,
@@ -134728,7 +134728,7 @@
         "orientation": "East / West",
         "price": 399000
       },
-      "status": "available",
+      "status": "soon",
       "price": 399000
     },
     {
@@ -134891,7 +134891,7 @@
         "orig": "B0A",
         "code": "H0D",
         "block": "H",
-        "status": "Available",
+        "status": "Coming soon",
         "typology": "T2",
         "duplex": false,
         "gross": 91.8,
@@ -134906,7 +134906,7 @@
         "orientation": "East / West",
         "price": 399000
       },
-      "status": "available",
+      "status": "soon",
       "price": 399000
     },
     {
@@ -134995,7 +134995,7 @@
         "orig": "B0B",
         "code": "H0E",
         "block": "H",
-        "status": "Available",
+        "status": "Coming soon",
         "typology": "T1",
         "duplex": false,
         "gross": 61.8,
@@ -135010,7 +135010,7 @@
         "orientation": "East",
         "price": 289000
       },
-      "status": "available",
+      "status": "soon",
       "price": 289000
     },
     {
@@ -135181,7 +135181,7 @@
         "orig": "B0C",
         "code": "H0F",
         "block": "H",
-        "status": "Available",
+        "status": "Coming soon",
         "typology": "T3",
         "duplex": false,
         "gross": 131.85,
@@ -135196,7 +135196,7 @@
         "orientation": "East / South",
         "price": 500000
       },
-      "status": "available",
+      "status": "soon",
       "price": 500000
     },
     {
@@ -135365,7 +135365,7 @@
         "orig": "B0D",
         "code": "H0G",
         "block": "H",
-        "status": "Available",
+        "status": "Coming soon",
         "typology": "T2",
         "duplex": false,
         "gross": 85.5,
@@ -135380,7 +135380,7 @@
         "orientation": "South / North",
         "price": 380000
       },
-      "status": "available",
+      "status": "soon",
       "price": 380000
     },
     {
@@ -135527,7 +135527,7 @@
         "orig": "C0A",
         "code": "H0H",
         "block": "H",
-        "status": "Available",
+        "status": "Coming soon",
         "typology": "T2",
         "duplex": false,
         "gross": 86,
@@ -135542,7 +135542,7 @@
         "orientation": "South / North",
         "price": 380000
       },
-      "status": "available",
+      "status": "soon",
       "price": 380000
     },
     {
@@ -135677,7 +135677,7 @@
         "orig": "C0B",
         "code": "H0I",
         "block": "H",
-        "status": "Available",
+        "status": "Coming soon",
         "typology": "T2",
         "duplex": false,
         "gross": 86,
@@ -135692,7 +135692,7 @@
         "orientation": "South / North",
         "price": 380000
       },
-      "status": "available",
+      "status": "soon",
       "price": 380000
     },
     {
@@ -135885,7 +135885,7 @@
         "orig": "B0D",
         "code": "E0G",
         "block": "E",
-        "status": "Available",
+        "status": "Coming soon",
         "typology": "T2",
         "duplex": false,
         "gross": 85.5,
@@ -135900,7 +135900,7 @@
         "orientation": "South / North",
         "price": 370000
       },
-      "status": "available",
+      "status": "soon",
       "price": 370000
     },
     {
@@ -136083,7 +136083,7 @@
         "orig": "B0C",
         "code": "E0F",
         "block": "E",
-        "status": "Available",
+        "status": "Coming soon",
         "typology": "T3",
         "duplex": false,
         "gross": 131.85,
@@ -136098,7 +136098,7 @@
         "orientation": "South / West",
         "price": 550000
       },
-      "status": "available",
+      "status": "soon",
       "price": 550000
     },
     {
@@ -136215,7 +136215,7 @@
         "orig": "B0B",
         "code": "E0E",
         "block": "E",
-        "status": "Available",
+        "status": "Coming soon",
         "typology": "T1",
         "duplex": false,
         "gross": 61.8,
@@ -136230,7 +136230,7 @@
         "orientation": "West",
         "price": 280000
       },
-      "status": "available",
+      "status": "soon",
       "price": 280000
     },
     {
@@ -136417,7 +136417,7 @@
         "orig": "B0A",
         "code": "E0D",
         "block": "E",
-        "status": "Available",
+        "status": "Coming soon",
         "typology": "T2",
         "duplex": false,
         "gross": 91.8,
@@ -136432,7 +136432,7 @@
         "orientation": "West / East",
         "price": 399000
       },
-      "status": "available",
+      "status": "soon",
       "price": 399000
     },
     {
@@ -136573,7 +136573,7 @@
         "orig": "A0C",
         "code": "E0C",
         "block": "E",
-        "status": "Available",
+        "status": "Coming soon",
         "typology": "T2",
         "duplex": false,
         "gross": 91.2,
@@ -136588,7 +136588,7 @@
         "orientation": "West / East",
         "price": 399000
       },
-      "status": "available",
+      "status": "soon",
       "price": 399000
     },
     {
@@ -136669,7 +136669,7 @@
         "orig": "A0B",
         "code": "E0B",
         "block": "E",
-        "status": "Available",
+        "status": "Coming soon",
         "typology": "T1",
         "duplex": false,
         "gross": 60.2,
@@ -136684,7 +136684,7 @@
         "orientation": "West",
         "price": 280000
       },
-      "status": "available",
+      "status": "soon",
       "price": 280000
     },
     {
@@ -136853,7 +136853,7 @@
         "orig": "A0A",
         "code": "E0A",
         "block": "E",
-        "status": "Available",
+        "status": "Coming soon",
         "typology": "T3",
         "duplex": false,
         "gross": 108.2,
@@ -136868,7 +136868,7 @@
         "orientation": "West / East",
         "price": 470000
       },
-      "status": "available",
+      "status": "soon",
       "price": 470000
     },
     {
@@ -137041,7 +137041,7 @@
         "orig": "A0A",
         "code": "F0A",
         "block": "F",
-        "status": "Available",
+        "status": "Coming soon",
         "typology": "T3",
         "duplex": false,
         "gross": 108.2,
@@ -137056,7 +137056,7 @@
         "orientation": "West / East",
         "price": 470000
       },
-      "status": "available",
+      "status": "soon",
       "price": 470000
     },
     {
@@ -137149,7 +137149,7 @@
         "orig": "A0B",
         "code": "F0B",
         "block": "F",
-        "status": "Available",
+        "status": "Coming soon",
         "typology": "T1",
         "duplex": false,
         "gross": 60.2,
@@ -137164,7 +137164,7 @@
         "orientation": "West",
         "price": 280000
       },
-      "status": "available",
+      "status": "soon",
       "price": 280000
     },
     {
@@ -137321,7 +137321,7 @@
         "orig": "A0C",
         "code": "F0C",
         "block": "F",
-        "status": "Available",
+        "status": "Coming soon",
         "typology": "T2",
         "duplex": false,
         "gross": 91.2,
@@ -137336,7 +137336,7 @@
         "orientation": "West / East",
         "price": 399000
       },
-      "status": "available",
+      "status": "soon",
       "price": 399000
     },
     {
@@ -137531,7 +137531,7 @@
         "orig": "B1A",
         "code": "F1D",
         "block": "F",
-        "status": "Available",
+        "status": "Coming soon",
         "typology": "T2",
         "duplex": false,
         "gross": 94.8,
@@ -137546,7 +137546,7 @@
         "orientation": "West / East",
         "price": 410000
       },
-      "status": "available",
+      "status": "soon",
       "price": 410000
     },
     {
@@ -137687,7 +137687,7 @@
         "orig": "B1B",
         "code": "F1E",
         "block": "F",
-        "status": "Available",
+        "status": "Coming soon",
         "typology": "T2",
         "duplex": false,
         "gross": 85.45,
@@ -137702,7 +137702,7 @@
         "orientation": "West",
         "price": 380000
       },
-      "status": "available",
+      "status": "soon",
       "price": 380000
     },
     {
@@ -137857,7 +137857,7 @@
         "orig": "B1C",
         "code": "F1F",
         "block": "F",
-        "status": "Available",
+        "status": "Coming soon",
         "typology": "T3",
         "duplex": false,
         "gross": 131.85,
@@ -137872,7 +137872,7 @@
         "orientation": "West / North",
         "price": 570000
       },
-      "status": "available",
+      "status": "soon",
       "price": 570000
     },
     {
@@ -138085,7 +138085,7 @@
         "orig": "B1D",
         "code": "F1G",
         "block": "F",
-        "status": "Available",
+        "status": "Coming soon",
         "typology": "T3",
         "duplex": false,
         "gross": 107.25,
@@ -138100,7 +138100,7 @@
         "orientation": "North / South",
         "price": 440000
       },
-      "status": "available",
+      "status": "soon",
       "price": 440000
     },
     {
@@ -138307,7 +138307,7 @@
         "orig": "C1B",
         "code": "G1I",
         "block": "G",
-        "status": "Available",
+        "status": "Coming soon",
         "typology": "T3",
         "duplex": false,
         "gross": 107.1,
@@ -138322,7 +138322,7 @@
         "orientation": "North / South",
         "price": 460000
       },
-      "status": "available",
+      "status": "soon",
       "price": 460000
     },
     {
@@ -138473,7 +138473,7 @@
         "orig": "C1A",
         "code": "G1H",
         "block": "G",
-        "status": "Available",
+        "status": "Coming soon",
         "typology": "T2",
         "duplex": false,
         "gross": 85.5,
@@ -138488,7 +138488,7 @@
         "orientation": "North / South",
         "price": 380000
       },
-      "status": "available",
+      "status": "soon",
       "price": 380000
     },
     {
@@ -138705,7 +138705,7 @@
         "orig": "B1D",
         "code": "G1G",
         "block": "G",
-        "status": "Available",
+        "status": "Coming soon",
         "typology": "T3",
         "duplex": false,
         "gross": 107.25,
@@ -138720,7 +138720,7 @@
         "orientation": "North / South",
         "price": 470000
       },
-      "status": "available",
+      "status": "soon",
       "price": 470000
     },
     {
@@ -138927,7 +138927,7 @@
         "orig": "B1C",
         "code": "G1F",
         "block": "G",
-        "status": "Available",
+        "status": "Coming soon",
         "typology": "T3",
         "duplex": false,
         "gross": 131.85,
@@ -138942,7 +138942,7 @@
         "orientation": "North / East",
         "price": 550000
       },
-      "status": "available",
+      "status": "soon",
       "price": 550000
     },
     {
@@ -139139,7 +139139,7 @@
         "orig": "B1B",
         "code": "G1E",
         "block": "G",
-        "status": "Available",
+        "status": "Coming soon",
         "typology": "T2",
         "duplex": false,
         "gross": 85.45,
@@ -139154,7 +139154,7 @@
         "orientation": "East",
         "price": 370000
       },
-      "status": "available",
+      "status": "soon",
       "price": 370000
     },
     {
@@ -139389,7 +139389,7 @@
         "orig": "B1A",
         "code": "G1D",
         "block": "G",
-        "status": "Available",
+        "status": "Coming soon",
         "typology": "T2",
         "duplex": false,
         "gross": 94.8,
@@ -139404,7 +139404,7 @@
         "orientation": "East / West",
         "price": 420000
       },
-      "status": "available",
+      "status": "soon",
       "price": 420000
     },
     {
@@ -139569,7 +139569,7 @@
         "orig": "A1C",
         "code": "G1C",
         "block": "G",
-        "status": "Available",
+        "status": "Coming soon",
         "typology": "T3",
         "duplex": false,
         "gross": 110.9,
@@ -139584,7 +139584,7 @@
         "orientation": "East / West",
         "price": 490000
       },
-      "status": "available",
+      "status": "soon",
       "price": 490000
     },
     {
@@ -139761,7 +139761,7 @@
         "orig": "A1B",
         "code": "G1B",
         "block": "G",
-        "status": "Available",
+        "status": "Coming soon",
         "typology": "T2",
         "duplex": false,
         "gross": 83.1,
@@ -139776,7 +139776,7 @@
         "orientation": "East",
         "price": 370000
       },
-      "status": "available",
+      "status": "soon",
       "price": 370000
     },
     {
@@ -139953,7 +139953,7 @@
         "orig": "A1A",
         "code": "G1A",
         "block": "G",
-        "status": "Available",
+        "status": "Coming soon",
         "typology": "T3",
         "duplex": false,
         "gross": 112.15,
@@ -139968,7 +139968,7 @@
         "orientation": "East / West",
         "price": 500000
       },
-      "status": "available",
+      "status": "soon",
       "price": 500000
     },
     {
@@ -140133,7 +140133,7 @@
         "orig": "A1A",
         "code": "H1A",
         "block": "H",
-        "status": "Available",
+        "status": "Coming soon",
         "typology": "T3",
         "duplex": false,
         "gross": 112.15,
@@ -140148,7 +140148,7 @@
         "orientation": "East / West",
         "price": 500000
       },
-      "status": "available",
+      "status": "soon",
       "price": 500000
     },
     {
@@ -140285,7 +140285,7 @@
         "orig": "A1B",
         "code": "H1B",
         "block": "H",
-        "status": "Available",
+        "status": "Coming soon",
         "typology": "T2",
         "duplex": false,
         "gross": 83.1,
@@ -140300,7 +140300,7 @@
         "orientation": "East",
         "price": 370000
       },
-      "status": "available",
+      "status": "soon",
       "price": 370000
     },
     {
@@ -140457,7 +140457,7 @@
         "orig": "A1C",
         "code": "H1C",
         "block": "H",
-        "status": "Available",
+        "status": "Coming soon",
         "typology": "T3",
         "duplex": false,
         "gross": 110.9,
@@ -140472,7 +140472,7 @@
         "orientation": "East / West",
         "price": 490000
       },
-      "status": "available",
+      "status": "soon",
       "price": 490000
     },
     {
@@ -140679,7 +140679,7 @@
         "orig": "B1A",
         "code": "H1D",
         "block": "H",
-        "status": "Available",
+        "status": "Coming soon",
         "typology": "T2",
         "duplex": false,
         "gross": 94.8,
@@ -140694,7 +140694,7 @@
         "orientation": "East / West",
         "price": 420000
       },
-      "status": "available",
+      "status": "soon",
       "price": 420000
     },
     {
@@ -140859,7 +140859,7 @@
         "orig": "B1B",
         "code": "H1E",
         "block": "H",
-        "status": "Available",
+        "status": "Coming soon",
         "typology": "T2",
         "duplex": false,
         "gross": 85.45,
@@ -140874,7 +140874,7 @@
         "orientation": "East",
         "price": 370000
       },
-      "status": "available",
+      "status": "soon",
       "price": 370000
     },
     {
@@ -141029,7 +141029,7 @@
         "orig": "B1C",
         "code": "H1F",
         "block": "H",
-        "status": "Available",
+        "status": "Coming soon",
         "typology": "T3",
         "duplex": false,
         "gross": 131.85,
@@ -141044,7 +141044,7 @@
         "orientation": "East / South",
         "price": 550000
       },
-      "status": "available",
+      "status": "soon",
       "price": 550000
     },
     {
@@ -141225,7 +141225,7 @@
         "orig": "B1D",
         "code": "H1G",
         "block": "H",
-        "status": "Available",
+        "status": "Coming soon",
         "typology": "T3",
         "duplex": false,
         "gross": 107.25,
@@ -141240,7 +141240,7 @@
         "orientation": "South / North",
         "price": 470000
       },
-      "status": "available",
+      "status": "soon",
       "price": 470000
     },
     {
@@ -141395,7 +141395,7 @@
         "orig": "C1A",
         "code": "H1H",
         "block": "H",
-        "status": "Available",
+        "status": "Coming soon",
         "typology": "T2",
         "duplex": false,
         "gross": 85.5,
@@ -141410,7 +141410,7 @@
         "orientation": "South / North",
         "price": 380000
       },
-      "status": "available",
+      "status": "soon",
       "price": 380000
     },
     {
@@ -141593,7 +141593,7 @@
         "orig": "C1B",
         "code": "H1I",
         "block": "H",
-        "status": "Available",
+        "status": "Coming soon",
         "typology": "T3",
         "duplex": false,
         "gross": 107.1,
@@ -141608,7 +141608,7 @@
         "orientation": "South / North",
         "price": 460000
       },
-      "status": "available",
+      "status": "soon",
       "price": 460000
     },
     {
@@ -141801,7 +141801,7 @@
         "orig": "B1D",
         "code": "E1G",
         "block": "E",
-        "status": "Available",
+        "status": "Coming soon",
         "typology": "T3",
         "duplex": false,
         "gross": 107.25,
@@ -141816,7 +141816,7 @@
         "orientation": "South / North",
         "price": 440000
       },
-      "status": "available",
+      "status": "soon",
       "price": 440000
     },
     {
@@ -142011,7 +142011,7 @@
         "orig": "B1C",
         "code": "E1F",
         "block": "E",
-        "status": "Available",
+        "status": "Coming soon",
         "typology": "T3",
         "duplex": false,
         "gross": 131.85,
@@ -142026,7 +142026,7 @@
         "orientation": "South / West",
         "price": 570000
       },
-      "status": "available",
+      "status": "soon",
       "price": 570000
     },
     {
@@ -142207,7 +142207,7 @@
         "orig": "B1B",
         "code": "E1E",
         "block": "E",
-        "status": "Available",
+        "status": "Coming soon",
         "typology": "T2",
         "duplex": false,
         "gross": 85.45,
@@ -142222,7 +142222,7 @@
         "orientation": "West",
         "price": 380000
       },
-      "status": "available",
+      "status": "soon",
       "price": 380000
     },
     {
@@ -142417,7 +142417,7 @@
         "orig": "B1A",
         "code": "E1D",
         "block": "E",
-        "status": "Available",
+        "status": "Coming soon",
         "typology": "T2",
         "duplex": false,
         "gross": 94.8,
@@ -142432,7 +142432,7 @@
         "orientation": "West / East",
         "price": 410000
       },
-      "status": "available",
+      "status": "soon",
       "price": 410000
     },
     {
@@ -142581,7 +142581,7 @@
         "orig": "A1C",
         "code": "E1C",
         "block": "E",
-        "status": "Available",
+        "status": "Coming soon",
         "typology": "T3",
         "duplex": false,
         "gross": 110.9,
@@ -142596,7 +142596,7 @@
         "orientation": "West / East",
         "price": 490000
       },
-      "status": "available",
+      "status": "soon",
       "price": 490000
     },
     {
@@ -142749,7 +142749,7 @@
         "orig": "A1B",
         "code": "E1B",
         "block": "E",
-        "status": "Available",
+        "status": "Coming soon",
         "typology": "T2",
         "duplex": false,
         "gross": 83.1,
@@ -142764,7 +142764,7 @@
         "orientation": "West",
         "price": 380000
       },
-      "status": "available",
+      "status": "soon",
       "price": 380000
     },
     {
@@ -142933,7 +142933,7 @@
         "orig": "A1A",
         "code": "E1A",
         "block": "E",
-        "status": "Available",
+        "status": "Coming soon",
         "typology": "T3",
         "duplex": false,
         "gross": 112.15,
@@ -142948,7 +142948,7 @@
         "orientation": "West / East",
         "price": 495000
       },
-      "status": "available",
+      "status": "soon",
       "price": 495000
     },
     {
@@ -143109,7 +143109,7 @@
         "orig": "A1A",
         "code": "F1A",
         "block": "F",
-        "status": "Available",
+        "status": "Coming soon",
         "typology": "T3",
         "duplex": false,
         "gross": 112.15,
@@ -143124,7 +143124,7 @@
         "orientation": "West / East",
         "price": 495000
       },
-      "status": "available",
+      "status": "soon",
       "price": 495000
     },
     {
@@ -143301,7 +143301,7 @@
         "orig": "A1B",
         "code": "F1B",
         "block": "F",
-        "status": "Available",
+        "status": "Coming soon",
         "typology": "T2",
         "duplex": false,
         "gross": 83.1,
@@ -143316,7 +143316,7 @@
         "orientation": "West",
         "price": 380000
       },
-      "status": "available",
+      "status": "soon",
       "price": 380000
     },
     {
@@ -143481,7 +143481,7 @@
         "orig": "A1C",
         "code": "F1C",
         "block": "F",
-        "status": "Available",
+        "status": "Coming soon",
         "typology": "T3",
         "duplex": false,
         "gross": 110.9,
@@ -143496,7 +143496,7 @@
         "orientation": "West / East",
         "price": 490000
       },
-      "status": "available",
+      "status": "soon",
       "price": 490000
     },
     {
@@ -143663,7 +143663,7 @@
         "orig": "B2A",
         "code": "F2D",
         "block": "F",
-        "status": "Available",
+        "status": "Coming soon",
         "typology": "T2",
         "duplex": false,
         "gross": 94.8,
@@ -143678,7 +143678,7 @@
         "orientation": "West / East",
         "price": 430000
       },
-      "status": "available",
+      "status": "soon",
       "price": 430000
     },
     {
@@ -143855,7 +143855,7 @@
         "orig": "B2B",
         "code": "F2E",
         "block": "F",
-        "status": "Available",
+        "status": "Coming soon",
         "typology": "T2",
         "duplex": false,
         "gross": 85.45,
@@ -143870,7 +143870,7 @@
         "orientation": "West",
         "price": 380000
       },
-      "status": "available",
+      "status": "soon",
       "price": 380000
     },
     {
@@ -144037,7 +144037,7 @@
         "orig": "B2C",
         "code": "F2F",
         "block": "F",
-        "status": "Available",
+        "status": "Coming soon",
         "typology": "T3",
         "duplex": false,
         "gross": 131.85,
@@ -144052,7 +144052,7 @@
         "orientation": "West / North",
         "price": 575000
       },
-      "status": "available",
+      "status": "soon",
       "price": 575000
     },
     {
@@ -144253,7 +144253,7 @@
         "orig": "B2D",
         "code": "F2G",
         "block": "F",
-        "status": "Available",
+        "status": "Coming soon",
         "typology": "T3",
         "duplex": false,
         "gross": 107.25,
@@ -144268,7 +144268,7 @@
         "orientation": "North / South",
         "price": 460000
       },
-      "status": "available",
+      "status": "soon",
       "price": 460000
     },
     {
@@ -144475,7 +144475,7 @@
         "orig": "C2B",
         "code": "G2I",
         "block": "G",
-        "status": "Available",
+        "status": "Coming soon",
         "typology": "T3",
         "duplex": false,
         "gross": 107.1,
@@ -144490,7 +144490,7 @@
         "orientation": "North / South",
         "price": 470000
       },
-      "status": "available",
+      "status": "soon",
       "price": 470000
     },
     {
@@ -144641,7 +144641,7 @@
         "orig": "C2A",
         "code": "G2H",
         "block": "G",
-        "status": "Available",
+        "status": "Coming soon",
         "typology": "T2",
         "duplex": false,
         "gross": 85.5,
@@ -144656,7 +144656,7 @@
         "orientation": "North / South",
         "price": 390000
       },
-      "status": "available",
+      "status": "soon",
       "price": 390000
     },
     {
@@ -144845,7 +144845,7 @@
         "orig": "B2D",
         "code": "G2G",
         "block": "G",
-        "status": "Available",
+        "status": "Coming soon",
         "typology": "T3",
         "duplex": false,
         "gross": 107.25,
@@ -144860,7 +144860,7 @@
         "orientation": "North / South",
         "price": 480000
       },
-      "status": "available",
+      "status": "soon",
       "price": 480000
     },
     {
@@ -145051,7 +145051,7 @@
         "orig": "B2C",
         "code": "G2F",
         "block": "G",
-        "status": "Available",
+        "status": "Coming soon",
         "typology": "T3",
         "duplex": false,
         "gross": 131.85,
@@ -145066,7 +145066,7 @@
         "orientation": "North / East",
         "price": 560000
       },
-      "status": "available",
+      "status": "soon",
       "price": 560000
     },
     {
@@ -145267,7 +145267,7 @@
         "orig": "B2B",
         "code": "G2E",
         "block": "G",
-        "status": "Available",
+        "status": "Coming soon",
         "typology": "T2",
         "duplex": false,
         "gross": 85.45,
@@ -145282,7 +145282,7 @@
         "orientation": "East",
         "price": 380000
       },
-      "status": "available",
+      "status": "soon",
       "price": 380000
     },
     {
@@ -145457,7 +145457,7 @@
         "orig": "B2A",
         "code": "G2D",
         "block": "G",
-        "status": "Available",
+        "status": "Coming soon",
         "typology": "T2",
         "duplex": false,
         "gross": 94.8,
@@ -145472,7 +145472,7 @@
         "orientation": "East / West",
         "price": 430000
       },
-      "status": "available",
+      "status": "soon",
       "price": 430000
     },
     {
@@ -145637,7 +145637,7 @@
         "orig": "A2C",
         "code": "G2C",
         "block": "G",
-        "status": "Available",
+        "status": "Coming soon",
         "typology": "T3",
         "duplex": false,
         "gross": 110.9,
@@ -145652,7 +145652,7 @@
         "orientation": "East / West",
         "price": 500000
       },
-      "status": "available",
+      "status": "soon",
       "price": 500000
     },
     {
@@ -145817,7 +145817,7 @@
         "orig": "A2B",
         "code": "G2B",
         "block": "G",
-        "status": "Available",
+        "status": "Coming soon",
         "typology": "T2",
         "duplex": false,
         "gross": 83.1,
@@ -145832,7 +145832,7 @@
         "orientation": "East",
         "price": 380000
       },
-      "status": "available",
+      "status": "soon",
       "price": 380000
     },
     {
@@ -145997,7 +145997,7 @@
         "orig": "A2A",
         "code": "G2A",
         "block": "G",
-        "status": "Available",
+        "status": "Coming soon",
         "typology": "T3",
         "duplex": false,
         "gross": 112.15,
@@ -146012,7 +146012,7 @@
         "orientation": "East / West",
         "price": 510000
       },
-      "status": "available",
+      "status": "soon",
       "price": 510000
     },
     {
@@ -146177,7 +146177,7 @@
         "orig": "A2A",
         "code": "H2A",
         "block": "H",
-        "status": "Available",
+        "status": "Coming soon",
         "typology": "T3",
         "duplex": false,
         "gross": 112.15,
@@ -146192,7 +146192,7 @@
         "orientation": "East / West",
         "price": 510000
       },
-      "status": "available",
+      "status": "soon",
       "price": 510000
     },
     {
@@ -146329,7 +146329,7 @@
         "orig": "A2B",
         "code": "H2B",
         "block": "H",
-        "status": "Available",
+        "status": "Coming soon",
         "typology": "T2",
         "duplex": false,
         "gross": 83.1,
@@ -146344,7 +146344,7 @@
         "orientation": "East",
         "price": 380000
       },
-      "status": "available",
+      "status": "soon",
       "price": 380000
     },
     {
@@ -146501,7 +146501,7 @@
         "orig": "A2C",
         "code": "H2C",
         "block": "H",
-        "status": "Available",
+        "status": "Coming soon",
         "typology": "T3",
         "duplex": false,
         "gross": 110.9,
@@ -146516,7 +146516,7 @@
         "orientation": "East / West",
         "price": 500000
       },
-      "status": "available",
+      "status": "soon",
       "price": 500000
     },
     {
@@ -146703,7 +146703,7 @@
         "orig": "B2A",
         "code": "H2D",
         "block": "H",
-        "status": "Available",
+        "status": "Coming soon",
         "typology": "T2",
         "duplex": false,
         "gross": 94.8,
@@ -146718,7 +146718,7 @@
         "orientation": "East / West",
         "price": 430000
       },
-      "status": "available",
+      "status": "soon",
       "price": 430000
     },
     {
@@ -146883,7 +146883,7 @@
         "orig": "B2B",
         "code": "H2E",
         "block": "H",
-        "status": "Available",
+        "status": "Coming soon",
         "typology": "T2",
         "duplex": false,
         "gross": 85.45,
@@ -146898,7 +146898,7 @@
         "orientation": "East",
         "price": 380000
       },
-      "status": "available",
+      "status": "soon",
       "price": 380000
     },
     {
@@ -147053,7 +147053,7 @@
         "orig": "B2C",
         "code": "H2F",
         "block": "H",
-        "status": "Available",
+        "status": "Coming soon",
         "typology": "T3",
         "duplex": false,
         "gross": 131.85,
@@ -147068,7 +147068,7 @@
         "orientation": "East / South",
         "price": 560000
       },
-      "status": "available",
+      "status": "soon",
       "price": 560000
     },
     {
@@ -147249,7 +147249,7 @@
         "orig": "B2D",
         "code": "H2G",
         "block": "H",
-        "status": "Available",
+        "status": "Coming soon",
         "typology": "T3",
         "duplex": false,
         "gross": 107.25,
@@ -147264,7 +147264,7 @@
         "orientation": "South / North",
         "price": 480000
       },
-      "status": "available",
+      "status": "soon",
       "price": 480000
     },
     {
@@ -147419,7 +147419,7 @@
         "orig": "C2A",
         "code": "H2H",
         "block": "H",
-        "status": "Available",
+        "status": "Coming soon",
         "typology": "T2",
         "duplex": false,
         "gross": 85.5,
@@ -147434,7 +147434,7 @@
         "orientation": "South / North",
         "price": 390000
       },
-      "status": "available",
+      "status": "soon",
       "price": 390000
     },
     {
@@ -147621,7 +147621,7 @@
         "orig": "C2B",
         "code": "H2I",
         "block": "H",
-        "status": "Available",
+        "status": "Coming soon",
         "typology": "T3",
         "duplex": false,
         "gross": 107.1,
@@ -147636,7 +147636,7 @@
         "orientation": "South / North",
         "price": 470000
       },
-      "status": "available",
+      "status": "soon",
       "price": 470000
     },
     {
@@ -147825,7 +147825,7 @@
         "orig": "B2D",
         "code": "E2G",
         "block": "E",
-        "status": "Available",
+        "status": "Coming soon",
         "typology": "T3",
         "duplex": false,
         "gross": 107.25,
@@ -147840,7 +147840,7 @@
         "orientation": "South / North",
         "price": 460000
       },
-      "status": "available",
+      "status": "soon",
       "price": 460000
     },
     {
@@ -148023,7 +148023,7 @@
         "orig": "B2C",
         "code": "E2F",
         "block": "E",
-        "status": "Available",
+        "status": "Coming soon",
         "typology": "T3",
         "duplex": false,
         "gross": 131.85,
@@ -148038,7 +148038,7 @@
         "orientation": "South / West",
         "price": 575000
       },
-      "status": "available",
+      "status": "soon",
       "price": 575000
     },
     {
@@ -148223,7 +148223,7 @@
         "orig": "B2B",
         "code": "E2E",
         "block": "E",
-        "status": "Available",
+        "status": "Coming soon",
         "typology": "T2",
         "duplex": false,
         "gross": 85.45,
@@ -148238,7 +148238,7 @@
         "orientation": "West",
         "price": 380000
       },
-      "status": "available",
+      "status": "soon",
       "price": 380000
     },
     {
@@ -148389,7 +148389,7 @@
         "orig": "B2A",
         "code": "E2D",
         "block": "E",
-        "status": "Available",
+        "status": "Coming soon",
         "typology": "T2",
         "duplex": false,
         "gross": 94.8,
@@ -148404,7 +148404,7 @@
         "orientation": "West / East",
         "price": 430000
       },
-      "status": "available",
+      "status": "soon",
       "price": 430000
     },
     {
@@ -148553,7 +148553,7 @@
         "orig": "A2C",
         "code": "E2C",
         "block": "E",
-        "status": "Available",
+        "status": "Coming soon",
         "typology": "T3",
         "duplex": false,
         "gross": 110.9,
@@ -148568,7 +148568,7 @@
         "orientation": "West / East",
         "price": 490000
       },
-      "status": "available",
+      "status": "soon",
       "price": 490000
     },
     {
@@ -148713,7 +148713,7 @@
         "orig": "A2B",
         "code": "E2B",
         "block": "E",
-        "status": "Available",
+        "status": "Coming soon",
         "typology": "T2",
         "duplex": false,
         "gross": 83.1,
@@ -148728,7 +148728,7 @@
         "orientation": "West",
         "price": 370000
       },
-      "status": "available",
+      "status": "soon",
       "price": 370000
     },
     {
@@ -148873,7 +148873,7 @@
         "orig": "A2A",
         "code": "E2A",
         "block": "E",
-        "status": "Available",
+        "status": "Coming soon",
         "typology": "T3",
         "duplex": false,
         "gross": 112.15,
@@ -148888,7 +148888,7 @@
         "orientation": "West / East",
         "price": 495000
       },
-      "status": "available",
+      "status": "soon",
       "price": 495000
     },
     {
@@ -149049,7 +149049,7 @@
         "orig": "A2A",
         "code": "F2A",
         "block": "F",
-        "status": "Available",
+        "status": "Coming soon",
         "typology": "T3",
         "duplex": false,
         "gross": 112.15,
@@ -149064,7 +149064,7 @@
         "orientation": "West / East",
         "price": 495000
       },
-      "status": "available",
+      "status": "soon",
       "price": 495000
     },
     {
@@ -149233,7 +149233,7 @@
         "orig": "A2B",
         "code": "F2B",
         "block": "F",
-        "status": "Available",
+        "status": "Coming soon",
         "typology": "T2",
         "duplex": false,
         "gross": 83.1,
@@ -149248,7 +149248,7 @@
         "orientation": "West",
         "price": 370000
       },
-      "status": "available",
+      "status": "soon",
       "price": 370000
     },
     {
@@ -149389,7 +149389,7 @@
         "orig": "A2C",
         "code": "F2C",
         "block": "F",
-        "status": "Available",
+        "status": "Coming soon",
         "typology": "T3",
         "duplex": false,
         "gross": 110.9,
@@ -149404,7 +149404,7 @@
         "orientation": "West / East",
         "price": 490000
       },
-      "status": "available",
+      "status": "soon",
       "price": 490000
     },
     {
@@ -149571,7 +149571,7 @@
         "orig": "B3A",
         "code": "F3D",
         "block": "F",
-        "status": "Available",
+        "status": "Coming soon",
         "typology": "T2",
         "duplex": false,
         "gross": 94.8,
@@ -149586,7 +149586,7 @@
         "orientation": "West / East",
         "price": 430000
       },
-      "status": "available",
+      "status": "soon",
       "price": 430000
     },
     {
@@ -149763,7 +149763,7 @@
         "orig": "B3B",
         "code": "F3E",
         "block": "F",
-        "status": "Available",
+        "status": "Coming soon",
         "typology": "T2",
         "duplex": false,
         "gross": 85.45,
@@ -149778,7 +149778,7 @@
         "orientation": "West",
         "price": 390000
       },
-      "status": "available",
+      "status": "soon",
       "price": 390000
     },
     {
@@ -149945,7 +149945,7 @@
         "orig": "B3C",
         "code": "F3F",
         "block": "F",
-        "status": "Available",
+        "status": "Coming soon",
         "typology": "T3",
         "duplex": false,
         "gross": 131.85,
@@ -149960,7 +149960,7 @@
         "orientation": "West / North",
         "price": 590000
       },
-      "status": "available",
+      "status": "soon",
       "price": 590000
     },
     {
@@ -150161,7 +150161,7 @@
         "orig": "B3D",
         "code": "F3G",
         "block": "F",
-        "status": "Available",
+        "status": "Coming soon",
         "typology": "T3",
         "duplex": false,
         "gross": 107.25,
@@ -150176,7 +150176,7 @@
         "orientation": "North / South",
         "price": 480000
       },
-      "status": "available",
+      "status": "soon",
       "price": 480000
     },
     {
@@ -150383,7 +150383,7 @@
         "orig": "C3B",
         "code": "G3I",
         "block": "G",
-        "status": "Available",
+        "status": "Coming soon",
         "typology": "T3",
         "duplex": false,
         "gross": 107.1,
@@ -150398,7 +150398,7 @@
         "orientation": "North / South",
         "price": 480000
       },
-      "status": "available",
+      "status": "soon",
       "price": 480000
     },
     {
@@ -150549,7 +150549,7 @@
         "orig": "C3A",
         "code": "G3H",
         "block": "G",
-        "status": "Available",
+        "status": "Coming soon",
         "typology": "T2",
         "duplex": false,
         "gross": 85.5,
@@ -150564,7 +150564,7 @@
         "orientation": "North / South",
         "price": 390000
       },
-      "status": "available",
+      "status": "soon",
       "price": 390000
     },
     {
@@ -150753,7 +150753,7 @@
         "orig": "B3D",
         "code": "G3G",
         "block": "G",
-        "status": "Available",
+        "status": "Coming soon",
         "typology": "T3",
         "duplex": false,
         "gross": 107.25,
@@ -150768,7 +150768,7 @@
         "orientation": "North / South",
         "price": 490000
       },
-      "status": "available",
+      "status": "soon",
       "price": 490000
     },
     {
@@ -150959,7 +150959,7 @@
         "orig": "B3C",
         "code": "G3F",
         "block": "G",
-        "status": "Available",
+        "status": "Coming soon",
         "typology": "T3",
         "duplex": false,
         "gross": 131.85,
@@ -150974,7 +150974,7 @@
         "orientation": "North / East",
         "price": 570000
       },
-      "status": "available",
+      "status": "soon",
       "price": 570000
     },
     {
@@ -151175,7 +151175,7 @@
         "orig": "B3B",
         "code": "G3E",
         "block": "G",
-        "status": "Available",
+        "status": "Coming soon",
         "typology": "T2",
         "duplex": false,
         "gross": 85.45,
@@ -151190,7 +151190,7 @@
         "orientation": "East",
         "price": 390000
       },
-      "status": "available",
+      "status": "soon",
       "price": 390000
     },
     {
@@ -151365,7 +151365,7 @@
         "orig": "B3A",
         "code": "G3D",
         "block": "G",
-        "status": "Available",
+        "status": "Coming soon",
         "typology": "T2",
         "duplex": false,
         "gross": 94.8,
@@ -151380,7 +151380,7 @@
         "orientation": "East / West",
         "price": 430000
       },
-      "status": "available",
+      "status": "soon",
       "price": 430000
     },
     {
@@ -151545,7 +151545,7 @@
         "orig": "A3C",
         "code": "G3C",
         "block": "G",
-        "status": "Available",
+        "status": "Coming soon",
         "typology": "T3",
         "duplex": false,
         "gross": 110.9,
@@ -151560,7 +151560,7 @@
         "orientation": "East / West",
         "price": 500000
       },
-      "status": "available",
+      "status": "soon",
       "price": 500000
     },
     {
@@ -151725,7 +151725,7 @@
         "orig": "A3B",
         "code": "G3B",
         "block": "G",
-        "status": "Available",
+        "status": "Coming soon",
         "typology": "T2",
         "duplex": false,
         "gross": 83.1,
@@ -151740,7 +151740,7 @@
         "orientation": "East",
         "price": 390000
       },
-      "status": "available",
+      "status": "soon",
       "price": 390000
     },
     {
@@ -151905,7 +151905,7 @@
         "orig": "A3A",
         "code": "G3A",
         "block": "G",
-        "status": "Available",
+        "status": "Coming soon",
         "typology": "T3",
         "duplex": false,
         "gross": 112.15,
@@ -151920,7 +151920,7 @@
         "orientation": "East / West",
         "price": 520000
       },
-      "status": "available",
+      "status": "soon",
       "price": 520000
     },
     {
@@ -152085,7 +152085,7 @@
         "orig": "A3A",
         "code": "H3A",
         "block": "H",
-        "status": "Available",
+        "status": "Coming soon",
         "typology": "T3",
         "duplex": false,
         "gross": 112.15,
@@ -152100,7 +152100,7 @@
         "orientation": "East / West",
         "price": 520000
       },
-      "status": "available",
+      "status": "soon",
       "price": 520000
     },
     {
@@ -152237,7 +152237,7 @@
         "orig": "A3B",
         "code": "H3B",
         "block": "H",
-        "status": "Available",
+        "status": "Coming soon",
         "typology": "T2",
         "duplex": false,
         "gross": 83.1,
@@ -152252,7 +152252,7 @@
         "orientation": "East",
         "price": 390000
       },
-      "status": "available",
+      "status": "soon",
       "price": 390000
     },
     {
@@ -152409,7 +152409,7 @@
         "orig": "A3C",
         "code": "H3C",
         "block": "H",
-        "status": "Available",
+        "status": "Coming soon",
         "typology": "T3",
         "duplex": false,
         "gross": 110.9,
@@ -152424,7 +152424,7 @@
         "orientation": "East / West",
         "price": 500000
       },
-      "status": "available",
+      "status": "soon",
       "price": 500000
     },
     {
@@ -152611,7 +152611,7 @@
         "orig": "B3A",
         "code": "H3D",
         "block": "H",
-        "status": "Available",
+        "status": "Coming soon",
         "typology": "T2",
         "duplex": false,
         "gross": 94.8,
@@ -152626,7 +152626,7 @@
         "orientation": "East / West",
         "price": 430000
       },
-      "status": "available",
+      "status": "soon",
       "price": 430000
     },
     {
@@ -152791,7 +152791,7 @@
         "orig": "B3B",
         "code": "H3E",
         "block": "H",
-        "status": "Available",
+        "status": "Coming soon",
         "typology": "T2",
         "duplex": false,
         "gross": 85.45,
@@ -152806,7 +152806,7 @@
         "orientation": "East",
         "price": 390000
       },
-      "status": "available",
+      "status": "soon",
       "price": 390000
     },
     {
@@ -152961,7 +152961,7 @@
         "orig": "B3C",
         "code": "H3F",
         "block": "H",
-        "status": "Available",
+        "status": "Coming soon",
         "typology": "T3",
         "duplex": false,
         "gross": 131.85,
@@ -152976,7 +152976,7 @@
         "orientation": "East / South",
         "price": 570000
       },
-      "status": "available",
+      "status": "soon",
       "price": 570000
     },
     {
@@ -153157,7 +153157,7 @@
         "orig": "B3D",
         "code": "H3G",
         "block": "H",
-        "status": "Available",
+        "status": "Coming soon",
         "typology": "T3",
         "duplex": false,
         "gross": 107.25,
@@ -153172,7 +153172,7 @@
         "orientation": "South / North",
         "price": 490000
       },
-      "status": "available",
+      "status": "soon",
       "price": 490000
     },
     {
@@ -153327,7 +153327,7 @@
         "orig": "C3A",
         "code": "H3H",
         "block": "H",
-        "status": "Available",
+        "status": "Coming soon",
         "typology": "T2",
         "duplex": false,
         "gross": 85.5,
@@ -153342,7 +153342,7 @@
         "orientation": "South / North",
         "price": 390000
       },
-      "status": "available",
+      "status": "soon",
       "price": 390000
     },
     {
@@ -153529,7 +153529,7 @@
         "orig": "C3B",
         "code": "H3I",
         "block": "H",
-        "status": "Available",
+        "status": "Coming soon",
         "typology": "T3",
         "duplex": false,
         "gross": 107.1,
@@ -153544,7 +153544,7 @@
         "orientation": "South / North",
         "price": 480000
       },
-      "status": "available",
+      "status": "soon",
       "price": 480000
     },
     {
@@ -153733,7 +153733,7 @@
         "orig": "B3D",
         "code": "E3G",
         "block": "E",
-        "status": "Available",
+        "status": "Coming soon",
         "typology": "T3",
         "duplex": false,
         "gross": 107.25,
@@ -153748,7 +153748,7 @@
         "orientation": "South / North",
         "price": 480000
       },
-      "status": "available",
+      "status": "soon",
       "price": 480000
     },
     {
@@ -153931,7 +153931,7 @@
         "orig": "B3C",
         "code": "E3F",
         "block": "E",
-        "status": "Available",
+        "status": "Coming soon",
         "typology": "T3",
         "duplex": false,
         "gross": 131.85,
@@ -153946,7 +153946,7 @@
         "orientation": "South / West",
         "price": 590000
       },
-      "status": "available",
+      "status": "soon",
       "price": 590000
     },
     {
@@ -154131,7 +154131,7 @@
         "orig": "B3B",
         "code": "E3E",
         "block": "E",
-        "status": "Available",
+        "status": "Coming soon",
         "typology": "T2",
         "duplex": false,
         "gross": 85.45,
@@ -154146,7 +154146,7 @@
         "orientation": "West",
         "price": 390000
       },
-      "status": "available",
+      "status": "soon",
       "price": 390000
     },
     {
@@ -154297,7 +154297,7 @@
         "orig": "B3A",
         "code": "E3D",
         "block": "E",
-        "status": "Available",
+        "status": "Coming soon",
         "typology": "T2",
         "duplex": false,
         "gross": 94.8,
@@ -154312,7 +154312,7 @@
         "orientation": "West / East",
         "price": 430000
       },
-      "status": "available",
+      "status": "soon",
       "price": 430000
     },
     {
@@ -154461,7 +154461,7 @@
         "orig": "A3C",
         "code": "E3C",
         "block": "E",
-        "status": "Available",
+        "status": "Coming soon",
         "typology": "T3",
         "duplex": false,
         "gross": 110.9,
@@ -154476,7 +154476,7 @@
         "orientation": "West / East",
         "price": 490000
       },
-      "status": "available",
+      "status": "soon",
       "price": 490000
     },
     {
@@ -154621,7 +154621,7 @@
         "orig": "A3B",
         "code": "E3B",
         "block": "E",
-        "status": "Available",
+        "status": "Coming soon",
         "typology": "T2",
         "duplex": false,
         "gross": 83.1,
@@ -154636,7 +154636,7 @@
         "orientation": "West",
         "price": 380000
       },
-      "status": "available",
+      "status": "soon",
       "price": 380000
     },
     {
@@ -154781,7 +154781,7 @@
         "orig": "A3A",
         "code": "E3A",
         "block": "E",
-        "status": "Available",
+        "status": "Coming soon",
         "typology": "T3",
         "duplex": false,
         "gross": 112.15,
@@ -154796,7 +154796,7 @@
         "orientation": "West / East",
         "price": 510000
       },
-      "status": "available",
+      "status": "soon",
       "price": 510000
     },
     {
@@ -154957,7 +154957,7 @@
         "orig": "A3A",
         "code": "F3A",
         "block": "F",
-        "status": "Available",
+        "status": "Coming soon",
         "typology": "T3",
         "duplex": false,
         "gross": 112.15,
@@ -154972,7 +154972,7 @@
         "orientation": "West / East",
         "price": 510000
       },
-      "status": "available",
+      "status": "soon",
       "price": 510000
     },
     {
@@ -155141,7 +155141,7 @@
         "orig": "A3B",
         "code": "F3B",
         "block": "F",
-        "status": "Available",
+        "status": "Coming soon",
         "typology": "T2",
         "duplex": false,
         "gross": 83.1,
@@ -155156,7 +155156,7 @@
         "orientation": "West",
         "price": 380000
       },
-      "status": "available",
+      "status": "soon",
       "price": 380000
     },
     {
@@ -155297,7 +155297,7 @@
         "orig": "A3C",
         "code": "F3C",
         "block": "F",
-        "status": "Available",
+        "status": "Coming soon",
         "typology": "T3",
         "duplex": false,
         "gross": 110.9,
@@ -155312,7 +155312,7 @@
         "orientation": "West / East",
         "price": 490000
       },
-      "status": "available",
+      "status": "soon",
       "price": 490000
     },
     {
@@ -155532,7 +155532,7 @@
         "orig": "B4A",
         "code": "F4D",
         "block": "F",
-        "status": "Available",
+        "status": "Coming soon",
         "typology": "T2",
         "duplex": true,
         "gross": 146.5,
@@ -155547,7 +155547,7 @@
         "orientation": "West / East",
         "price": 490000
       },
-      "status": "available",
+      "status": "soon",
       "price": 490000
     },
     {
@@ -155695,7 +155695,7 @@
         "orig": "B4B",
         "code": "F4E",
         "block": "F",
-        "status": "Available",
+        "status": "Coming soon",
         "typology": "T2",
         "duplex": true,
         "gross": 162.5,
@@ -155710,7 +155710,7 @@
         "orientation": "West",
         "price": 500000
       },
-      "status": "available",
+      "status": "soon",
       "price": 500000
     },
     {
@@ -155834,7 +155834,7 @@
         "orig": "B4C",
         "code": "F4F",
         "block": "F",
-        "status": "Available",
+        "status": "Coming soon",
         "typology": "T3",
         "duplex": true,
         "gross": 205.8,
@@ -155849,7 +155849,7 @@
         "orientation": "West / North",
         "price": 720000
       },
-      "status": "available",
+      "status": "soon",
       "price": 720000
     },
     {
@@ -156073,7 +156073,7 @@
         "orig": "B4D",
         "code": "F4G",
         "block": "F",
-        "status": "Available",
+        "status": "Coming soon",
         "typology": "T3",
         "duplex": true,
         "gross": 168.2,
@@ -156088,7 +156088,7 @@
         "orientation": "North / South",
         "price": 600000
       },
-      "status": "available",
+      "status": "soon",
       "price": 600000
     },
     {
@@ -156292,7 +156292,7 @@
         "orig": "C4B",
         "code": "G4I",
         "block": "G",
-        "status": "Available",
+        "status": "Coming soon",
         "typology": "T3",
         "duplex": true,
         "gross": 176.3,
@@ -156307,7 +156307,7 @@
         "orientation": "North / South",
         "price": 680000
       },
-      "status": "available",
+      "status": "soon",
       "price": 680000
     },
     {
@@ -156503,7 +156503,7 @@
         "orig": "C4A",
         "code": "G4H",
         "block": "G",
-        "status": "Available",
+        "status": "Coming soon",
         "typology": "T2",
         "duplex": true,
         "gross": 135.55,
@@ -156518,7 +156518,7 @@
         "orientation": "North / South",
         "price": 500000
       },
-      "status": "available",
+      "status": "soon",
       "price": 500000
     },
     {
@@ -156742,7 +156742,7 @@
         "orig": "B4D",
         "code": "G4G",
         "block": "G",
-        "status": "Available",
+        "status": "Coming soon",
         "typology": "T3",
         "duplex": true,
         "gross": 168.2,
@@ -156757,7 +156757,7 @@
         "orientation": "North / South",
         "price": 580000
       },
-      "status": "available",
+      "status": "soon",
       "price": 580000
     },
     {
@@ -156917,7 +156917,7 @@
         "orig": "B4C",
         "code": "G4F",
         "block": "G",
-        "status": "Available",
+        "status": "Coming soon",
         "typology": "T3",
         "duplex": true,
         "gross": 205.8,
@@ -156932,7 +156932,7 @@
         "orientation": "North / East",
         "price": 700000
       },
-      "status": "available",
+      "status": "soon",
       "price": 700000
     },
     {
@@ -157116,7 +157116,7 @@
         "orig": "B4B",
         "code": "G4E",
         "block": "G",
-        "status": "Available",
+        "status": "Coming soon",
         "typology": "T2",
         "duplex": true,
         "gross": 162.5,
@@ -157131,7 +157131,7 @@
         "orientation": "East",
         "price": 580000
       },
-      "status": "available",
+      "status": "soon",
       "price": 580000
     },
     {
@@ -157299,7 +157299,7 @@
         "orig": "B4A",
         "code": "G4D",
         "block": "G",
-        "status": "Available",
+        "status": "Coming soon",
         "typology": "T2",
         "duplex": true,
         "gross": 146.5,
@@ -157314,7 +157314,7 @@
         "orientation": "East / West",
         "price": 550000
       },
-      "status": "available",
+      "status": "soon",
       "price": 550000
     },
     {
@@ -157490,7 +157490,7 @@
         "orig": "A4C",
         "code": "G4C",
         "block": "G",
-        "status": "Available",
+        "status": "Coming soon",
         "typology": "T3",
         "duplex": true,
         "gross": 176.25,
@@ -157505,7 +157505,7 @@
         "orientation": "East / West",
         "price": 600000
       },
-      "status": "available",
+      "status": "soon",
       "price": 600000
     },
     {
@@ -157669,7 +157669,7 @@
         "orig": "A4B",
         "code": "G4B",
         "block": "G",
-        "status": "Available",
+        "status": "Coming soon",
         "typology": "T2",
         "duplex": true,
         "gross": 142.85,
@@ -157684,7 +157684,7 @@
         "orientation": "East",
         "price": 550000
       },
-      "status": "available",
+      "status": "soon",
       "price": 550000
     },
     {
@@ -157868,7 +157868,7 @@
         "orig": "A4A",
         "code": "G4A",
         "block": "G",
-        "status": "Available",
+        "status": "Coming soon",
         "typology": "T3",
         "duplex": true,
         "gross": 177.5,
@@ -157883,7 +157883,7 @@
         "orientation": "East / West",
         "price": 650000
       },
-      "status": "available",
+      "status": "soon",
       "price": 650000
     },
     {
@@ -158055,7 +158055,7 @@
         "orig": "A4A",
         "code": "H4A",
         "block": "H",
-        "status": "Available",
+        "status": "Coming soon",
         "typology": "T3",
         "duplex": true,
         "gross": 177.5,
@@ -158070,7 +158070,7 @@
         "orientation": "East / West",
         "price": 650000
       },
-      "status": "available",
+      "status": "soon",
       "price": 650000
     },
     {
@@ -158218,7 +158218,7 @@
         "orig": "A4B",
         "code": "H4B",
         "block": "H",
-        "status": "Available",
+        "status": "Coming soon",
         "typology": "T2",
         "duplex": true,
         "gross": 142.85,
@@ -158233,7 +158233,7 @@
         "orientation": "East",
         "price": 550000
       },
-      "status": "available",
+      "status": "soon",
       "price": 550000
     },
     {
@@ -158401,7 +158401,7 @@
         "orig": "A4C",
         "code": "H4C",
         "block": "H",
-        "status": "Available",
+        "status": "Coming soon",
         "typology": "T3",
         "duplex": true,
         "gross": 176.25,
@@ -158416,7 +158416,7 @@
         "orientation": "East / West",
         "price": 600000
       },
-      "status": "available",
+      "status": "soon",
       "price": 600000
     },
     {
@@ -158592,7 +158592,7 @@
         "orig": "B4A",
         "code": "H4D",
         "block": "H",
-        "status": "Available",
+        "status": "Coming soon",
         "typology": "T2",
         "duplex": true,
         "gross": 146.5,
@@ -158607,7 +158607,7 @@
         "orientation": "East / West",
         "price": 550000
       },
-      "status": "available",
+      "status": "soon",
       "price": 550000
     },
     {
@@ -158763,7 +158763,7 @@
         "orig": "B4B",
         "code": "H4E",
         "block": "H",
-        "status": "Available",
+        "status": "Coming soon",
         "typology": "T2",
         "duplex": true,
         "gross": 162.5,
@@ -158778,7 +158778,7 @@
         "orientation": "East",
         "price": 580000
       },
-      "status": "available",
+      "status": "soon",
       "price": 580000
     },
     {
@@ -158910,7 +158910,7 @@
         "orig": "B4C",
         "code": "H4F",
         "block": "H",
-        "status": "Available",
+        "status": "Coming soon",
         "typology": "T3",
         "duplex": true,
         "gross": 205.8,
@@ -158925,7 +158925,7 @@
         "orientation": "East / South",
         "price": 700000
       },
-      "status": "available",
+      "status": "soon",
       "price": 700000
     },
     {
@@ -159121,7 +159121,7 @@
         "orig": "B4D",
         "code": "H4G",
         "block": "H",
-        "status": "Available",
+        "status": "Coming soon",
         "typology": "T3",
         "duplex": true,
         "gross": 168.2,
@@ -159136,7 +159136,7 @@
         "orientation": "South / North",
         "price": 580000
       },
-      "status": "available",
+      "status": "soon",
       "price": 580000
     },
     {
@@ -159296,7 +159296,7 @@
         "orig": "C4A",
         "code": "H4H",
         "block": "H",
-        "status": "Available",
+        "status": "Coming soon",
         "typology": "T2",
         "duplex": true,
         "gross": 135.55,
@@ -159311,7 +159311,7 @@
         "orientation": "South / North",
         "price": 500000
       },
-      "status": "available",
+      "status": "soon",
       "price": 500000
     },
     {
@@ -159503,7 +159503,7 @@
         "orig": "C4B",
         "code": "H4I",
         "block": "H",
-        "status": "Available",
+        "status": "Coming soon",
         "typology": "T3",
         "duplex": true,
         "gross": 176.3,
@@ -159518,7 +159518,7 @@
         "orientation": "South / North",
         "price": 680000
       },
-      "status": "available",
+      "status": "soon",
       "price": 680000
     },
     {
@@ -159738,7 +159738,7 @@
         "orig": "B4D",
         "code": "E4G",
         "block": "E",
-        "status": "Available",
+        "status": "Coming soon",
         "typology": "T3",
         "duplex": true,
         "gross": 168.2,
@@ -159753,7 +159753,7 @@
         "orientation": "South / North",
         "price": 600000
       },
-      "status": "available",
+      "status": "soon",
       "price": 600000
     },
     {
@@ -159909,7 +159909,7 @@
         "orig": "B4C",
         "code": "E4F",
         "block": "E",
-        "status": "Available",
+        "status": "Coming soon",
         "typology": "T3",
         "duplex": true,
         "gross": 205.8,
@@ -159924,7 +159924,7 @@
         "orientation": "South / West",
         "price": 720000
       },
-      "status": "available",
+      "status": "soon",
       "price": 720000
     },
     {
@@ -160076,7 +160076,7 @@
         "orig": "B4B",
         "code": "E4E",
         "block": "E",
-        "status": "Available",
+        "status": "Coming soon",
         "typology": "T2",
         "duplex": true,
         "gross": 162.5,
@@ -160091,7 +160091,7 @@
         "orientation": "West",
         "price": 500000
       },
-      "status": "available",
+      "status": "soon",
       "price": 500000
     },
     {
@@ -160279,7 +160279,7 @@
         "orig": "B4A",
         "code": "E4D",
         "block": "E",
-        "status": "Available",
+        "status": "Coming soon",
         "typology": "T2",
         "duplex": true,
         "gross": 146.5,
@@ -160294,7 +160294,7 @@
         "orientation": "West / East",
         "price": 490000
       },
-      "status": "available",
+      "status": "soon",
       "price": 490000
     },
     {
@@ -160466,7 +160466,7 @@
         "orig": "A4C",
         "code": "E4C",
         "block": "E",
-        "status": "Available",
+        "status": "Coming soon",
         "typology": "T3",
         "duplex": true,
         "gross": 176.25,
@@ -160481,7 +160481,7 @@
         "orientation": "West / East",
         "price": 650000
       },
-      "status": "available",
+      "status": "soon",
       "price": 650000
     },
     {
@@ -160633,7 +160633,7 @@
         "orig": "A4B",
         "code": "E4B",
         "block": "E",
-        "status": "Available",
+        "status": "Coming soon",
         "typology": "T2",
         "duplex": true,
         "gross": 142.85,
@@ -160648,7 +160648,7 @@
         "orientation": "West",
         "price": 450000
       },
-      "status": "available",
+      "status": "soon",
       "price": 450000
     },
     {
@@ -160820,7 +160820,7 @@
         "orig": "A4A",
         "code": "E4A",
         "block": "E",
-        "status": "Available",
+        "status": "Coming soon",
         "typology": "T3",
         "duplex": true,
         "gross": 177.5,
@@ -160835,7 +160835,7 @@
         "orientation": "West / East",
         "price": 680000
       },
-      "status": "available",
+      "status": "soon",
       "price": 680000
     },
     {
@@ -161007,7 +161007,7 @@
         "orig": "A4A",
         "code": "F4A",
         "block": "F",
-        "status": "Available",
+        "status": "Coming soon",
         "typology": "T3",
         "duplex": true,
         "gross": 177.5,
@@ -161022,7 +161022,7 @@
         "orientation": "West / East",
         "price": 680000
       },
-      "status": "available",
+      "status": "soon",
       "price": 680000
     },
     {
@@ -161190,7 +161190,7 @@
         "orig": "A4B",
         "code": "F4B",
         "block": "F",
-        "status": "Available",
+        "status": "Coming soon",
         "typology": "T2",
         "duplex": true,
         "gross": 142.85,
@@ -161205,7 +161205,7 @@
         "orientation": "West",
         "price": 450000
       },
-      "status": "available",
+      "status": "soon",
       "price": 450000
     },
     {
@@ -161381,7 +161381,7 @@
         "orig": "A4C",
         "code": "F4C",
         "block": "F",
-        "status": "Available",
+        "status": "Coming soon",
         "typology": "T3",
         "duplex": true,
         "gross": 176.25,
@@ -161396,13 +161396,13 @@
         "orientation": "West / East",
         "price": 650000
       },
-      "status": "available",
+      "status": "soon",
       "price": 650000
     }
   ],
   "location": {
     "title": "Montijo, on the Tagus",
-    "lede": "A riverside town on the south bank of the Tagus estuary, across the water from Lisbon. AKSA Residencies sits on the north-east edge of town in Esteval, beside the Av. D. João II roundabout: parks, schools and supermarkets within a 10-minute walk, the old town and riverfront 20–25 minutes on foot, and fast road links to the Vasco da Gama Bridge.",
+    "lede": "A riverside town on the south bank of the Tagus estuary, across the water from Lisbon. AKSA Residence sits on the north-east edge of town in Esteval, beside the Av. D. João II roundabout: parks, schools and supermarkets within a 10-minute walk, the old town and riverfront 20–25 minutes on foot, and fast road links to the Vasco da Gama Bridge.",
     "video": {
       "src": "media/loc/bridge.mp4",
       "poster": "media/loc/bridge.jpg",

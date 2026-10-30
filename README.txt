@@ -1,6 +1,10 @@
-AKSA Residencies - interactive masterplan
+AKSA Residence - interactive masterplan
 
-Open: cd ~/projects/aksa-site && python3 -m http.server 8000, then http://localhost:8000
+Run:   npm install, then npm run dev (http://localhost:4321) or npm run build (static site in dist/).
+       The build reads sales facts from the CRM when CRM_API_URL and CRM_API_KEY are set (.env.local, never
+       committed); without them it uses src/data/site.json. npm run sync-crm saves the CRM's facts into site.json.
+       SITE_URL (the public address) adds canonical links and sitemap.xml.
+Pages: index.html (3D explorer), project.html (all homes), homes/<code>.html (one per home, e.g. homes/b0d.html).
 
 Masterplan   rotating aerial (8 angles) of the two blocks and the commercial building, rendered from a 3D
              model of the architect's drawings; project only, with traffic and people in the loops.
@@ -11,6 +15,6 @@ Amenities    pools and decks, pergolas, play areas, gardens, terraces, balconies
              cycle path, commercial building, each with the studio renders.
 Gallery      the 28 studio renders.   Location  map, walking times, photos.
 
-Folders: media/mp and media/close (aerial stills, loops, rotations), media/plans, media/gallery,
-media/amenities, media/loc, data.json. tools/ holds the pipeline (render3.html scene, jobs.py, build4.py).
+Folders: public/media/mp and public/media/close (aerial stills, loops, rotations), media/plans, media/gallery,
+media/amenities, media/loc; src/data/site.json; src/pages (pages), src/lib (CRM sync). tools/ holds the pipeline (render3.html scene, jobs.py, build4.py).
 Map data (c) OpenStreetMap contributors, ODbL. Location photos: Wikimedia Commons, CC BY-SA.

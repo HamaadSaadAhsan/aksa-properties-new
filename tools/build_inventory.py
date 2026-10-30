@@ -1,4 +1,4 @@
-"""Sales inventory (Sales_Inventory_Aksa_Project.xlsx) -> u['inv'] on each of the 320 homes in data.json.
+"""Sales inventory (Sales_Inventory_Aksa_Project.xlsx) -> u['inv'] on each of the 320 homes in src/data/site.json.
 The workbook splits each courtyard block into 4 sales blocks around the ring (A-D = North block, E-H = South block),
 7 / 7 / 9 / 9 homes per floor (lots 1-4 west wing, 5-8 east wing on the Planta Síntese). For each block and floor the ring is cut into those 4 runs at the rotation where the
 architect's codes ('Original Unit Code', e.g. 'B4A') best match the site's codes ('B4+A' -> 'B4A'), with the facade
@@ -8,7 +8,7 @@ import json, sys, collections, openpyxl
 
 XL, SITE = sys.argv[1], sys.argv[2]
 TOWER_BLOCKS = {'N': 'ABCD', 'S': 'EFGH'}
-STATUS = {'Available': 'available', 'Reserved': 'reserved', 'On Contract': 'sold', 'Sold': 'sold', 'Deed Signed': 'sold'}   # workbook -> site (3 colours)
+STATUS = {'Available': 'available', 'Reserved': 'reserved', 'On Contract': 'sold', 'Sold': 'sold', 'Deed Signed': 'sold', 'Withheld': 'soon'}   # workbook -> site (4 colours)
 ALIAS = {'Duplex': 'Duplex?', 'Living Area / Net Area (m²)': 'Living Area (m²)'}   # Block B's headers differ
 SIDE = {'W': 'West', 'E': 'East', 'N': 'North', 'S': 'South'}
 num = lambda v: None if v in (None, 'n/a', '') else (round(float(v), 2) if isinstance(v, (int, float)) else v)
@@ -32,7 +32,7 @@ for ws in wb:
             'parking': num(g('Parking Slots (#)')), 'parking_id': g('Parking ID(s) (Level -1)'),
             'orientation': g('Orientation / View'), 'price': num(g('List Price (€)'))})
 
-D = json.load(open(f'{SITE}/data.json')); miss = []; linked = 0
+D = json.load(open(f'{SITE}/src/data/site.json')); miss = []; linked = 0
 for t, blocks in TOWER_BLOCKS.items():
     for f in sorted({u['floor'] for u in D['units'] if u['tower'] == t}):
         ring = sorted([u for u in D['units'] if u['tower'] == t and u['floor'] == f], key=lambda u: u['n'])
@@ -57,9 +57,6 @@ for t, blocks in TOWER_BLOCKS.items():
                 if m['orig'] != code(u): miss.append(f"{u['id']} {u.get('code')}->{m['orig']}")
         print(t, f, 'homes', len(ring), 'code matches', int(ok), 'facade matches', round((ok - int(ok)) * 100))
 
-json.dump(D, open(f'{SITE}/data.json', 'w'), separators=(',', ':'), ensure_ascii=False)
-T0 = '<script id="manifest" type="application/json">'          # keep the manifest embedded in index.html identical
-s = open(f'{SITE}/index.html').read(); a = s.index(T0) + len(T0); b = s.index('</script>', a)
-open(f'{SITE}/index.html', 'w').write(s[:a] + json.dumps(D, separators=(',', ':'), ensure_ascii=False).replace('</', '<\\/') + s[b:])
+json.dump(D, open(f'{SITE}/src/data/site.json', 'w'), separators=(',', ':'), ensure_ascii=False)
 print('linked', linked, 'of', len(D['units']), 'code mismatches', len(miss), miss[:10])
 print('status', collections.Counter(u['inv']['status'] for u in D['units'] if 'inv' in u), 'priced', sum(bool(u.get('inv', {}).get('price')) for u in D['units']))

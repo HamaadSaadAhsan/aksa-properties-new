@@ -4,3 +4,5 @@ media.zip
 .DS_Store
 .idea/
 .env.local
+dist/
+.astro/

@@ -1,14 +1,21 @@
-<title>AKSA Residencies</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Marcellus&family=Manrope:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
-<style>
+---
+import Base from '../layouts/Base.astro';
+import { loadSite } from '../lib/site.mjs';
+
+const { project } = await loadSite();
+---
+<Base
+  title={project.name}
+  description={`${project.name}, ${project.place}: explore the two courtyard blocks in 3D, every floor plan and which homes are available, with the amenities and the neighbourhood.`}
+  image="media/gallery/aerial_01.jpg"
+>
+<style is:inline slot="head">
 [hidden]{display:none!important}
 :root{
   color-scheme:light;
   --ink:#14232B; --ink-2:#44545C; --paper:#FAF7F2; --sand:#EFE8DC; --line:rgba(20,35,43,.12);
   --sea:#0F6F7C; --glow:#FFF4DC;
-  --avail:#4F7D3C; --resv:#C4923F; --sold:#8B9298;
+  --avail:#2E9E4F; --resv:#E39B17; --sold:#C8463D; --soon:#4A5B6E;
   --glass:rgba(250,247,242,.86);
   --display:"Marcellus","Cormorant Garamond",Georgia,serif;
   --ui:"Manrope",system-ui,-apple-system,"Segoe UI",sans-serif;
@@ -86,6 +93,8 @@ button:focus-visible{outline:2px solid var(--sea);outline-offset:2px}
 .rc-more{padding:10px;border-radius:10px;background:var(--sand);font-size:13px;font-weight:600}
 .linkish{font:inherit;color:var(--sea);text-decoration:underline;text-underline-offset:3px;letter-spacing:inherit;text-transform:inherit}
 .sr-empty{margin:0;font-size:14px;color:var(--ink-2)}
+/* availability tint on each home in the close-up; a search match still wins */
+#hits .hit[class*=st-]{stroke:#fff;stroke-width:1;stroke-opacity:.85;vector-effect:non-scaling-stroke}#hits .hit.st-available{fill:rgba(46,158,79,.55)}#hits .hit.st-reserved{fill:rgba(227,155,23,.6)}#hits .hit.st-sold{fill:rgba(200,70,61,.6)}#hits .hit.st-soon{fill:rgba(74,91,110,.6)}
 #hits .hit.match{fill:rgba(15,111,124,.42);stroke:#fff;stroke-width:1.5;vector-effect:non-scaling-stroke}
 @media (max-width:640px){.search{left:8px;right:8px;width:auto;max-width:none;top:auto;bottom:8px;max-height:74vh}}
 
@@ -136,6 +145,8 @@ button:focus-visible{outline:2px solid var(--sea);outline-offset:2px}
 .round{width:40px;height:40px;border-radius:50%;display:grid;place-items:center;background:var(--glass);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);box-shadow:0 4px 16px rgba(0,30,40,.16);color:var(--ink);transition:transform .15s}
 .round:hover{transform:scale(1.06)}
 .round svg{width:18px;height:18px}
+.legend{position:absolute;left:16px;top:calc(env(safe-area-inset-top,0px) + 72px);z-index:4;margin:0;padding:7px 12px;border-radius:999px;background:var(--glass);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);display:flex;flex-wrap:wrap;gap:4px 12px;font-size:11px;font-weight:600;color:var(--ink);pointer-events:none;max-width:calc(100% - 32px)}
+.legend span{display:inline-flex;align-items:center;gap:6px;white-space:nowrap}.legend i{width:9px;height:9px;border-radius:50%;background:var(--c)}
 .hint{margin:0;font-size:12px;color:#fff;text-shadow:0 1px 8px rgba(0,30,40,.6);max-width:34ch;align-self:center;pointer-events:none}
 .nav{display:flex;align-items:center;gap:10px;justify-self:center}
 .arrow{width:44px;height:44px;border-radius:50%;border:1.5px solid rgba(255,255,255,.9);color:#fff;display:grid;place-items:center;background:rgba(10,30,38,.2);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);transition:background .2s,opacity .2s}
@@ -198,7 +209,7 @@ a.btn{display:inline-flex;align-items:center;text-decoration:none;color:inherit}
 #plan-svg .u{cursor:pointer;stroke:#FAF7F2!important;stroke-width:.3;stroke-linejoin:round;fill-opacity:.78;transition:fill-opacity .2s,opacity .2s}
 #plan-svg .u:hover{fill-opacity:1}
 #plan-svg .u.sel{stroke:var(--ink)!important;stroke-width:.7;fill-opacity:1}
-#plan-svg .u.dim{opacity:.22}#plan-svg .u.st-reserved{fill:#C4923F;stroke:#C4923F}#plan-svg .u.st-sold{fill:#8B9298;stroke:#8B9298;fill-opacity:.55}
+#plan-svg .u.dim{opacity:.22}#plan-svg .u.st-reserved{fill:#E39B17;stroke:#E39B17}#plan-svg .u.st-soon{fill:#4A5B6E;stroke:#4A5B6E;fill-opacity:.7}#plan-svg .u.st-sold{fill:#C8463D;stroke:#C8463D;fill-opacity:.8}
 #plan-svg .ul{font-family:var(--mono);font-size:2.2px;font-weight:500;paint-order:stroke;fill:#fff;stroke:rgba(20,35,43,.35);stroke-width:.35px;fill:var(--ink);pointer-events:none;text-anchor:middle;dominant-baseline:middle}
 #plan-svg .ul{transition:opacity .3s}
 #plan-svg.focus .u,#plan-svg.focus .ul{opacity:0!important;pointer-events:none}
@@ -357,12 +368,14 @@ a.btn{display:inline-flex;align-items:center;text-decoration:none;color:inherit}
 
 @media (max-width:1000px) and (orientation:portrait){
   .crumbs{top:calc(env(safe-area-inset-top,0px) + 64px)}
+  .legend{top:calc(env(safe-area-inset-top,0px) + 112px)}
   .gal-wrap,.loc-wrap{padding-top:calc(env(safe-area-inset-top,0px) + 118px)}
 }
 @media (max-width:760px){
   .brand .mark{font-size:20px}
   .brand .sub{display:none}
   .crumbs{top:calc(env(safe-area-inset-top,0px) + 64px)}
+  .legend{top:calc(env(safe-area-inset-top,0px) + 112px)}
   .crumbs button{padding:7px 12px;font-size:12px}
   .bottom{grid-template-columns:1fr auto;gap:10px}
   .hint,.angle{display:none}
@@ -428,7 +441,7 @@ a.btn{display:inline-flex;align-items:center;text-decoration:none;color:inherit}
 <div id="app">
   <div class="stage" id="stage">
     <div class="frame" id="frame">
-    <img id="still" class="layer" alt="AKSA Residencies, Montijo" draggable="false">
+    <img id="still" class="layer" alt="AKSA Residence, Montijo" draggable="false">
     <video id="loop" class="layer" muted loop playsinline preload="auto"></video>
     <video id="clip" class="layer" muted playsinline preload="auto"></video>
     <svg id="ov" class="layer" preserveAspectRatio="none" aria-hidden="true">
@@ -449,7 +462,7 @@ a.btn{display:inline-flex;align-items:center;text-decoration:none;color:inherit}
   <div id="chip" role="status" hidden></div>
 
   <header class="bar top" id="topbar">
-    <div class="brand"><span class="mark">AKSA</span><span class="sub">Residencies · Montijo · Lisbon</span></div>
+    <div class="brand"><span class="mark">AKSA</span><span class="sub">Residence · Montijo · Lisbon</span></div>
     <div class="actions">
       <button class="round" id="btn-notes" aria-label="How this is built"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 11v6M12 7.5v.01"/></svg></button>
       <button class="round" id="btn-fav" aria-label="Saved homes" aria-expanded="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"/></svg><span class="badge" id="fav-n" hidden>0</span></button>
@@ -467,6 +480,7 @@ a.btn{display:inline-flex;align-items:center;text-decoration:none;color:inherit}
     <button data-go="loc"><span class="l">Location</span><span class="s">Location</span></button>
   </nav>
 
+  <p class="legend" id="legend" aria-label="Availability colours" hidden></p>
   <footer class="bar bottom" id="bottom">
     <p class="hint" id="hint"></p>
     <div class="nav" id="nav">
@@ -507,7 +521,7 @@ a.btn{display:inline-flex;align-items:center;text-decoration:none;color:inherit}
   <section id="plan" class="modal" hidden>
     <div class="sheet" role="dialog" aria-modal="true" aria-labelledby="plan-title">
       <div class="plan-side">
-        <p class="eyebrow" id="plan-tower">AKSA Residencies</p>
+        <p class="eyebrow" id="plan-tower">AKSA Residence</p>
         <div class="filters" id="plan-blocks" role="group" aria-label="Block"></div>
         <h2 id="plan-title">Level 6<br>floor plan</h2>
         <div id="plan-info" style="display:flex;flex-direction:column;gap:18px;flex:1"></div>
@@ -546,8 +560,8 @@ a.btn{display:inline-flex;align-items:center;text-decoration:none;color:inherit}
         <ol class="nearby" id="loc-near"></ol>
       </div>
       <figure class="map-card">
-        <div class="map-box" id="map-box"><img id="loc-map" alt="Map of the Montijo riverfront showing AKSA Residencies and nearby landmarks"></div>
-        <figcaption><span>AKSA Residencies · Esteval, Montijo</span><span id="map-attr"></span></figcaption>
+        <div class="map-box" id="map-box"><img id="loc-map" alt="Map of the Montijo riverfront showing AKSA Residence and nearby landmarks"></div>
+        <figcaption><span>AKSA Residence · Esteval, Montijo</span><span id="map-attr"></span></figcaption>
       </figure>
     </div>
     <div class="gallery-wrap"><p class="label-sm light">Montijo today</p><div class="gallery" id="loc-gallery"></div></div>
@@ -565,7 +579,7 @@ a.btn{display:inline-flex;align-items:center;text-decoration:none;color:inherit}
   </section>
   <section id="amen" hidden aria-labelledby="amen-title">
     <div class="gal-wrap">
-      <div class="gal-head"><div><p class="eyebrow light">Amenities</p><h2 id="amen-title">Life at AKSA Residencies</h2></div></div>
+      <div class="gal-head"><div><p class="eyebrow light">Amenities</p><h2 id="amen-title">Life at AKSA Residence</h2></div></div>
       <div class="amen-grid" id="amen-grid"></div>
       <p class="credits">From the architect's drawings (site plan, basement and floor plans) and the studio renders of the current design.</p>
     </div>
@@ -605,13 +619,12 @@ a.btn{display:inline-flex;align-items:center;text-decoration:none;color:inherit}
   </aside>
 
   <div id="fade"></div>
-  <div id="loader"><video class="ld-video" src="media/loc/bridge.mp4" poster="media/loc/bridge.jpg" muted autoplay loop playsinline></video><div class="ld-in"><div class="mark">AKSA</div><div class="sub">Residencies · Montijo</div><div class="pct" id="pct">0%</div><div class="bar-ld"><span id="ld-bar"></span></div><div class="lbl">Loading the riverfront</div></div></div>
+  <div id="loader"><video class="ld-video" src="media/loc/bridge.mp4" poster="media/loc/bridge.jpg" muted autoplay loop playsinline></video><div class="ld-in"><div class="mark">AKSA</div><div class="sub">Residence · Montijo</div><div class="pct" id="pct">0%</div><div class="bar-ld"><span id="ld-bar"></span></div><div class="lbl">Loading the riverfront</div></div></div>
   <div id="err" hidden><p id="err-msg">This page could not load its media.</p></div>
 </div>
 
-<script src="https://cdn.jsdelivr.net/npm/motion@11.18.2/dist/motion.js"></script>
-<script id="manifest" type="application/json">/*MANIFEST*/</script>
-<script>
+<script is:inline src="https://cdn.jsdelivr.net/npm/motion@11.18.2/dist/motion.js"></script>
+<script is:inline>
 (()=>{
 'use strict';
 const $=s=>document.querySelector(s);
@@ -631,13 +644,13 @@ const fmtEUR=v=>v>=1e6?'€'+(v/1e6).toFixed(2)+'M':'€'+Math.round(v/1e3)+'k';
 const fmtInt=n=>Math.round(n).toLocaleString('en-US');
 const wait=ms=>new Promise(r=>setTimeout(r,ms));
 const TYC={T1:'#6E9E8B',T2:'#2F6F7E',T3:'#C08A4E',T4:'#8A5C8F'};const tyc=t=>TYC[t]||'#6B7C84';
-const ST={available:{label:'Available',c:'var(--avail)',hex:'#4F7D3C'},reserved:{label:'Reserved',c:'var(--resv)',hex:'#C4923F'},sold:{label:'Sold',c:'var(--sold)',hex:'#8B9298'}};
+const ST={available:{label:'Available',c:'var(--avail)',hex:'#2E9E4F'},reserved:{label:'Reserved',c:'var(--resv)',hex:'#E39B17'},sold:{label:'Sold',c:'var(--sold)',hex:'#C8463D'},soon:{label:'Coming soon',c:'var(--soon)',hex:'#4A5B6E'}};
 
 /* ---------------- manifest ---------------- */
 let DATA=null;
 async function loadManifest(){
   try{const r=await fetch('data.json',{cache:'no-cache'});if(r.ok)return await r.json();}catch(e){}
-  try{return JSON.parse($('#manifest').textContent);}catch(e){return null;}
+  return null;
 }
 
 /* ---------------- preloading (blob URLs, like the reference) ---------------- */
@@ -705,7 +718,8 @@ function drawMasterplanOverlay(){
 const closeFloors=()=>DATA.close.angles[closeIdx].floors;
 function drawCloseOverlay(){
   setViewBox(...DATA.close.viewBox);clearOverlay();
-  closeFloors().forEach((f,k)=>{const p=document.createElementNS(NS,'path');p.setAttribute('d',pathOf(f.polys));p.setAttribute('class','hit');p.dataset.kind='floor';p.dataset.k=k;hitsG.appendChild(p);});
+  closeFloors().forEach((f,k)=>{const p=document.createElementNS(NS,'path');p.setAttribute('d',pathOf(f.polys));const u=f.unit&&DATA.units.find(x=>x.id===f.unit);p.setAttribute('class','hit'+(u?' st-'+(u.status||'available'):''));p.dataset.kind='floor';p.dataset.k=k;hitsG.appendChild(p);});
+  $('#legend').innerHTML=Object.values(ST).map(s=>`<span><i style="--c:${s.hex}"></i>${s.label}</span>`).join('');
   paintMatches();
 }
 
@@ -734,7 +748,7 @@ const ICON={dot:'M12 12h.01',pool:'M3 17c2 0 2-1.5 4.5-1.5S9.5 17 12 17s2.5-1.5 
   private:'M3 20h18M6 20v-6a6 6 0 0 1 12 0v6M12 8V3M9 5l3-2 3 2',terraces:'M3 21h18M5 21V10h14v11M3 10h18M8 6h8l2 4H6z',pergola:'M3 8h18M5 8v12M19 8v12M9 8v12M15 8v12M4 4h16',
   play:'M5 21V8l7-5 7 5v13M9 21v-6h6v6',gardens:'M12 21V11M12 11c-4 0-6-3-6-7 4 0 6 3 6 7zM12 14c3 0 5-2 5-5-3 0-5 2-5 5z',parking:'M6 21V3h7a5 5 0 0 1 0 10H6',
   balconies:'M4 21V4h16v17M4 13h16M8 13v8M12 13v8M16 13v8',commercial:'M3 21h18M5 21V5h14v16M9 9h2M13 9h2M9 13h2M13 13h2M9 17h6'};
-function summary(fn){const us=DATA.units.filter(fn);const c={available:0,reserved:0,sold:0};us.forEach(u=>c[u.status]++);const av=us.filter(u=>u.status==='available');return Object.assign(c,{total:us.length,from:av.length?Math.min(...av.map(u=>u.price)):null});}
+function summary(fn){const us=DATA.units.filter(fn);const c={available:0,reserved:0,sold:0,soon:0};us.forEach(u=>c[u.status]++);const av=us.filter(u=>u.status==='available');return Object.assign(c,{total:us.length,from:av.length?Math.min(...av.map(u=>u.price)):null});}
 const pointer={x:0,y:0};
 function showChip(html){const c=$('#chip'),was=c.hidden;c.innerHTML=html;c.hidden=false;placeChip();if(was)anim(c,{opacity:[0,1],scale:[.94,1]},{duration:.18});}
 function placeChip(){const c=$('#chip');if(c.hidden)return;const w=c.offsetWidth,h=c.offsetHeight;let x=pointer.x+18,y=pointer.y+18;if(x+w>innerWidth-12)x=pointer.x-w-18;if(y+h>innerHeight-12)y=pointer.y-h-18;c.style.left=Math.max(8,x)+'px';c.style.top=Math.max(8,y)+'px';}
@@ -834,7 +848,7 @@ function setState(s){
   $('#bottom').hidden=!stageS;$('#crumbs').hidden=!(stageS||s==='loc'||s==='gal'||s==='amen');$('#loc').hidden=s!=='loc';$('#gal').hidden=s!=='gal';
   $('#nav').style.visibility=(s==='mp'||s==='close')?'visible':'hidden';
   $('#hint').textContent=HINT[s]||'';
-  $('#clouds').hidden=true;$('#amen').hidden=s!=='amen';
+  $('#clouds').hidden=true;$('#legend').hidden=s!=='close';$('#amen').hidden=s!=='amen';
   $('#btn-close').hidden=!(s==='close'||s==='pano'||s==='tour'||s==='loc'||s==='gal'||s==='amen');
   $('#pano').hidden=$('#pano-ui').hidden=!(s==='pano'||s==='tour');
   $('#stage').hidden=!stageS;$('#hotspots').hidden=s!=='tour';
@@ -1143,7 +1157,7 @@ function renderSide(){
   }else if(!floorUnits().length){const P=DATA.plans[plan.tower+':'+plan.floor];
     box.innerHTML=`<p class="lede">${P.note||'No homes on this level.'}</p>`;
   }else{const us=floorUnits();const types=[...new Set(us.map(u=>u.type))].sort();
-    box.innerHTML=`<p class="lede">Select a residence to see its fração, typology and area.</p><p class="kbd-hint">Arrow keys: ← → homes on this level, ↑ ↓ levels.</p>${plan.block?`<p class="label-sm">Block ${plan.block} · ${us.filter(u=>u.inv&&u.inv.block===plan.block).length} homes on this floor · <button class="linkish" id="blk-all">Show whole floor</button></p>`:''}${SR.open&&srActive()?`<p class="label-sm">${us.filter(srMatch).length} on this floor match your search</p>`:''}${us.some(u=>u.status)?(c=>`<p class="label-sm">${['available','reserved','sold'].filter(k=>c[k]).map(k=>`${c[k]} ${ST[k].label.toLowerCase()}`).join(' · ')}</p>`)(us.reduce((c,u)=>(c[u.status]=(c[u.status]||0)+1,c),{})):''}
+    box.innerHTML=`<p class="lede">Select a residence to see its fração, typology and area.</p><p class="kbd-hint">Arrow keys: ← → homes on this level, ↑ ↓ levels.</p>${plan.block?`<p class="label-sm">Block ${plan.block} · ${us.filter(u=>u.inv&&u.inv.block===plan.block).length} homes on this floor · <button class="linkish" id="blk-all">Show whole floor</button></p>`:''}${SR.open&&srActive()?`<p class="label-sm">${us.filter(srMatch).length} on this floor match your search</p>`:''}${us.some(u=>u.status)?(c=>`<p class="label-sm">${['available','reserved','sold','soon'].filter(k=>c[k]).map(k=>`${c[k]} ${ST[k].label.toLowerCase()}`).join(' · ')}</p>`)(us.reduce((c,u)=>(c[u.status]=(c[u.status]||0)+1,c),{})):''}
       <div class="stats">${types.map(t=>`<div><b>${pad2(us.filter(u=>u.type===t).length)}</b><span style="--c:${tyc(t)}">${t}</span></div>`).join('')}</div>
       <p class="label-sm">Typology</p>
       <div class="filters" role="group" aria-label="Filter by typology"><button data-b="0" aria-pressed="${plan.filter===0}">All</button>${types.map(t=>`<button data-b="${t}" aria-pressed="${plan.filter===t}">${t}</button>`).join('')}</div>`;
@@ -1440,3 +1454,4 @@ function frame(now){requestAnimationFrame(frame);const dt=Math.min(.05,(now-last
 })();
 })();
 </script>
+</Base>

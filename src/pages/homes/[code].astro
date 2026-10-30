@@ -1,0 +1,157 @@
+---
+// One page per home, built from the same data as the 3D explorer: its place on the architect's floor plan, areas,
+// status and price, so each home has its own address for search engines and for sharing.
+import Base from '../../layouts/Base.astro';
+import { homeSlug, loadSite } from '../../lib/site.mjs';
+
+export async function getStaticPaths() {
+  const data = await loadSite();
+  return data.units.map((unit) => ({ params: { code: homeSlug(unit) }, props: { unit, data } }));
+}
+
+const { unit, data } = Astro.props;
+const { project } = data;
+const inv = unit.inv ?? {};
+const STATUS = { available: 'Available', reserved: 'Reserved', sold: 'Sold', soon: 'Coming soon' };
+const SCHEMA_AVAILABILITY = { available: 'InStock', reserved: 'LimitedAvailability', sold: 'SoldOut', soon: 'PreOrder' };
+const status = unit.status ?? 'available';
+const price = inv.price ?? unit.price ?? null;
+const code = inv.code ?? unit.id;
+const tower = data.towers.find((t) => t.id === unit.tower)?.name ?? unit.tower;
+const floor = data.floorNames[unit.floor] ?? `Level ${unit.floor}`;
+const onFloor = /^level /i.test(floor) ? `on ${floor.toLowerCase()}` : `on the ${floor.toLowerCase()}`;
+const duplex = unit.duplex || inv.duplex;
+const living = inv.living ?? unit.m2;
+const outdoor = inv.outdoor ?? ((unit.balc ?? 0) + (unit.terrace ?? 0) || null);
+const parking = inv.parking ?? unit.parking ?? 0;
+const plan = data.plans[`${unit.tower}:${unit.floor}`];
+const pts = (poly) => poly.map(([x, y]) => `${x},${y}`).join(' ');
+const neighbours = data.units.filter((u) => u.tower === unit.tower && u.floor === unit.floor && u !== unit);
+const area = (v) => (v == null ? null : `${(+v).toFixed(1)} m²`);
+const eur = (v) => `€ ${Math.round(v).toLocaleString('en-US')}`;
+const whatsapp = (project.contact?.whatsapp ?? '').replace(/\D/g, '');
+const pageUrl = Astro.site ? new URL(Astro.url.pathname, Astro.site).href : '';
+const waHref = whatsapp
+  ? `https://wa.me/${whatsapp}?text=${encodeURIComponent(`Hello, I'm interested in home ${code} (${unit.type}) at ${project.name}. ${pageUrl}`.trim())}`
+  : project.contact?.email
+    ? `mailto:${project.contact.email}?subject=${encodeURIComponent(`${project.name} · ${code}`)}`
+    : null;
+
+const name = `${unit.type}${duplex ? ' duplex' : ''} · ${code}`;
+const title = `${unit.type}${duplex ? ' duplex' : ''} apartment ${code}, ${tower}, ${floor} · ${project.name}`;
+const description = `${project.name}, ${project.place}: ${unit.beds}-bedroom ${duplex ? 'duplex ' : ''}home ${code} ${onFloor} of the ${tower.toLowerCase()}, ${area(living)} living space${outdoor ? ` and ${area(outdoor)} outside` : ''}. ${STATUS[status]}${price && status === 'available' ? `, ${eur(price)}` : ''}.`;
+
+const facts = [
+  ['Typology', `${unit.type}${duplex ? ' duplex' : ''}`],
+  ['Bedrooms', unit.beds],
+  ['Living area', area(living)],
+  ['Outdoor area', area(outdoor)],
+  ['Total area', area(inv.total)],
+  ['Gross area', area(inv.gross)],
+  ['Parking', parking ? `${parking} space${parking > 1 ? 's' : ''}` : null],
+  ['Orientation', inv.orientation ?? unit.aspect],
+  ['Block', tower],
+  ['Level', floor],
+].filter(([, value]) => value != null && value !== '');
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Apartment',
+  name: `${name} · ${project.name}`,
+  description,
+  ...(pageUrl && { url: pageUrl }),
+  numberOfBedrooms: unit.beds,
+  floorLevel: String(unit.floor),
+  floorSize: { '@type': 'QuantitativeValue', value: living, unitCode: 'MTK' },
+  containedInPlace: { '@type': 'ApartmentComplex', name: project.name, address: { '@type': 'PostalAddress', addressLocality: project.place.split(' · ')[0], addressCountry: 'PT' } },
+  ...(price && {
+    offers: { '@type': 'Offer', price, priceCurrency: project.currency ?? 'EUR', availability: `https://schema.org/${SCHEMA_AVAILABILITY[status]}` },
+  }),
+};
+---
+<Base title={title} description={description} image="media/gallery/aerial_01.jpg" jsonLd={jsonLd}>
+<link rel="stylesheet" href="../site.css" slot="head">
+<style is:inline slot="head">
+.home{padding-top:96px}
+.crumbs{margin:0 0 18px;font-size:13px;color:var(--mute)}
+.crumbs a{text-decoration:none}.crumbs a:hover{color:#fff}
+.home h1{margin:8px 0 6px;font-family:var(--display);font-weight:400;font-size:clamp(34px,5vw,60px);line-height:1.05}
+.home .sub{margin:0;color:rgba(255,255,255,.82);font-size:16px}
+.badge{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase}
+.badge::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--c)}
+.contact .price{margin:0;color:#fff;font-family:var(--display);font-size:clamp(26px,3vw,34px);line-height:1.1}
+.plan{margin:0;border-radius:16px;overflow:hidden;background:#F4F1EA;border:1px solid var(--line)}
+.plan svg{display:block;width:100%;height:auto;max-height:78vh}
+.plan .other{fill:rgba(20,35,43,.06);stroke:rgba(20,35,43,.35);stroke-width:.08}
+.plan a:hover .other{fill:rgba(47,111,126,.18)}
+.plan .this{fill:rgba(47,111,126,.42);stroke:#2F6F7E;stroke-width:.18}
+.plan figcaption{padding:10px 14px;color:var(--ink);font-size:12.5px;background:#EAE5DA}
+dl.facts{margin:0;display:flex;flex-wrap:wrap}
+dl.facts div{flex:1 1 30%}
+dl.facts dd{margin:0;font-family:var(--display);font-size:clamp(20px,2vw,26px);line-height:1.1}
+dl.facts dt{order:2;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--mute)}
+.others{display:flex;flex-wrap:wrap;gap:8px;margin:0;padding:0;list-style:none}
+.others a{display:inline-flex;gap:8px;padding:8px 12px;border:1px solid var(--line);border-radius:999px;font-size:13px;text-decoration:none}
+.others a:hover{background:rgba(255,255,255,.08)}
+.others small{color:var(--mute)}
+@media (max-width:760px){.home{padding-top:80px}}
+</style>
+<header class="top solid" id="top">
+  <a class="brand" href="../index.html">AKSA</a>
+  <nav><a class="btn ghost hide-m" href="../project.html">All homes</a><a class="btn primary" href={waHref ?? '#contact'} target={waHref?.startsWith('https:') ? '_blank' : undefined} rel="noopener">Request a call</a></nav>
+</header>
+<div class="wrap home">
+  <p class="crumbs"><a href="../index.html">{project.name}</a> · <a href="../project.html#units">Homes</a> · {code}</p>
+  <div class="main" style="padding-top:0">
+    <div>
+      <p class="eyebrow">{tower} · {floor}</p>
+      <h1>{name}</h1>
+      <p class="sub">{description.split(': ')[1]}</p>
+      <p class="badge" style={`--c:${{ available: '#2E9E4F', reserved: '#E39B17', sold: '#C8463D', soon: '#4A5B6E' }[status]}`}>{STATUS[status]}</p>
+
+      <section>
+        {plan && (
+          <figure class="plan">
+            <svg viewBox={plan.viewBox.join(' ')} role="img" aria-label={`Floor plan of the ${floor.toLowerCase()}, ${tower.toLowerCase()}, with home ${code} highlighted`}>
+              <image href={`../${plan.image}`} x={plan.viewBox[0]} y={plan.viewBox[1]} width={plan.viewBox[2]} height={plan.viewBox[3]} />
+              {neighbours.map((u) => (
+                <a href={`${homeSlug(u)}.html`}><polygon class="other" points={pts(u.poly)}><title>{u.inv?.code ?? u.id} · {u.type}</title></polygon></a>
+              ))}
+              <polygon class="this" points={pts(unit.poly)} />
+            </svg>
+            <figcaption>{plan.name}, {tower.toLowerCase()}. {duplex ? 'Duplex: the plan shows the entrance level. ' : ''}Plans are indicative.</figcaption>
+          </figure>
+        )}
+      </section>
+
+      <section>
+        <h2>The home</h2>
+        <dl class="facts">
+          {facts.map(([label, value]) => (
+            <div><dt>{label}</dt><dd>{value}</dd></div>
+          ))}
+        </dl>
+      </section>
+
+      {neighbours.length > 0 && (
+        <section>
+          <h2>Also on this floor</h2>
+          <ul class="others">
+            {neighbours.map((u) => (
+              <li><a href={`${homeSlug(u)}.html`}>{u.inv?.code ?? u.id} <small>{u.type} · {STATUS[u.status ?? 'available']}</small></a></li>
+            ))}
+          </ul>
+        </section>
+      )}
+    </div>
+    <aside class="contact" id="contact">
+      <h3>{code}</h3>
+      {price ? <p class="price">{eur(price)}</p> : <p>Price on request.</p>}
+      <p>Our sales team answers on WhatsApp. Ask about this home and we'll call you back.</p>
+      {waHref && <a class="btn primary" href={waHref} target={waHref.startsWith('https:') ? '_blank' : undefined} rel="noopener">Request a call</a>}
+      <a class="btn ghost" href={`../index.html#u-${unit.id}`}>See it in 3D</a>
+    </aside>
+  </div>
+</div>
+<p class="credits">Areas, parking and status from the sales inventory. Plans and renders are indicative; final finishes and landscaping may differ.</p>
+</Base>
